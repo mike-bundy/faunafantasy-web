@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Media & press · Fauna Fantasy</title>
+<meta name="description" content="The reel, the opening cinematic, gameplay stills and the soundtrack of Fauna Fantasy.">
+<link rel="icon" href="assets/img/logo.png">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .vgrid { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 860px) { .vgrid { grid-template-columns: 1fr; } }
+  .vbig { grid-column: 1 / -1; }
+  .g { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  .g a { border-radius: 12px; overflow: hidden; border: 1px solid var(--line-soft); display: block; box-shadow: 0 8px 22px rgba(0,0,0,.4); }
+  .g img { aspect-ratio: 16/10; width: 100%; object-fit: cover; transition: transform .5s; }
+  .g a:hover img { transform: scale(1.05); }
+  .tracks { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+  .track { background: var(--panel); border: 1px solid var(--line-soft); border-radius: 12px; padding: 14px 16px; }
+  .track b { font-size: 15px; }
+  .track p { font-size: 13px; color: var(--cream-dim); margin: 2px 0 8px; }
+  .track audio { width: 100%; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <a class="logo" href="index.html" aria-label="Fauna Fantasy — home">
+    <img src="assets/img/logo.png" alt="Fauna Fantasy">
+  </a>
+  <button class="burger" aria-label="Menu">☰</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="world.html">The Everwild</a>
+    <a href="heroes.html">Heroes</a>
+    <a href="play.html">How to play</a>
+    <a href="arena.html">The Arena</a>
+    <a href="media.html" class="on">Media</a>
+  </nav>
+  <a class="wish" href="#reel">▶ Play the reel</a>
+</header>
+
+<main id="main">
+
+<section class="hero" style="min-height: 58svh;">
+  <div class="bg"><video id="reelBg" autoplay muted loop playsinline preload="metadata" poster="assets/img/attract_poster.jpg" data-onscreen aria-hidden="true">
+    <source src="assets/vid/attract_loop_h264.mp4" type="video/mp4"></video></div>
+  <div class="inner">
+    <p class="eyebrow">Media</p>
+    <h2 style="font-size: clamp(32px, 5vw, 54px);">Watch. Listen. Skim.</h2>
+    <p class="tag">Everything below is in-development material made for the game: the attract
+    reel, three cinematic cuts, gameplay stills from dev builds, and the score.</p>
+  </div>
+</section>
+
+<section class="pad" id="reel">
+  <div class="wrap">
+    <p class="eyebrow">Video</p>
+    <h2>The reel & the cuts</h2>
+    <div class="rule">◆</div>
+    <div class="vgrid">
+      <figure class="frame vbig" data-lb="assets/vid/attract_loop_h264.mp4">
+        <video controls loop muted playsinline preload="none" poster="assets/img/attract_poster.jpg" data-onscreen>
+          <source src="assets/vid/attract_loop_h264.mp4" type="video/mp4"></video>
+        <figcaption><span>Attract reel · 27 s</span><span>plays in-app on the title</span></figcaption>
+      </figure>
+      <figure class="frame" data-lb="assets/vid/intro_fernwood_h264.mp4">
+        <video controls loop muted playsinline preload="none" data-onscreen>
+          <source src="assets/vid/intro_fernwood_h264.mp4" type="video/mp4"></video>
+        <figcaption><span>Fernwood intro · first entry</span><span>~20 s</span></figcaption>
+      </figure>
+      <figure class="frame" data-lb="assets/vid/boss_gloomroot_hollow_h264.mp4">
+        <video controls loop muted playsinline preload="none" data-onscreen>
+          <source src="assets/vid/boss_gloomroot_hollow_h264.mp4" type="video/mp4"></video>
+        <figcaption><span>Gloomroot boss intro · King Rotcrown</span><span>~12 s</span></figcaption>
+      </figure>
+      <figure class="frame vbig" data-lb="assets/vid/finale_h264.mp4">
+        <video controls loop muted playsinline preload="none" data-onscreen>
+          <source src="assets/vid/finale_h264.mp4" type="video/mp4"></video>
+        <figcaption><span>"Every Song Has a Next Verse" · the finale</span><span>60 s · contains story</span></figcaption>
+      </figure>
+    </div>
+    <p class="muted small">Cinematics were directed in-house on local GPU; voices are performed
+    and tuned per character. Click any clip to pop it full-screen.</p>
+  </div>
+</section>
+
+<section class="pad" style="padding-top: 12px;">
+  <div class="wrap">
+    <p class="eyebrow">Stills</p>
+    <h2>The game, actually</h2>
+    <div class="rule">◆</div>
+    <p class="muted" style="max-width: 640px; margin-bottom: 20px;">Captures from dev builds on
+    iPhone, iPad, Apple TV and Mac. The look is still moving — HUD and frames are final-ish,
+    numbers are not.</p>
+    <div class="g">
+      <a href="assets/img/shots/05_battle_hud.jpg" data-lb="assets/img/shots/05_battle_hud.jpg"><img src="assets/img/shots/05_battle_hud.jpg" alt="Battle HUD on iPhone: electrified quarry, objectives, timeline." loading="lazy"></a>
+      <a href="assets/img/shots/08_ipad_battle.jpg" data-lb="assets/img/shots/08_ipad_battle.jpg"><img src="assets/img/shots/08_ipad_battle.jpg" alt="Battle on iPad." loading="lazy"></a>
+      <a href="assets/img/shots/battle_contact_iphone_fernwood.jpg" data-lb="assets/img/shots/battle_contact_iphone_fernwood.jpg"><img src="assets/img/shots/battle_contact_iphone_fernwood.jpg" alt="Nine battle boards, light biomes." loading="lazy"></a>
+      <a href="assets/img/shots/battle_contact_iphone_emberforge.jpg" data-lb="assets/img/shots/battle_contact_iphone_emberforge.jpg"><img src="assets/img/shots/battle_contact_iphone_emberforge.jpg" alt="Nine battle boards, dark biomes." loading="lazy"></a>
+      <a href="assets/img/shots/02_walking.jpg" data-lb="assets/img/shots/02_walking.jpg"><img src="assets/img/shots/02_walking.jpg" alt="The party walking the diorama Trail." loading="lazy"></a>
+      <a href="assets/img/shots/03_camp.jpg" data-lb="assets/img/shots/03_camp.jpg"><img src="assets/img/shots/03_camp.jpg" alt="Camp around the fire." loading="lazy"></a>
+      <a href="assets/img/shots/05_encounter.jpg" data-lb="assets/img/shots/05_encounter.jpg"><img src="assets/img/shots/05_encounter.jpg" alt="Encounter stop." loading="lazy"></a>
+      <a href="assets/img/shots/06_duel_hand.jpg" data-lb="assets/img/shots/06_duel_hand.jpg"><img src="assets/img/shots/06_duel_hand.jpg" alt="Wild Duel card game." loading="lazy"></a>
+      <a href="assets/img/shots/brew_ipad_play.jpg" data-lb="assets/img/shots/brew_ipad_play.jpg"><img src="assets/img/shots/brew_ipad_play.jpg" alt="Rune Brew mini-game." loading="lazy"></a>
+      <a href="assets/img/shots/grove_ipad_play.jpg" data-lb="assets/img/shots/grove_ipad_play.jpg"><img src="assets/img/shots/grove_ipad_play.jpg" alt="Grove Puzzle mini-game." loading="lazy"></a>
+      <a href="assets/img/shots/00_overview.jpg" data-lb="assets/img/shots/00_overview.jpg"><img src="assets/img/shots/00_overview.jpg" alt="Trail overview." loading="lazy"></a>
+      <a href="assets/img/keyart_wide.jpg" data-lb="assets/img/keyart_wide.jpg"><img src="assets/img/keyart_wide.jpg" alt="Key art: the Starter Set on a hill at golden hour." loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="padding-top: 26px;">
+  <div class="wrap">
+    <p class="eyebrow">Sound</p>
+    <h2>Sounds of the Everwild</h2>
+    <div class="rule">◆</div>
+    <p class="muted" style="max-width: 640px; margin-bottom: 20px;">An original score built for
+    the project — nineteen tracks and four fanfares, written to the biomes' moods. Eight
+    excerpts below; each biome, camp and boss carries its own cue in-game.</p>
+    <div class="tracks">
+      <div class="track"><b>Title</b><p>The Rootgate horn, and the walk up to it.</p>
+        <audio controls preload="none"><source src="assets/audio/title.m4a" type="audio/mp4"></audio></div>
+      <div class="track"><b>Grovehaven (hub)</b><p>Hearth, lanterns, the sound of safety.</p>
+        <audio controls preload="none"><source src="assets/audio/hub.m4a" type="audio/mp4"></audio></div>
+      <div class="track"><b>Fernwood</b><p>Woodwinds, harp, a hopeful horn line.</p>
+        <audio controls preload="none"><source src="assets/audio/biome_fernwood.m4a" type="audio/mp4"></audio></div>
+      <div class="track"><b>Coral Shallows</b><p>Steel-drum shimmer, marimba, a shanty lilt.</p>
+        <audio controls preload="none"><source src="assets/audio/biome_coral_shallows.m4a" type="audio/mp4"></audio></div>
+      <div class="track"><b>Emberforge Caldera</b><p>Low brass, anvil percussion, taiko.</p>
+        <audio controls preload="none"><source src="assets/audio/biome_emberforge_caldera.m4a" type="audio/mp4"></audio></div>
+      <div class="track"><b>Battle</b><p>The theme your ears will time travel to.</p>
+        <audio controls preload="none"><source src="assets/audio/battle.m4a" type="audio/mp4"></audio></div>
+      <div class="track"><b>Boss</b><p>For when the land itself gets angry.</p>
+        <audio controls preload="none"><source src="assets/audio/boss.m4a" type="audio/mp4"></audio></div>
+      <div class="track"><b>The Blightheart</b><p>Eight storms, tried at once.</p>
+        <audio controls preload="none"><source src="assets/audio/blightheart.m4a" type="audio/mp4"></audio></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="padding-top: 26px;">
+  <div class="wrap reveal">
+    <p class="eyebrow">Press notes</p>
+    <h2>What this is, for the record</h2>
+    <div class="rule">◆</div>
+    <div class="duo">
+      <div>
+        <p><b>Fauna Fantasy</b> is an isometric turn-based tactics RPG with roguelite runs and a
+        collectible-card Binder, built SwiftUI + RealityKit for iPhone Duo, iPhone, iPad, macOS,
+        tvOS and visionOS (minimum OS 26). One build, five surfaces, controller support,
+        Game Center multiplayer.</p>
+        <p>Project facts, if you're counting: 100 hand-painted heroes across 20 job schools and
+        8 elements; ~240 skills; 9 battle boards across 9 biomes; 5 Trail mini-games plus Wild
+        Duel; 110 Hero Trials; 20 original cinematic scenes; 23 music cues; 149 sound events cut
+        from licensed banks; deterministic lockstep PvP with no dedicated server.</p>
+        <p>Everything you've seen on this site — art, writing, music direction, the site itself —
+        was made for this project. The game is in development; nothing here is launch-final.</p>
+      </div>
+      <div>
+        <div class="chips">
+          <span class="chip"><b>Genre</b> · tactics / roguelite / cards</span>
+          <span class="chip"><b>Studio</b> · Side Result (AU)</span>
+          <span class="chip"><b>Tech</b> · SwiftUI · RealityKit</span>
+          <span class="chip"><b>Platforms</b> · iPhone Duo · iPad · Mac · Apple TV · Vision Pro</span>
+          <span class="chip"><b>Multiplayer</b> · Game Center, no server</span>
+          <span class="chip"><b>Status</b> · in development</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pad center" style="padding-top: 0;">
+  <div class="wrap reveal">
+    <div class="rule">◆</div>
+    <div class="ctas">
+      <a class="btn primary" href="world.html">Then read the world →</a>
+      <a class="btn ghost" href="heroes.html">or meet the heroes</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="fine" style="margin-top: 0;">© 2026 Side Result. All media on this page is
+    project-original or licensed for use (BOOM Library, Quaternius, Mixamo — where applicable).
+    Preview build captures; not launch-final. <a href="index.html">Home</a></p>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>

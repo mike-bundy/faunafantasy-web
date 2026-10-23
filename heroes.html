@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The 100 heroes · Fauna Fantasy</title>
+<meta name="description" content="A hundred unlikely heroes for Fauna Fantasy: twenty job schools, eight elements, every one with a painted card and a personality. Browse, filter and meet them.">
+<link rel="icon" href="assets/img/logo.png">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .herohead { position: relative; padding: 140px 0 60px; }
+  .herohead .band-bg { position: absolute; inset: 0; z-index: -2; overflow: hidden; }
+  .herohead .band-bg img { width: 100%; height: 100%; object-fit: cover; opacity: .35; }
+  .herohead .band-bg::after { content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(11,17,13,.55), rgba(11,17,13,.95)); }
+  .statline { display: flex; flex-wrap: wrap; gap: 26px; margin-top: 22px; }
+  .statline b { font-family: "Lilita One", sans-serif; font-weight: 400; font-size: 26px; color: var(--gold-hi); display: block; }
+  .statline span { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--cream-dim); font-family: "Lilita One", sans-serif; }
+  .starters { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 26px; }
+  .scard { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--line);
+    box-shadow: var(--shadow); cursor: pointer; background: #131b14; padding: 0; color: inherit; text-align: left; }
+  .scard img { aspect-ratio: 3/4; width: 100%; object-fit: cover; object-position: top; }
+  .scard .nm { padding: 12px 14px; background: linear-gradient(180deg, rgba(19,27,20,.4), rgba(11,16,12,.96) 40%); }
+  .scard .nm b { display: block; font-size: 17px; }
+  .scard .nm span { font-family: "Lilita One", sans-serif; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--cream-dim); }
+  .scard .hook { padding: 0 14px 14px; font-size: 13.5px; color: var(--cream-dim); background: rgba(11,16,12,.96); font-style: italic; }
+  .loadmore { display: block; margin: 26px auto 0; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <a class="logo" href="index.html" aria-label="Fauna Fantasy — home">
+    <img src="assets/img/logo.png" alt="Fauna Fantasy">
+  </a>
+  <button class="burger" aria-label="Menu">☰</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="world.html">The Everwild</a>
+    <a href="heroes.html" class="on">Heroes</a>
+    <a href="play.html">How to play</a>
+    <a href="arena.html">The Arena</a>
+  </nav>
+  <a class="wish" href="media.html">Media & press</a>
+</header>
+
+<main id="main">
+
+<section class="herohead">
+  <div class="band-bg"><img src="assets/img/keyart_tall.jpg" alt=""></div>
+  <div class="wrap">
+    <p class="eyebrow">The hundred</p>
+    <h2 style="font-size: clamp(30px, 4.5vw, 48px);">No chosen ones. Just neighbours.</h2>
+    <div class="rule">◆</div>
+    <p style="max-width: 680px;">The first hero you meet is a fifteen-year-old squire in armour
+    one size too big. After him: a hedgehog spearman, a three-eyed rabbit samurai, an axolotl
+    who soaks raptors and puddles with the same spell, and a dormouse who tends a sacred altar
+    and gasps at every Legendary. Every hero is a card, every card was painted for this game,
+    and in your Binder the favourites really do grow — from Common to ★5 Prismatic over
+    months.</p>
+    <div class="statline">
+      <div><b>100</b><span>heroes</span></div>
+      <div><b>20</b><span>job schools</span></div>
+      <div><b>8</b><span>elements</span></div>
+      <div><b>40 / 32 / 18 / 10</b><span>Common / Rare / Epic / Legendary</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="padding-top: 26px;">
+  <div class="wrap">
+    <p class="eyebrow">The Starter Set</p>
+    <h2>Who answers the Rootgate horn</h2>
+    <div class="rule">◆</div>
+    <div class="starters" id="starters"></div>
+    <p class="muted small" style="margin-top:14px;">Four answers to the same horn: a squire, a
+    fox, a lantern-bearer and a bear in red plate. The party you're handed — and the measuring
+    stick every other hero is drawn against.</p>
+  </div>
+</section>
+
+<section class="pad" style="padding-top: 10px;" id="roster">
+  <div class="wrap">
+    <p class="eyebrow">The Binder</p>
+    <h2>All hundred, unpocketed</h2>
+    <div class="rule">◆</div>
+
+    <div class="filters" role="search">
+      <select id="fJob" aria-label="Filter by job"><option value="">All jobs</option></select>
+      <select id="fEl" aria-label="Filter by element">
+        <option value="">All elements</option>
+        <option>fire</option><option>water</option><option>grass</option><option>electric</option>
+        <option>earth</option><option>wind</option><option>light</option><option>dark</option>
+      </select>
+      <select id="fRar" aria-label="Filter by rarity">
+        <option value="">All rarities</option>
+        <option value="common">Common</option><option value="rare">Rare</option>
+        <option value="epic">Epic</option><option value="legendary">Legendary</option>
+      </select>
+      <input id="fText" type="search" placeholder="Search a name or species…" aria-label="Search names">
+      <span class="count" id="count"></span>
+    </div>
+
+    <div class="hgrid" id="grid"></div>
+    <button class="btn ghost loadmore" id="more" hidden>Show more</button>
+  </div>
+</section>
+
+<section class="pad center">
+  <div class="wrap reveal">
+    <div class="rule">◆</div>
+    <p style="max-width: 620px; margin: 0 auto;">Collecting here means <i>collecting
+    characters</i>: every card is somebody, with a barks file and a bad habit and a role in the
+    story. The Binder numbers them 1 to 100, in collector order — this page lists the same
+    hundred, from the project's own hero sheet.</p>
+    <div class="ctas" style="margin-top: 24px;">
+      <a class="btn primary" href="play.html">How battles work →</a>
+      <a class="btn ghost" href="arena.html">Take them to the Arena</a>
+    </div>
+  </div>
+</section>
+
+<!-- hero detail -->
+<div class="modal" id="heroModal" role="dialog" aria-modal="true" aria-label="Hero details">
+  <div class="box">
+    <button class="x" aria-label="Close">×</button>
+    <div class="art" id="mArt"></div>
+    <div class="txt" id="mTxt"></div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="fine" style="margin-top: 0;">Fauna Fantasy · the Binder. Card art painted for this
+    project (some holographic in-app). Fonts under the SIL OFL. <a href="index.html">Home</a></p>
+  </div>
+</footer>
+
+<script src="assets/data/heroes.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/heroes-page.js"></script>
+</body>
+</html>

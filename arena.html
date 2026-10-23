@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Arena — PvP on Game Center · Fauna Fantasy</title>
+<meta name="description" content="Four heroes, a mirrored board, one rival: the Arena's deterministic lockstep PvP, Quick Match by team power, Friend challenges with SharePlay, and take-turns async matches.">
+<link rel="icon" href="assets/img/logo.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <a class="logo" href="index.html" aria-label="Fauna Fantasy — home">
+    <img src="assets/img/logo.png" alt="Fauna Fantasy">
+  </a>
+  <button class="burger" aria-label="Menu">☰</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="world.html">The Everwild</a>
+    <a href="heroes.html">Heroes</a>
+    <a href="play.html">How to play</a>
+    <a href="arena.html" class="on">The Arena</a>
+  </nav>
+  <a class="wish" href="media.html">Media & press</a>
+</header>
+
+<main id="main">
+
+<section class="hero" style="min-height: 74svh;">
+  <div class="bg"><img src="assets/img/battle/stormspire_vista.jpg" alt="A copper city on a storm plateau at dusk."></div>
+  <div class="inner">
+    <p class="eyebrow">The Arena</p>
+    <h2 style="font-size: clamp(32px, 5vw, 56px);">Two sides. Four heroes each.<br>No mercy, no servers.</h2>
+    <p class="tag">The Arena lives in Grovehaven — a station in the Snug Root tavern where
+    you field <b>your real collection</b> against another player's, on a mirrored board of any
+    biome, under the game's own battle rules.</p>
+    <div class="ctas">
+      <a class="btn primary" href="#modes">Read the rules</a>
+      <a class="btn ghost" href="heroes.html">Build a team</a>
+    </div>
+  </div>
+</section>
+
+<section class="pad" id="modes">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Modes</p>
+      <h2>Four ways to get punched by a person</h2>
+      <div class="rule">◆</div>
+    </div>
+    <div class="cards">
+      <div class="card reveal">
+        <h3>Quick Match</h3>
+        <p>Random opponents matched by team power, widening the band after twenty seconds. A
+        30-second clock per unit-turn; at zero your AI plays it. If your opponent goes quiet for
+        fifteen seconds, your AI covers their moves so the battle never stalls.</p>
+      </div>
+      <div class="card reveal">
+        <h3>Challenge a Friend</h3>
+        <p>Invite through Game Center — iMessage, contacts, nearby — and the Arena offers
+        SharePlay inside a FaceTime call. Pick <b>Live</b>, or <b>Take turns</b>.</p>
+      </div>
+      <div class="card reveal">
+        <h3>Take turns (async)</h3>
+        <p>A friend match that survives you both closing the app. The match carries the battle's
+        own message log; every unit-turn is saved. When you reopen, the opponent's moves play
+        out from exactly where you left off. Twenty-four hours per turn is a forfeit; resigning
+        is always allowed.</p>
+      </div>
+      <div class="card reveal">
+        <h3>Practice</h3>
+        <p>Loopback and AI-mirrored matches in every build, so the Arena is playable on a plane,
+        and a hidden Dev mode plays two AIs against each other for the test suite (one hundred
+        matches, 7,912 state checkpoints — all equal).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="padding-top: 10px;">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Under the hood</p>
+      <h2>Deterministic lockstep, or: how a match fits in a text message</h2>
+      <div class="rule">◆</div>
+    </div>
+    <div class="duo reveal">
+      <div>
+        <p>The battle engine is a pure, deterministic function: the same setup plus the same
+        actions plays out identically on every device. So the Arena doesn't send state, unit
+        lists or damage — it sends <b>actions</b>. About ten bytes per move, about five
+        kilobytes for a whole match. Both sides run the full battle locally and compare a hash
+        of the state after every turn.</p>
+        <p>Match setup uses <b>commit-reveal</b>: both sides hash their teams and the board seed
+        <i>before</i> either sees the other's, so nobody can snipe your party. The protocol
+        version, a content hash and an engine fingerprint must match or the hello politely
+        refuses — different builds simply can't join each other's matches.</p>
+        <p>Team validation happens before the fight: your four heroes, their levels, weapons,
+        Charms and Crests are checked against the content rules on both machines. Ownership
+        isn't provable without a server — Arena honesty is part of being invited to the
+        tavern.</p>
+      </div>
+      <div>
+        <div class="chips">
+          <span class="chip"><b>~10 bytes</b> per move</span>
+          <span class="chip"><b>~5 kB</b> per match</span>
+          <span class="chip"><b>Commit → reveal</b> anti-scam setup</span>
+          <span class="chip"><b>State hashes</b> after every turn</span>
+          <span class="chip"><b>No server</b> required</span>
+          <span class="chip"><b>Mirrored boards</b>, biome by biome</span>
+          <span class="chip"><b>Versus rules</b>: own Bond, own Downed rule, tie-break alternates</span>
+        </div>
+        <blockquote class="quote">A desync is technically impossible; if the hashes ever
+        disagreed, the match is declared <i>no contest</i> and both states are logged for the
+        devs.
+        <span class="who">— Arena design notes</span></blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="band-bg kb"><img src="assets/img/battle/gloomroot_hollow_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="wrap reveal">
+    <p class="eyebrow">Rating & seasons</p>
+    <h2>Rated by Glicko-2. Dressed by the grove.</h2>
+    <div class="rule">◆</div>
+    <div class="duo">
+      <div>
+        <p>Quick Matches are rated: an account-wide Arena rating starts at 1,500 and moves by
+        Glicko-2, with the opponent's rating agreed between both machines during the handshake.
+        Six-week seasons carry titles — <b>Sprout · Grove Warden · Thornguard · Wildheart ·
+        Accord Champion</b> — and the leaderboard is your Game Center friends' board.</p>
+        <p>Wins pay a little: Acorns and shards on your first win of the day, a trickle after,
+        capped at the account level. Friend matches and async matches are never rated. The Arena
+        is for showing off, not for grinding.</p>
+      </div>
+      <div>
+        <figure class="frame">
+          <img src="assets/img/shots/05_battle_hud.jpg" alt="A battle in progress: the turn timeline and command panel, with the objective 'Electrify the flooded quarry'." loading="lazy" data-lb="assets/img/shots/05_battle_hud.jpg">
+          <figcaption><span>The Arena uses the normal battle HUD</span><span>plus a rival's name</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pad center">
+  <div class="wrap reveal">
+    <div class="rule">◆</div>
+    <p style="max-width: 640px; margin: 0 auto;">The Arena was built to one test: could two
+    people, on five kinds of device, play one honest match with nothing between them but
+    Game Center's pipes? It plays. Now go be insufferable about your rating.</p>
+    <div class="ctas" style="margin-top: 24px;">
+      <a class="btn primary" href="media.html">Watch the trailer</a>
+      <a class="btn ghost" href="index.html">Back to Grovehaven</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="fine" style="margin-top: 0;">Fauna Fantasy · The Arena. PvP details from the
+    game's Arena design notes; systems may grow before release. <a href="index.html">Home</a></p>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>

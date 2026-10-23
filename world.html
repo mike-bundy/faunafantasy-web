@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Everwild — a world bible · Fauna Fantasy</title>
+<meta name="description" content="Nine lands, eight Wyrms and a grieving king: the world of Fauna Fantasy. Fernwood to the Blightheart — moods, landmarks, wildlife and bosses.">
+<link rel="icon" href="assets/img/logo.png">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .bmeta { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+  .bmeta .chip b { color: var(--el, var(--gold-hi)); }
+  .bgrid { display: grid; gap: 16px; grid-template-columns: 1fr 1fr; margin-top: 26px; }
+  @media (max-width: 820px) { .bgrid { grid-template-columns: 1fr; } }
+  .panel {
+    background: rgba(12, 18, 13, .84); border: 1px solid var(--line-soft);
+    border-radius: 13px; padding: 18px 20px; backdrop-filter: blur(5px);
+  }
+  .panel h4 {
+    font-family: "Lilita One", sans-serif; font-weight: 400; letter-spacing: .16em;
+    text-transform: uppercase; font-size: 12.5px; color: var(--gold); margin-bottom: 10px;
+  }
+  .panel ul { margin: 0; padding-left: 18px; font-size: 14.5px; color: var(--cream-dim); }
+  .panel li { margin-bottom: 7px; }
+  .panel .boss { font-size: 15px; }
+  .panel .boss b { color: var(--cream); }
+  .biome h2 span { display: block; font-size: .58em; color: var(--cream-dim); font-style: italic; font-weight: 400; margin-top: 6px; }
+  .bossbar {
+    margin-top: 16px; padding: 14px 18px; border-radius: 13px;
+    background: rgba(12, 18, 13, .84); border: 1px solid color-mix(in srgb, var(--el) 45%, transparent);
+    font-size: 15px;
+  }
+  .bossbar .tag {
+    font-family: "Lilita One", sans-serif; font-size: 11px; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--el, var(--gold)); display: block; margin-bottom: 4px;
+  }
+  .wyrms { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .wyrm {
+    border-radius: 13px; padding: 16px 18px; position: relative; overflow: hidden;
+    background:
+      radial-gradient(120% 130% at 0% 0%, color-mix(in srgb, var(--el) 22%, transparent), transparent 55%),
+      rgba(13, 19, 14, .92);
+    border: 1px solid color-mix(in srgb, var(--el) 40%, transparent);
+  }
+  .wyrm b { font-size: 17.5px; }
+  .wyrm .ep { display: block; font-style: italic; color: var(--el, var(--cream-dim)); margin: 2px 0 8px; }
+  .wyrm p { font-size: 14px; color: var(--cream-dim); margin: 0; }
+  .npc { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  .npc .panel b { display: block; color: var(--cream); margin-bottom: 3px; }
+  .npc .panel span.role {
+    font-family: "Lilita One", sans-serif; font-size: 10.5px; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 8px;
+  }
+  .npc .panel p { font-size: 14px; color: var(--cream-dim); margin: 0; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <a class="logo" href="index.html" aria-label="Fauna Fantasy — home">
+    <img src="assets/img/logo.png" alt="Fauna Fantasy">
+  </a>
+  <button class="burger" aria-label="Menu">☰</button>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="world.html" class="on">The Everwild</a>
+    <a href="heroes.html">Heroes</a>
+    <a href="play.html">How to play</a>
+    <a href="arena.html">The Arena</a>
+  </nav>
+  <a class="wish" href="media.html">Media & press</a>
+</header>
+
+<main id="main">
+
+<section class="hero" style="min-height: 66svh;">
+  <div class="bg"><img src="assets/img/battle/landscape.jpg" alt="Painted map of the Everwild: a wide valley of forests, reefs, canyons, volcanoes and sky-peaks at dusk." data-lb="assets/img/battle/landscape.jpg"></div>
+  <div class="inner">
+    <p class="eyebrow">A world bible</p>
+    <h2 style="font-size: clamp(34px, 5vw, 58px);">The Everwild</h2>
+    <p class="tag" style="margin-top: 4px;">A single, wide, unmapped land of forests, reefs,
+    canyons, volcanoes, sky-peaks, copper cities, sun-temples and twilight gardens — which once
+    sang with eight great voices.</p>
+  </div>
+</section>
+
+<!-- ============ CYCLES & WYRMS ============ -->
+<section class="pad">
+  <div class="wrap reveal">
+    <p class="eyebrow">The eight voices</p>
+    <h2>The Wyrms did not rule the land.<br>They kept time for it.</h2>
+    <div class="rule">◆</div>
+    <p style="max-width: 720px;">Everything in the Everwild moves in <b>cycles</b>: things grow,
+    bloom, tire, rest, and return to the roots to be grown again. The Wyrms tended those cycles —
+    and the deepest one, rest itself, was tended in the <b>Well of Endings</b> beneath the
+    twilight vale. Every hero carries a spark of one Wyrm's element, the way a talent shows up in
+    a family. Fight beside friends and that element answers more strongly: that is the Bond
+    gauge, and it is how a party of four can call down a Wyrm.</p>
+    <div class="wyrms" style="margin-top: 28px;">
+      <div class="wyrm el-fire"><b>Ignara</b><span class="ep">the Ember Wyrm · she</span>
+        <p>Warmed the forges. Chained in cooled magma beneath the Hearthforge, in Emberforge
+        Caldera. Proud, quick-tempered, quick to forgive; loves the sound of hammers.</p></div>
+      <div class="wyrm el-water"><b>Maretha</b><span class="ep">the Tide Wyrm · she</span>
+        <p>Turned the tides. Sealed beneath the Tidebell in Coral Shallows. Patient, playful,
+        old as the sea; speaks in waves of feeling rather than words.</p></div>
+      <div class="wyrm el-grass"><b>Verdalis</b><span class="ep">the Bloom Wyrm · she</span>
+        <p>Woke the spring. Curled in stone around the Sleeping Stone in Fernwood. Gentle and
+        sleepy — and fiercely protective of small growing things.</p></div>
+      <div class="wyrm el-earth"><b>Gravok</b><span class="ep">the Stone Wyrm · he</span>
+        <p>Held the mountains still. Fossilised in the Amber Anvil. Slow, deep and kind; takes a
+        year to finish a sentence and is always worth the wait.</p></div>
+      <div class="wyrm el-wind"><b>Zephyrine</b><span class="ep">the Gale Wyrm · she</span>
+        <p>Carried seeds and songs. Her breath is caught in the Windharp's strings, atop
+        Skyreach Peaks. Restless, curious, a gossip — every rumour eventually passed through
+        her.</p></div>
+      <div class="wyrm el-electric"><b>Voltaris</b><span class="ep">the Storm Wyrm · he</span>
+        <p>Cracked the storms that cleaned the air. Coiled inside a copper cage the Tinkers
+        built to protect him, in Stormspire. Brilliant, excitable, funny.</p></div>
+      <div class="wyrm el-light"><b>Solenne</b><span class="ep">the Dawn Wyrm · she</span>
+        <p>Brought the dawn, dimmed now in the Sun Lens above Sunspire Sanctum. Serene, honest,
+        a little stern. She cannot abide a lie.</p></div>
+      <div class="wyrm el-dark"><b>Nocturne</b><span class="ep">the Dusk Wyrm · he</span>
+        <p>Brought the dusk, and with it rest. Bound in Nocturne's Cradle in Gloomroot Hollow —
+        the first sealed, the gentlest of eight. Dark here is <b>rest, not evil</b>.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GROVEHAVEN ============ -->
+<section class="pad" style="padding-top: 20px;">
+  <div class="wrap reveal">
+    <p class="eyebrow">Home</p>
+    <h2>Grovehaven, the village in the Hearth Oak</h2>
+    <div class="rule">◆</div>
+    <div class="duo">
+      <div>
+        <p>Your village is built in, on and around the largest tree in the world: stairways
+        spiralling up the trunk, houses in the roots, lantern-bridges between the branches. The
+        Blight cannot climb these roots — the Wild Accord was sworn here a thousand years ago, and
+        the cycles still turn: <b>leaves fall every evening and grow back every morning</b>.
+        That is not decoration. Grovehaven is safe because a hundred different folk keep choosing
+        each other.</p>
+        <p>Expeditions leave through the <b>Rootgate</b>, a living arch of the Oak's roots, and
+        fallen heroes come home on the lanternbugs' wings. Between runs you'll meet the folk who
+        tend it:</p>
+      </div>
+      <figure class="frame">
+        <img src="assets/img/menu/title.jpg" alt="The Hearth Oak: a colossal tree turned dwelling, with platforms, huts, rope bridges and glowing lanterns over a misty valley at sunrise." loading="lazy" data-lb="assets/img/menu/title.jpg">
+        <figcaption><span>Grovehaven</span><span>the Hearth Oak</span></figcaption>
+      </figure>
+    </div>
+    <div class="npc" style="margin-top: 26px;">
+      <div class="panel"><b>Elder Mossback</b><span class="role">Keeper of the Accord · the Codex</span>
+        <p>An ancient tortoise, kind, unhurried, wry. Remembers everything except where he left
+        his spectacles. He narrates your journey and calls you "little squire", whoever you
+        are.</p></div>
+      <div class="panel"><b>Seedkeeper Pim</b><span class="role">Dormouse · the Pack Altar</span>
+        <p>Tiny, solemn, ceremonial. Takes pack openings very seriously, and gasps audibly at
+        every Legendary.</p></div>
+      <div class="panel"><b>Archivist Quillby</b><span class="role">Porcupine · the Collection Binder</span>
+        <p>Fussy, meticulous, secretly sentimental. Files every card by element, rarity <i>and
+        "how brave it looks".</i></p></div>
+      <div class="panel"><b>Brindle Ironpaw</b><span class="role">Beaver · the Fusion Forge</span>
+        <p>Cheerful master smith with forearms like logs. Measures twice, hammers once, hums sea
+        shanties.</p></div>
+      <div class="panel"><b>Captain Hollis Fenn</b><span class="role">Retired knight · the Barracks</span>
+        <p>A grizzled, gentle quartermaster with a wooden cane. Knows every hero's tea order
+        before they do.</p></div>
+      <div class="panel"><b>Wayfinder Sol</b><span class="role">Crane · the Expedition Gate</span>
+        <p>Tall, graceful, mysterious. Reads the Rootgate's paths like tea leaves, and speaks of
+        routes as if they were moods.</p></div>
+      <div class="panel"><b>Pemberton</b><span class="role">Pelican · Pemberton's Peddlery</span>
+        <p>An enthusiastic over-seller who keeps his stock in his beak pouch. Honest about
+        prices, dramatic about everything else.</p></div>
+      <div class="panel"><b>The Arena</b><span class="role">The Snug Root · open play</span>
+        <p>When the wild has been befriended, the tavern's back table turns to rivals: Quick
+        Match, Friend challenges, ratings and six-week seasons.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BIOMES ============ -->
+
+<section class="band biome el-grass" id="fernwood">
+  <div class="band-bg kb"><img src="assets/img/battle/fernwood_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="bmeta">
+        <span class="chip">Act I</span><span class="chip"><b>Grass</b></span>
+        <span class="chip">Sealed Wyrm · <b>Verdalis</b></span><span class="chip">Woodwinds, harp, a hopeful horn</span>
+      </div>
+      <h2>Fernwood <span>Emerald and moss-gold. Shafts of morning light, drifting pollen, dew. Cosy, ancient and green.</span></h2>
+      <p style="max-width: 760px;">The oldest forest in the Everwild, grown from the Hearth Oak's
+      first fallen acorns; its ferns are tall enough to shelter houses. The Thornwardens have kept
+      it for centuries, and it is the closest land to Grovehaven — the Rootgate's first path
+      always opens here. Fernwood was the last biome to fall to the Blight, because Verdalis held
+      the rot back by <i>sleeping harder</i>. Where the Blight has taken hold: violet petals
+      drift among the ferns, and some fronds curl black at the tips.</p>
+    </div>
+    <div class="bgrid reveal">
+      <div class="panel"><h4>You might find</h4><ul>
+        <li><b>The Sleeping Stone</b> — a mossy monolith carved with a curled Wyrm. Verdalis's seal.</li>
+        <li>The Fernspire — a colossal tree-fern with a spiral staircase of shelf-fungus.</li>
+        <li>Mossmere — a mirror-green pond where lantern-frogs croak the hour.</li>
+        <li>Bramble Bridge — a living bridge of woven briars. Flammable, which matters.</li>
+        <li>Lantern Glen — a hollow full of glowworms. At night, the Shroomlings dance.</li>
+      </ul></div>
+      <div class="panel"><h4>Who lives here</h4>
+        <div class="chips">
+          <span class="chip">Thornsprouts</span><span class="chip">Scythe Mantises</span>
+          <span class="chip">Feral velociraptors</span><span class="chip">Parasaurolophus</span>
+          <span class="chip">Shroomlings</span><span class="chip">Lanternmoths</span>
+          <span class="chip">Briar Brigands</span><span class="chip">…and worse near the stone</span>
+        </div>
+        <div class="bossbar"><span class="tag">Boss · the elder treant</span>
+          <b>Elder Bramblebough</b>, a slow, rumbling giant of oak and fern who sheltered the
+          Sleeping Stone with his branches for a thousand years. The Blight seeped up through the
+          stone into his roots; Blight blossoms now bloom in his branches, feeding him the very
+          thing that's hurting him. <i>"Mind your fire in an old man's house."</i> When he is
+          calmed, he settles into a peaceful sleep around the stone — which cracks open to free
+          Verdalis, and spring flowers bloom at the Rootgate for good.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band biome el-water" id="coral_shallows">
+  <div class="band-bg kb"><img src="assets/img/battle/coral_shallows_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="bmeta">
+        <span class="chip">Act I</span><span class="chip"><b>Water</b></span>
+        <span class="chip">Sealed Wyrm · <b>Maretha</b></span><span class="chip">Steel-drums, marimba, a sea-shanty lilt</span>
+      </div>
+      <h2>Coral Shallows <span>Turquoise, coral pink and sand white. Bright noon sun, caustic ripples, sea-spray rainbows.</span></h2>
+      <p style="max-width: 760px;">A chain of warm lagoons, reefs and sandbars strung together
+      with stilted boardwalks. Driftmoor, the stilt-village, is the Everwild's busiest market by
+      sea and home port of the <i>Sweet Kelpie</i> — "officially merchants, unofficially heroes,
+      occasionally pirates <i>to</i> pirates." Since ancient times the Tidebell rang at every
+      turning tide, and each ring was Maretha breathing. When the bell went silent, the tides
+      stopped making sense — and the Barnacle Brigade moved into the confusion.</p>
+    </div>
+    <div class="bgrid reveal">
+      <div class="panel"><h4>You might find</h4><ul>
+        <li><b>The Tidebell</b> — a coral-encrusted bronze bell, half-sunk under a stone arch. Maretha's seal.</li>
+        <li>Driftmoor — boardwalks, rope ladders and fish-shaped weathervanes.</li>
+        <li>The Shell Arches — spiral rock arches that hum when the wind blows.</li>
+        <li>Glasswater Reef — water so clear you can see the reef rays napping.</li>
+        <li>The Wreck of the <i>Gull's Folly</i> — a beached galleon, now a pirate hideout.</li>
+      </ul></div>
+      <div class="panel"><h4>Who lives here</h4>
+        <div class="chips">
+          <span class="chip">Rockcrabs</span><span class="chip">Dilophosaur spitters</span>
+          <span class="chip">Gull-raptors</span><span class="chip">Sunscale lizardfolk</span>
+          <span class="chip">Barnacle Brigade pirates</span><span class="chip">Wisps</span>
+        </div>
+        <div class="bossbar"><span class="tag">Boss · the Bell-Bearer</span>
+          <b>Queen Brinemaw</b>, great mosasaur matriarch of the deep channel, who once carried
+          the Tidebell's chain in her jaws so it would never drag. The seal turned her chain into
+          a collar, and violet coral has grown over her head like a crown — she thinks she is
+          still protecting the bell. She stays submerged and answers only to Electric; electrify
+          her channel and she surfaces. When she is calmed, the bell rings for the first time in
+          years, and Maretha rises beneath it.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band biome el-earth" id="amber_canyons">
+  <div class="band-bg kb"><img src="assets/img/battle/amber_canyons_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="bmeta">
+        <span class="chip">Act I</span><span class="chip"><b>Earth</b></span>
+        <span class="chip">Sealed Wyrm · <b>Gravok</b></span><span class="chip">Open strings, a lonely trumpet</span>
+      </div>
+      <h2>Amber Canyons <span>Red rock, honey-amber and dusty gold. Low sun, long shadows, heat haze. Epic and wide-open.</span></h2>
+      <p style="max-width: 760px;">A maze of mesas and slot canyons where ancient amber oozes
+      from the rock and catches the sunlight, and great dinosaur herds have roamed since before
+      the Accord. Gravok sleeps so deeply in the stone that some say the canyons <i>are</i> him.
+      The Dustwhistle Caravanserai is the crossroads where traders, Tuskrunners and Sunscale
+      clans meet under a strict truce — now strained. Violet veins thread the amber, and the dust
+      storms glow.</p>
+    </div>
+    <div class="bgrid reveal">
+      <div class="panel"><h4>You might find</h4><ul>
+        <li><b>The Amber Anvil</b> — a glowing monolith with a dragon's silhouette suspended inside.</li>
+        <li>Rimrock Arch — a stone bridge over the widest canyon, void on both sides.</li>
+        <li>The Fossil Steps — giant vertebrae forming a staircase up a cliff.</li>
+        <li>The Petrified Herd — a field of stone dinosaurs. Possibly statues. Possibly not.</li>
+        <li>Dustwhistle Caravanserai — a walled trading post with whistling wind-towers.</li>
+      </ul></div>
+      <div class="panel"><h4>Who lives here</h4>
+        <div class="chips">
+          <span class="chip">Ankylosaurs</span><span class="chip">Triceratops</span>
+          <span class="chip">Brachiosaurus (large)</span><span class="chip">Golems & rockcrabs</span>
+          <span class="chip">Tuskrunner raiders</span><span class="chip">Briar Brigands</span>
+        </div>
+        <div class="bossbar"><span class="tag">Boss · the herd's shepherd</span>
+          <b>Old Ironhide</b>, an ancient ankylosaur who carried a shard of Gravok's stone in his
+          back plates; the herds followed him to water for generations. The Blight ran up through
+          the shard, and his plates now glow violet and harden like a shell. Crack the plates,
+          and set the stone free: the shard rolls to the Anvil, which splits open "with a sound
+          like a mountain yawning," and Gravok wakes — to settle as a gentle hill outside
+          Grovehaven. He likes the view.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band biome el-fire" id="emberforge_caldera">
+  <div class="band-bg kb"><img src="assets/img/battle/emberforge_caldera_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="bmeta">
+        <span class="chip">Act II</span><span class="chip"><b>Fire</b></span>
+        <span class="chip">Sealed Wyrm · <b>Ignara</b></span><span class="chip">Low brass, anvil percussion, taiko</span>
+      </div>
+      <h2>Emberforge Caldera <span>Charcoal, ember orange, molten gold. Glowing seams, sparks rising like fireflies. Industrious and dramatic.</span></h2>
+      <p style="max-width: 760px;">A living volcano whose crater holds a town of chimneys, forges
+      and bridges. The Everwild's finest smiths — human, bear-folk and red-panda alike — worked
+      here in Ignara's warmth, while the Wyrmkeepers of the Dragonheart family sang her to sleep
+      with forge-songs. When she was sealed, the forges went cold and the smiths fled to
+      Grovehaven. Lava is crusted with violet glass now, and the kiln bridges burn down behind
+      you as you cross them.</p>
+    </div>
+    <div class="bgrid reveal">
+      <div class="panel"><h4>You might find</h4><ul>
+        <li><b>The Hearthforge</b> — an anvil-and-furnace carved into the caldera wall, lava veins running through it. Ignara's seal.</li>
+        <li>Cinderfall — a curtain of slow lava falling into a glowing lake.</li>
+        <li>The Kiln Bridges — wooden, flammable, and they collapse after burning.</li>
+        <li>The Obsidian Steps — glassy black terraces with steep height changes.</li>
+        <li>The Ashen Market — the abandoned smith-town square, silent anvils in a ring.</li>
+      </ul></div>
+      <div class="panel"><h4>Who lives here</h4>
+        <div class="chips">
+          <span class="chip">Ember Spinosaurus</span><span class="chip">Molten raptors</span>
+          <span class="chip">Cinderbats</span><span class="chip">Magma golems</span>
+          <span class="chip">Cinder Imps</span><span class="chip">Tuskrunner raiders</span>
+        </div>
+        <div class="bossbar"><span class="tag">Boss · the Hearth-King</span>
+          <b>The Molten Tyrant</b>, a vast tyrannosaur who slept on the warm rock above the
+          Hearthforge; his snoring kept the lava calm, and the smiths left him roasted roots and
+          called him "Old Snorer." When Ignara was chained, the seal put her heat <i>inside
+          him</i> — he swallowed her flame and cannot stop burning. Wet him and his burning turns
+          to steam. When he is calmed he coughs out a ball of golden fire, and a Wyrm bursts
+          free, and the caldera sleeps.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band biome el-wind" id="skyreach_peaks">
+  <div class="band-bg kb"><img src="assets/img/battle/skyreach_peaks_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="bmeta">
+        <span class="chip">Act II</span><span class="chip"><b>Wind</b></span>
+        <span class="chip">Sealed Wyrm · <b>Zephyrine</b></span><span class="chip">Soaring strings, wind chimes</span>
+      </div>
+      <h2>Skyreach Peaks <span>Sky blue, snow white, prayer-flag colours. Clouds below your feet. Breathtaking and vertiginous.</span></h2>
+      <p style="max-width: 760px;">A range of floating crags and needle peaks linked by rope
+      bridges and wind-stairs, with eyries and monastery terraces clinging to the cliffs. The
+      Stillwater Monastery trains its monks here ("Move like water. Stand like stone. Eat your
+      vegetables."), and the Lantern Post's kite-couriers launch from its cliffs. Zephyrine loved
+      gossip — every breeze in the Everwild eventually passed through the Windharp so she could
+      hear the news. When her breath was trapped in the strings, the winds turned sharp and the
+      couriers were grounded.</p>
+    </div>
+    <div class="bgrid reveal">
+      <div class="panel"><h4>You might find</h4><ul>
+        <li><b>The Windharp</b> — a stone arch on the highest summit, strung with great silver wind-strings that once sang.</li>
+        <li>The Hundred Bells — the monastery's wind-chime courtyard; every bell a different note.</li>
+        <li>The Sky-Stair — floating stepping-stones with void between them.</li>
+        <li>Cloudmere — a lake that sits <i>above</i> a cloud bank, perfectly still.</li>
+        <li>The Eyrie of Talons — hawk- and falcon-folk nests, now abandoned.</li>
+      </ul></div>
+      <div class="panel"><h4>Who lives here</h4>
+        <div class="chips">
+          <span class="chip">Feral pterodactyls</span><span class="chip">Stingwings</span>
+          <span class="chip">Duskmoths</span><span class="chip">Gustimps & wisps</span>
+          <span class="chip">Glassbacks</span><span class="chip">High-meadow saurolophus</span>
+        </div>
+        <div class="bossbar"><span class="tag">Boss · the last carrier</span>
+          <b>Skyrend</b>, the Lantern Post's oldest and proudest messenger — a giant pterodactyl
+          who flew letters between the eyries and never lost one; couriers tied ribbons to his
+          crest for luck. He was carrying a letter past the Windharp when its strings snapped and
+          Zephyrine's trapped breath turned to storm. The storm caught him and never let go. He
+          still clutches that last undelivered letter in his claw. <i>"Stand away from the
+          edges."</i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band biome el-electric" id="stormspire">
+  <div class="band-bg kb"><img src="assets/img/battle/stormspire_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="bmeta">
+        <span class="chip">Act II</span><span class="chip"><b>Electric</b></span>
+        <span class="chip">Sealed Wyrm · <b>Voltaris</b></span><span class="chip">Clockwork pizzicato, ticking percussion</span>
+      </div>
+      <h2>Stormspire <span>Copper, verdigris teal, electric blue. Rain-slick streets, sparks, gaslight glow. Inventive and bustling.</span></h2>
+      <p style="max-width: 760px;">A city of copper towers on a thunderstorm plateau, where the
+      Tinkers' Guild catches lightning in jars to power everything from music-boxes to
+      street-trams (and at least nine kinds of exploding tea). Voltaris adored the Tinkers; when
+      the Blight began to spread, <i>they</i> built a great copper Cage around his roost to shield
+      him, and the Clockwork Colossus to guard it. It wasn't enough. The Blight came up through
+      the Cage's foundations, and the shield became a prison.</p>
+    </div>
+    <div class="bgrid reveal">
+      <div class="panel"><h4>You might find</h4><ul>
+        <li><b>Voltaris's Cage</b> — a vast domed lattice of copper rods with a dragon coiled inside, crackling.</li>
+        <li>The Spire of Coils — the central tower, crowned with Tesla-like coils.</li>
+        <li>The Gearworks — a factory floor of giant cogs, with moving platforms.</li>
+        <li>The Copper Lighthouse — a lightning-rod lighthouse on the cliff.</li>
+        <li>The Thunder Market — covered arcades where storm-jars are sold by the dozen.</li>
+      </ul></div>
+      <div class="panel"><h4>Who lives here</h4>
+        <div class="chips">
+          <span class="chip">Clockwork sentries</span><span class="chip">Voltsnails</span>
+          <span class="chip">Rhinoceros beetles</span><span class="chip">Spark Drifters</span>
+          <span class="chip">Glassbacks</span><span class="chip">Wisps</span>
+        </div>
+        <div class="bossbar"><span class="tag">Boss · Copperheart</span>
+          <b>The Clockwork Colossus</b>, a four-storey brass guardian the Tinkers built to
+          protect Voltaris. It used to wave at children. The Blight crept into its gear-heart,
+          and its oath — <i>Guard the Wyrm</i> — twisted into <i>Let no one near the Wyrm, ever</i>.
+          Break the coil pylons, and it will remember its oath.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band biome el-light" id="sunspire_sanctum">
+  <div class="band-bg kb"><img src="assets/img/battle/sunspire_sanctum_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="bmeta">
+        <span class="chip">Act III</span><span class="chip"><b>Light</b></span>
+        <span class="chip">Sealed Wyrm · <b>Solenne</b></span><span class="chip">Choir pads, solo trumpet, processional strings</span>
+      </div>
+      <h2>Sunspire Sanctum <span>White marble, gold leaf, sky blue, dawn pink. Clean light, long rays, polished mirrors. Sacred and serene.</span></h2>
+      <p style="max-width: 760px;">A cliff-temple of golden terraces where dawn comes first in
+      all the Everwild. Seat of the Dawnguard and its infirmary; Solenne dwelt in the great Sun
+      Lens and sent dawn out through the Everwild every morning. Five years ago, Ser Galen
+      Dawnmantle came home from the twilight kingdom silent, climbed the Lens, and wrapped it in
+      shadow. Most of the Dawnguard left to search for answers. The light falls grey and wrong
+      now, with violet shadows that move on their own.</p>
+    </div>
+    <div class="bgrid reveal">
+      <div class="panel"><h4>You might find</h4><ul>
+        <li><b>The Sun Lens</b> — a colossal golden lens on a summit pedestal, now veiled in violet shadow.</li>
+        <li>The Hall of Mirrors — mirrored walls that reflect the battle. It is the boss arena.</li>
+        <li>The Gardens of Noon — sunflower terraces with golden fountains.</li>
+        <li>The Dawn Stair — a thousand marble steps up the cliff.</li>
+        <li>The Infirmary of Saint Amara — lantern-lit wards, now a field hospital.</li>
+      </ul></div>
+      <div class="panel"><h4>Who lives here</h4>
+        <div class="chips">
+          <span class="chip">Glassbacks</span><span class="chip">Rattlebones</span>
+          <span class="chip">Blight-echoes (doppels)</span><span class="chip">Thornbound knights</span>
+          <span class="chip">Withering Choir cultists</span>
+        </div>
+        <div class="bossbar"><span class="tag">Boss · the Sunfallen Knight</span>
+          <b>Ser Galen Dawnmantle</b> — not a beast, a man. The Dawnguard's former captain,
+          who went to Evenmere to help and came back silent, and wrapped the Sun Lens in shadow
+          because he believed it kept something worse from waking. His fight eclipses at half
+          health: he turns Dark, and his own Hallowed ground becomes Gloom. His oath-brother
+          Leonhart has guarded Grovehaven ever since, refusing to fight him; Agnes Valor never
+          stopped believing Galen could be reached.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band biome el-dark" id="gloomroot_hollow">
+  <div class="band-bg kb"><img src="assets/img/battle/gloomroot_hollow_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="bmeta">
+        <span class="chip">Act III</span><span class="chip"><b>Dark</b></span>
+        <span class="chip">Sealed Wyrm · <b>Nocturne</b></span><span class="chip">Celesta, music-box motifs, a slowing waltz</span>
+      </div>
+      <h2>Gloomroot Hollow <span>Plum, indigo, silver-blue moonlight and violet bioluminescence. Mist, giant roots, the ghosts of gardens. Hushed, sad and beautiful.</span></h2>
+      <p style="max-width: 760px;">This was <b>Evenmere</b>, the twilight kingdom of night
+      gardens — silver roses, moon-lilies, lantern-moss that bloomed only after sunset. The last
+      gardener-king, Mathias Duskmere, loved his queen's pale rose for twenty years, and when she
+      died he closed the Well of Endings so nothing he loved would ever end again. The Blight is
+      what festers behind that dam, and it is strongest here. The silver roses are gone; roots as
+      tall as towers have broken the paths, and lantern-moss glows violet instead of silver. In
+      the centre stands the Rotting Court. Beneath it, the Well, woven shut. Below that — the
+  Blightheart.</p>
+    </div>
+    <div class="bgrid reveal">
+      <div class="panel"><h4>You might find</h4><ul>
+        <li><b>The Rotcrown Throne</b> — a throne grown from twisting roots, with a glass dome over a pale rose on its arm.</li>
+        <li>Nocturne's Cradle — a crescent of roots cradling the sleeping Dusk Wyrm, bound in violet chains.</li>
+        <li>The Night Garden — overgrown, with one bed of soil that is always empty.</li>
+        <li>The Lantern Roots — roots strung with violet-glowing moss lanterns.</li>
+        <li>The Sorrow Bridge — braided roots over the Well's shaft, with Void beneath.</li>
+      </ul></div>
+      <div class="panel"><h4>Who lives here</h4>
+        <div class="chips">
+          <span class="chip">Thornbound knights</span><span class="chip">Withering Choir</span>
+          <span class="chip">Shadecrawlers</span><span class="chip">Blighthounds</span>
+          <span class="chip">Gloom Imps</span><span class="chip">Rattlebones</span>
+        </div>
+        <div class="bossbar"><span class="tag">Boss · the grieving king</span>
+          <b>King Rotcrown</b> — Mathias Duskmere, last gardener-king of Evenmere. Velvet-voiced,
+          weary, gentle; he speaks like a man reading a bedtime story he no longer believes, and
+          he never shouts. He believes the Blight is <i>mercy</i>: a world where nothing ends is a
+          world where nothing is lost. When he is calmed, the crown cracks, and for the first time
+          in forty years he weeps — and the Well's woven roots unravel, and far below, something
+          enormous wakes and roars.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band biome" id="blightheart" style="--el: var(--blight);">
+  <div class="band-bg kb"><img src="assets/img/battle/blightheart_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="bmeta">
+        <span class="chip">Finale · after Act III</span><span class="chip"><b>Eight elements, tangled</b></span>
+        <span class="chip">The Eight Chains</span>
+      </div>
+      <h2 style="color: #d9c2f0;">The Blightheart <span>A vast cavern beneath the Well of Endings. Root-walls pulse violet, and eight streams of coloured light are drawn into a central mass. Overwhelming, otherworldly, beautiful in a terrible way.</span></h2>
+      <p style="max-width: 760px;">The pool where forty years of refused endings gathered.
+      Fire, tide, bloom, stone, gale, storm, dawn and dusk — everything Rotcrown drained from the
+      Eight Wyrms — tangled together with the festering endings of the world, and <b>grew a
+      body</b>: a vast patchwork dragon whose scales are eight colours of bruised light, held
+      together with violet rot. Folk who have glimpsed it call it <b>the Unending</b>. It has no
+      voice and no words; it only roars, and its roar sounds like eight different storms trying
+      to happen at once. It is not the king's servant. It is what his refusal became. Even if
+      Rotcrown were to stop, the Dragon would keep the dam shut — because it <i>is</i> the
+      dam.</p>
+      <div class="bossbar" style="border-color: rgba(160,107,216,.5);"><span class="tag">Final battle</span>
+        <b>The Blight Dragon</b>, three phases, two timeline tracks: the Primal triangle first,
+        then the Storm triangle, then an Eclipse of Dark with Light strikes. When your party
+        cracks its third shell, the Eight Wyrms' power begins to flow home — and the Wyrms
+        themselves appear to help. Then the final cinematic plays, someone plants a pale rose in
+        a garden, and the Wild Tiers begin.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WANDER HOME ============ -->
+<section class="pad center reveal">
+  <div class="wrap">
+    <div class="rule">◆</div>
+    <p style="max-width: 640px; margin: 0 auto;">Nine lands, eight Wyrms, one grieving king — and
+    a village that stays safe because its people keep choosing each other. The game's rule: every
+    victory <i>lets something rest</i>.</p>
+    <div class="ctas" style="margin-top: 26px;">
+      <a class="btn primary" href="heroes.html">Meet the heroes →</a>
+      <a class="btn ghost" href="media.html">Watch the opening</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="fine" style="margin-top: 0;">Fauna Fantasy · The Everwild. World writing and art
+    made for this project; fonts (Fraunces, Lilita One, Atkinson Hyperlegible Next) under the SIL
+    Open Font Licence. <a href="index.html">Home</a></p>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>
