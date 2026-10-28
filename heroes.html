@@ -18,12 +18,25 @@
   .herohead .band-bg img { width: 100%; height: 100%; object-fit: cover; opacity: .35; }
   .herohead .band-bg::after { content: ""; position: absolute; inset: 0;
     background: linear-gradient(180deg, rgba(11,17,13,.55), rgba(11,17,13,.95)); }
-  .statline { display: flex; flex-wrap: wrap; gap: 26px; margin-top: 22px; }
-  .statline b { font-family: "Lilita One", sans-serif; font-weight: 400; font-size: 26px; color: var(--gold-hi); display: block; }
-  .statline span { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--cream-dim); font-family: "Lilita One", sans-serif; }
+  .statline { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+  .statline > div {
+    padding: 12px 18px 13px; border-radius: 12px;
+    background: linear-gradient(180deg, rgba(28,37,29,.88), rgba(15,22,16,.9));
+    border: 1px solid rgba(212,164,76,.22);
+    box-shadow: 0 8px 22px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.05);
+  }
+  .statline b { font-family: "Lilita One", sans-serif; font-weight: 400; font-size: 24px; color: var(--gold-hi); display: block; }
+  .statline span { font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--cream-dim); font-family: "Lilita One", sans-serif; }
   .starters { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 26px; }
-  .scard { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--line);
-    box-shadow: var(--shadow); cursor: pointer; background: #131b14; padding: 0; color: inherit; text-align: left; }
+  .scard { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(212,164,76,.35);
+    box-shadow: var(--shadow); cursor: pointer; background: #131b14; padding: 0; color: inherit; text-align: left;
+    transition: transform .2s ease, border-color .2s ease; }
+  .scard:hover { transform: translateY(-4px); border-color: rgba(212,164,76,.7); }
+  .scard::before { content: "STARTER SET"; position: absolute; top: 10px; left: 10px; z-index: 2;
+    font-family: "Lilita One", sans-serif; font-size: 9px; letter-spacing: .18em;
+    padding: 3px 9px; border-radius: 999px; color: #10160f;
+    background: linear-gradient(180deg, #f0cf8a, #d4a44c);
+    border: 1px solid rgba(0,0,0,.45); box-shadow: 0 2px 10px rgba(0,0,0,.55); }
   .scard img { aspect-ratio: 3/4; width: 100%; object-fit: cover; object-position: top; }
   .scard .nm { padding: 12px 14px; background: linear-gradient(180deg, rgba(19,27,20,.4), rgba(11,16,12,.96) 40%); }
   .scard .nm b { display: block; font-size: 17px; }

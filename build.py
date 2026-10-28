@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Site build: stage and optimise website media from the project's asset pool.
+"""Site build: stage and optimise website media from the game's asset pool.
 
-Run from anywhere: `python3 site/build.py` (repo root inferred). Writes generated
-media into site/assets/ (gitignored in the game repo; shipped by deploy.sh).
-Idempotent; safe to re-run. No paid generations; vendor-pack art is not used.
+Run from anywhere: `python3 build.py`. Reads the game checkout named by
+$FF_GAME_REPO (default ~/code/faunafantasy: its Assets/, work/, Content/ and
+docs/review/) and writes generated media into this repo's assets/, which is
+committed and published as-is. Idempotent; safe to re-run. No paid generations;
+vendor-pack art is not used.
 """
 import json
 import os
@@ -12,8 +14,8 @@ import subprocess
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-SITE = ROOT / "site"
+SITE = Path(__file__).resolve().parent
+ROOT = Path(os.environ.get("FF_GAME_REPO", "~/code/faunafantasy")).expanduser().resolve()
 OUT = SITE / "assets"
 IMG = OUT / "img"
 VID = OUT / "vid"
@@ -49,6 +51,9 @@ def h264(src, dst, scale=None, crf=26, preset="slow"):
     sh(cmd)
 
 def main():
+    if not (ROOT / "Content/heroes.json").exists():
+        raise SystemExit(f"game checkout not found at {ROOT} (set FF_GAME_REPO)")
+    print("game:", ROOT)
     for d in (IMG, VID, DATA, FONTS):
         if d.exists():
             shutil.rmtree(d)

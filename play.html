@@ -15,14 +15,17 @@
 <style>
   .loop { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 26px 0; }
   .loop .stepchip {
-    font-family: "Lilita One", sans-serif; letter-spacing: .1em; font-size: 13px;
-    padding: 10px 16px; border-radius: 999px; border: 1px solid var(--line);
-    background: rgba(212,164,76,.06); color: var(--cream);
+    font-family: "Lilita One", sans-serif; letter-spacing: .1em; font-size: 13.5px;
+    padding: 11px 18px; border-radius: 999px;
+    border: 1px solid rgba(212,164,76,.4); color: var(--cream);
+    background: linear-gradient(180deg, rgba(41,34,20,.9), rgba(22,29,22,.9));
+    box-shadow: 0 6px 18px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.08);
   }
   .loop .arrow { align-self: center; color: var(--gold); font-size: 14px; }
   .shotgrid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-  .rules { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  .rules { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
   .rules .card h3 { margin-bottom: 6px; }
+  .rules .card p { margin: 0; }
 </style>
 </head>
 <body>
@@ -46,10 +49,8 @@
 <main id="main">
 
 <!-- ============ THE LOOP ============ -->
-<section class="herohead" style="position: relative; padding: 150px 0 70px; text-align: center;">
-  <div class="band-bg" style="position:absolute; inset:0; z-index:-2; overflow:hidden;">
-    <img src="assets/img/battle/landscape.jpg" alt="" style="width:100%;height:100%;object-fit:cover;opacity:.4;">
-  </div>
+<section class="band herohead" style="text-align: center;">
+  <div class="band-bg kb"><img src="assets/img/battle/landscape.jpg" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
   <div class="wrap">
     <p class="eyebrow">The loop</p>
     <h2 style="font-size: clamp(28px, 4vw, 44px);">Open a pack. Pick four.<br>Step through the Rootgate.</h2>
@@ -145,11 +146,11 @@
         </figure>
       </div>
     </div>
-    <div class="chips reveal" style="margin-top: 22px;">
-      <span class="chip"><b>Camp stories</b> · 24 short scenes</span>
-      <span class="chip"><b>Retreat</b> is always allowed</span>
-      <span class="chip"><b>Boons & relics</b> from won fights</span>
-      <span class="chip"><b>Wild Tiers</b> after the finale, for the brave</span>
+    <div class="chipset reveal" style="margin-top: 26px;">
+      <span class="chip"><b>Camp stories</b><small>24 short scenes</small></span>
+      <span class="chip"><b>Retreat</b><small>always allowed</small></span>
+      <span class="chip"><b>Boons & relics</b><small>from won fights</small></span>
+      <span class="chip"><b>Wild Tiers</b><small>after the finale, for the brave</small></span>
     </div>
   </div>
 </section>
@@ -179,12 +180,12 @@
         <figcaption><span>Camp</span><span>Rest · Train · Reinforce · story</span></figcaption>
       </figure>
     </div>
-    <div class="chips reveal" style="margin-top: 16px;">
-      <span class="chip"><b>Lockpick</b> — three pins, three picks</span>
-      <span class="chip"><b>Song of the Grove</b> — rhythm to the land's own loop</span>
-      <span class="chip"><b>Sharpshooter</b> — wisps pop up; shoot to the clip's release</span>
-      <span class="chip"><b>Wild Duel</b> — the tavern card duel</span>
-      <span class="chip"><b>Hero Trials</b> — 110 signature puzzles, one per hero + 10 Legends</span>
+    <div class="chipset reveal" style="margin-top: 20px;">
+      <span class="chip"><b>Lockpick</b><small>three pins, three picks</small></span>
+      <span class="chip"><b>Song of the Grove</b><small>rhythm to the land's own loop</small></span>
+      <span class="chip"><b>Sharpshooter</b><small>wisps pop up; shoot to the clip's release</small></span>
+      <span class="chip"><b>Wild Duel</b><small>the tavern card duel</small></span>
+      <span class="chip"><b>Hero Trials</b><small>110 signature puzzles, one per hero + 10 Legends</small></span>
     </div>
   </div>
 </section>
