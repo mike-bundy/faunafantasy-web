@@ -782,3 +782,82 @@ button { font: inherit; color: inherit; }
   .hero.showreel .ctas .btn { flex: 1 1 100%; }
   .hero.showreel .plat { font-size: 10px; letter-spacing: .14em; }
 }
+
+/* =====================================================================
+   Legal pages (WEB.legal, 2026-10-28): privacy.html and terms.html.
+   A short hero, "the short version" panel, then a readable column.
+   ===================================================================== */
+.hero.legal-hero { min-height: clamp(440px, 64svh, 660px); padding-bottom: 64px; }
+.hero.legal-hero .tag { margin-bottom: 0; }
+.short {
+  max-width: 880px; margin: 0 auto;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(212,164,76,.09), transparent 55%),
+    linear-gradient(180deg, #172219, #111913 60%, #0f160f);
+  border: 1px solid rgba(212,164,76,.32); border-radius: 18px;
+  padding: clamp(22px, 3.6vw, 40px);
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.05);
+}
+.short h2 { font-size: clamp(25px, 2.8vw, 34px); margin-bottom: .2em; }
+.short .ticks { gap: 12px; margin-top: 20px; }
+.short .ticks li { color: #ddd3b8; font-size: 17px; }
+.short .ticks b { color: var(--cream); }
+.updated { margin: 22px 0 0; font-size: 14px; color: var(--cream-dim); }
+.toc-h { max-width: 880px; margin: 34px auto 12px; }
+.toc {
+  max-width: 880px; margin: 0 auto; padding: 0; list-style: none;
+  columns: 2; column-gap: 32px; font-size: 15px;
+}
+.toc li { break-inside: avoid; margin-bottom: 6px; }
+.toc a { color: var(--cream-dim); text-decoration: none; }
+.toc a:hover { color: var(--gold-hi); text-decoration: underline; }
+@media (max-width: 600px) { .toc { columns: 1; } }
+.prose { max-width: 760px; margin: 0 auto; }
+.prose h2 { font-size: clamp(25px, 2.8vw, 33px); margin: 2.1em 0 .55em; scroll-margin-top: 90px; }
+.prose h2:first-child { margin-top: 0; }
+.prose h3 {
+  font-family: "Lilita One", sans-serif; font-weight: 400; letter-spacing: .03em;
+  font-size: 18.5px; color: var(--gold-hi); margin: 1.5em 0 .4em;
+}
+.prose p, .prose li { color: #d6ccb1; }
+.prose ul { padding-left: 1.25em; margin: 0 0 1em; }
+.prose li { margin-bottom: .5em; }
+.prose li::marker { color: var(--gold); }
+.prose b { color: var(--cream); font-weight: 600; }
+.prose .ticks li { font-size: inherit; color: #d6ccb1; }
+.where { width: 100%; border-collapse: collapse; margin: 18px 0 10px; font-size: 15.5px; line-height: 1.5; }
+.where th {
+  text-align: left; font-family: "Lilita One", sans-serif; font-weight: 400; font-size: 12px;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--gold);
+  padding: 0 12px 10px; border-bottom: 1px solid var(--line);
+}
+.where td { padding: 14px 12px; vertical-align: top; border-bottom: 1px solid var(--line-soft); color: #cfc5aa; }
+.where td:first-child { color: var(--cream); font-weight: 600; width: 30%; }
+@media (max-width: 680px) {
+  .where thead { display: none; }
+  .where, .where tbody, .where tr, .where td { display: block; width: auto; }
+  .where tr {
+    border: 1px solid var(--line-soft); border-radius: 12px; padding: 12px 14px;
+    margin-bottom: 12px; background: #111913;
+  }
+  .where td { border: 0; padding: 4px 0; }
+  .where td:first-child { width: auto; font-size: 16.5px; padding-bottom: 6px; }
+  .where td[data-label]::before {
+    content: attr(data-label); display: block; font-family: "Lilita One", sans-serif;
+    font-weight: 400; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold);
+  }
+}
+/* a value Mike still has to fill in: loud on purpose, so it can't ship unnoticed */
+.todo {
+  background: rgba(215,91,69,.16); outline: 1px dashed rgba(215,91,69,.85); color: #ffd6cb;
+  border-radius: 4px; padding: 0 .35em; font-style: normal; font-weight: 600;
+}
+
+/* footer: the legal links, on every page */
+footer .legal { margin: 14px 0 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 20px; font-size: 12.5px; }
+footer .legal a {
+  font-family: "Lilita One", sans-serif; letter-spacing: .14em; text-transform: uppercase;
+  text-decoration: none; color: var(--gold);
+}
+footer .legal a:hover, footer .legal a[aria-current] { color: var(--gold-hi); }
+footer .legal span { color: #8b8470; }
