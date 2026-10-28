@@ -847,12 +847,6 @@ button { font: inherit; color: inherit; }
     font-weight: 400; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold);
   }
 }
-/* a value Mike still has to fill in: loud on purpose, so it can't ship unnoticed */
-.todo {
-  background: rgba(215,91,69,.16); outline: 1px dashed rgba(215,91,69,.85); color: #ffd6cb;
-  border-radius: 4px; padding: 0 .35em; font-style: normal; font-weight: 600;
-}
-
 /* footer: the legal links, on every page */
 footer .legal { margin: 14px 0 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 20px; font-size: 12.5px; }
 footer .legal a {
