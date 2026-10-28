@@ -109,6 +109,13 @@ section.pad { padding: clamp(56px, 7.5vw, 96px) 0; }
   padding: 9px 13px; border-radius: 8px;
 }
 .topbar nav a:hover { color: var(--cream); background: rgba(255,255,255,.06); }
+.topbar nav a { white-space: nowrap; }
+/* tablet landscape and small laptops: keep the six links on one line */
+@media (max-width: 1180px) and (min-width: 941px) {
+  .topbar { gap: 16px; padding: 10px 18px; }
+  .topbar nav a { font-size: 12.5px; letter-spacing: .08em; padding: 9px 8px; }
+}
+@media (max-width: 1060px) and (min-width: 941px) { .topbar .wish { display: none; } }
 .topbar nav a.on {
   color: var(--gold-hi); background: none;
   text-decoration: underline; text-decoration-color: var(--gold);
@@ -720,3 +727,58 @@ button { font: inherit; color: inherit; }
   .hero .plat { position: static; transform: none; margin: 30px auto 0; max-width: 100%; }
 }
 @media (max-width: 520px) { .frame figcaption { flex-direction: column; gap: 2px; } }
+
+/* ---------- footage heroes (home, Arena, Media) ----------
+   The clip keeps its middle clear. Wide screens: the hero is as tall as the 16:9 clip
+   (up to the viewport) and the words sit in the lower left over a corner shade.
+   Narrow screens: the whole clip sits under the bar, uncropped, with the words below it. */
+.hero.showreel {
+  min-height: 0; height: clamp(560px, 56.25vw, 100svh);
+  align-items: flex-end; justify-content: flex-start; text-align: left;
+  padding: 0 clamp(28px, 4.5vw, 72px) clamp(30px, 4.2vw, 60px);
+}
+.hero.showreel .bg { overflow: hidden; }
+.hero.showreel .bg::after {
+  background:
+    linear-gradient(180deg, rgba(9, 13, 9, .5) 0, transparent 130px),
+    radial-gradient(55% 70% at 0% 100%, rgba(8, 12, 9, .7), transparent 75%),
+    linear-gradient(0deg, rgba(11, 17, 13, .85) 0, transparent 26%);
+}
+.hero.showreel .inner { max-width: min(600px, 48vw); padding: 0; isolation: isolate; }
+.hero.showreel .inner::before {   /* a soft scrim that follows the words, not the frame */
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  inset: -110px -150px -90px -140px;
+  background: radial-gradient(closest-side, rgba(8, 12, 9, .8), rgba(8, 12, 9, .58) 58%, transparent);
+}
+.hero.showreel .wordmark { width: clamp(250px, 26vw, 400px); margin: 0 0 2px -8px; }
+.hero.showreel h1.display { font-size: clamp(28px, 2.9vw, 44px); }
+.hero.showreel .tag {
+  margin: 12px 0 22px; padding: 0; max-width: 520px; background: none;
+  font-size: clamp(16.5px, 1.4vw, 19px);
+}
+.hero.showreel .ctas { justify-content: flex-start; }
+.hero.showreel .ctas .btn { min-width: 0; flex: 0 0 auto; padding: 13px 24px; }
+.hero.showreel .plat {
+  position: static; transform: none; display: block; max-width: none; margin: 18px 0 0;
+  padding: 0; background: none; border: 0; box-shadow: none; line-height: 1.6;
+  font-size: 11px; letter-spacing: .2em; text-align: inherit;
+}
+@media (max-width: 900px) {
+  .hero.showreel {
+    display: block; height: auto; text-align: center; padding: 0 0 40px;
+  }
+  .hero.showreel .bg {
+    position: relative; inset: auto; aspect-ratio: 16 / 9; margin-top: 65px;
+  }
+  .hero.showreel .bg::after { background: linear-gradient(0deg, var(--ink) 0, transparent 18%); }
+  .hero.showreel .inner { max-width: 640px; margin: 0 auto; padding: 14px 20px 0; }
+  .hero.showreel .inner::before { content: none; }
+  .hero.showreel .wordmark { width: min(400px, 80vw); margin: 0 auto 2px; }
+  .hero.showreel .ctas { justify-content: center; }
+  .hero.showreel .tag { margin: 12px auto 22px; }
+  .hero.showreel .plat { text-align: center; }
+}
+@media (max-width: 520px) {
+  .hero.showreel .ctas .btn { flex: 1 1 100%; }
+  .hero.showreel .plat { font-size: 10px; letter-spacing: .14em; }
+}

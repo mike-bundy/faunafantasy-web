@@ -27,4 +27,4 @@ fi
 
 echo "3/3 pushing…"
 git push -u origin main
-echo "done → https://mike-bundy.github.io/faunafantasy-web/"
+echo "done → https://faunafantasy.com/ (Pages rebuilds in a minute or two)"

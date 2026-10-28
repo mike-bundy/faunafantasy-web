@@ -5,11 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fauna Fantasy · Tactics RPG with holo cards</title>
 <meta name="description" content="Lead four of 100 heroes across infinite wild lands in turn-based tactics, rip packs for holo Legendaries and brave the real-time Rootdelve. For iPhone, iPad, Mac, Apple TV and Apple Vision Pro.">
+<link rel="canonical" href="https://faunafantasy.com/">
+<link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0b110d">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Fauna Fantasy">
 <meta property="og:title" content="Fauna Fantasy · Tactics RPG with holo cards">
 <meta property="og:description" content="Lead four of 100 heroes across infinite wild lands in turn-based tactics, rip packs for holo Legendaries and brave the real-time Rootdelve.">
-<meta property="og:image" content="https://mike-bundy.github.io/faunafantasy-web/assets/img/keyart_wide.jpg">
-<meta property="og:url" content="https://mike-bundy.github.io/faunafantasy-web/index.html">
+<meta property="og:url" content="https://faunafantasy.com/">
+<meta property="og:image" content="https://faunafantasy.com/assets/img/keyart_wide.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1066">
+<meta property="og:image:alt" content="Key art: a squire, a fox, a small lantern-bearer and a bear warrior on a flower-strewn hill below a treehouse village, a violet castle on the far horizon.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -29,18 +38,18 @@
     <a href="arena.html">The Arena</a>
     <a href="media.html">Media</a>
   </nav>
-  <a class="wish" href="assets/vid/reel_1600.mp4" data-lb="assets/vid/reel_1600.mp4">▶ Watch gameplay</a>
+  <a class="wish" href="assets/vid/reel_1280.mp4" data-lb="assets/vid/reel_1280.mp4">▶ Watch gameplay</a>
 </header>
 
 <main id="main">
 
 <!-- ============ HERO: gameplay reel ============ -->
-<section class="hero">
+<section class="hero showreel">
   <div class="bg">
     <video autoplay muted loop playsinline preload="metadata" poster="assets/img/reel_poster.avif" data-onscreen data-bg
            aria-hidden="true">
       <source src="assets/vid/reel_960.mp4" type="video/mp4" media="(max-width: 760px)">
-      <source src="assets/vid/reel_1600.mp4" type="video/mp4">
+      <source src="assets/vid/reel_1280.mp4" type="video/mp4">
     </video>
   </div>
   <div class="inner">
@@ -50,11 +59,11 @@
     <p class="tag">Lead four of 100 heroes across infinite wild lands in turn-based tactics,
     rip packs for holo Legendaries and brave the real-time Rootdelve.</p>
     <div class="ctas">
-      <a class="btn primary" href="assets/vid/reel_1600.mp4" data-lb="assets/vid/reel_1600.mp4">▶&nbsp; Watch gameplay</a>
-      <a class="btn ghost" href="heroes.html">Meet the hundred</a>
+      <a class="btn primary" href="assets/vid/reel_1280.mp4" data-lb="assets/vid/reel_1280.mp4">▶&nbsp; Watch gameplay</a>
+      <a class="btn ghost" href="heroes.html">Meet the town</a>
     </div>
+    <p class="plat">iPhone · iPad · Mac · Apple TV · Apple Vision Pro</p>
   </div>
-  <div class="plat">iPhone · iPad · Mac · Apple TV · Apple Vision Pro</div>
 </section>
 
 <section class="statstrip" aria-label="The game in numbers">
@@ -171,7 +180,7 @@
 
 <!-- ============ GROVEHAVEN: the hub and everything around it ============ -->
 <section class="band">
-  <div class="band-bg kb"><img src="assets/img/menu/hub.avif" alt="" aria-hidden="true"></div>
+  <div class="band-bg kb"><img src="assets/img/menu/hub.avif" alt="" aria-hidden="true" loading="lazy"></div>
   <div class="wrap">
     <article class="feature reveal" style="margin-top: 0;">
       <figure class="clip" data-lb="assets/vid/play/hub.mp4">
@@ -183,9 +192,10 @@
       <div>
         <p class="eyebrow">Grovehaven</p>
         <h3>Grovehaven is home</h3>
-        <p>Your party drops onto the village's main street, ready to go: pick four of 100 heroes
-        across 20 jobs and turn each one to look them over. Everything else is a short walk away:
-        the Pack Altar, the Binder, the Fusion Forge and Pemberton's shop.</p>
+        <p>Your party drops onto the village's main street, ready to go. All 100 heroes live
+        here, across 20 jobs: pick four you've collected and turn each one to look them over.
+        Everything else is a short walk away: the Pack Altar, the Binder, the Fusion Forge and
+        Pemberton's shop.</p>
         <a class="more" href="play.html#grovehaven">Around the village →</a>
       </div>
     </article>
@@ -227,7 +237,7 @@
 
 <!-- ============ STORY TEASER ============ -->
 <section class="band">
-  <div class="band-bg kb"><img src="assets/img/menu/title.avif" alt="" aria-hidden="true"></div>
+  <div class="band-bg kb"><img src="assets/img/menu/title.avif" alt="" aria-hidden="true" loading="lazy"></div>
   <div class="wrap">
     <div class="duo reveal">
       <div>
@@ -287,26 +297,26 @@
 <!-- ============ HEROES RAIL ============ -->
 <section class="pad" style="padding-top: 0;">
   <div class="wrap reveal">
-    <p class="eyebrow">The hundred</p>
+    <p class="eyebrow">The town</p>
     <h2>No chosen ones. Just neighbours.</h2>
     <div class="rule">◆</div>
-    <p class="lead">Farm-girl knights and hedgehog spearmen. A three-eyed rabbit samurai, a
-    dormouse who tends a pack altar, an axolotl who soaks raptors and puddles with the same spell.
-    One hundred heroes across twenty jobs and eight elements, each with a painted card and a way
-    to fit in a party.</p>
+    <p class="lead">Everyone you lead lives in Grovehaven. Farm-girl knights and hedgehog
+    spearmen. A three-eyed rabbit samurai, a dormouse who tends a pack altar, an axolotl who soaks
+    raptors and puddles with the same spell. One hundred heroes across twenty jobs and eight
+    elements, each with a card of their own and a way to fit in a party.</p>
     <div class="railwrap">
       <div class="rail" id="heroRail" aria-label="Featured heroes">
         <!-- populated by inline script from heroes.js -->
       </div>
       <p class="railhint">The starters and every Legendary →</p>
     </div>
-    <p style="margin-top: 18px;"><a class="btn primary" href="heroes.html">Browse all 100 heroes →</a></p>
+    <p style="margin-top: 18px;"><a class="btn primary" href="heroes.html">Meet the whole town →</a></p>
   </div>
 </section>
 
 <!-- ============ PLATFORMS ============ -->
 <section class="band">
-  <div class="band-bg"><img src="assets/img/battle/landscape.avif" alt="" aria-hidden="true"></div>
+  <div class="band-bg"><img src="assets/img/battle/landscape.avif" alt="" aria-hidden="true" loading="lazy"></div>
   <div class="wrap reveal">
     <p class="eyebrow">Every Apple screen</p>
     <h2>One journal, wherever you play</h2>
@@ -325,7 +335,7 @@
 
 <!-- ============ CLOSER ============ -->
 <section class="band" style="padding-bottom: 110px;">
-  <div class="band-bg"><img src="assets/img/menu/pack_altar.avif" alt="" aria-hidden="true"></div>
+  <div class="band-bg"><img src="assets/img/menu/pack_altar.avif" alt="" aria-hidden="true" loading="lazy"></div>
   <div class="wrap center reveal">
     <p class="eyebrow">The Rootgate is open</p>
     <h2>Pack your four.</h2>
@@ -334,7 +344,7 @@
     iPad, Mac, Apple TV and Apple Vision Pro, made by a small team that cares about pride of craft
     more than anything else.</p>
     <div class="ctas">
-      <a class="btn primary" href="assets/vid/reel_1600.mp4" data-lb="assets/vid/reel_1600.mp4">▶&nbsp; Watch gameplay</a>
+      <a class="btn primary" href="assets/vid/reel_1280.mp4" data-lb="assets/vid/reel_1280.mp4">▶&nbsp; Watch gameplay</a>
       <a class="btn ghost" href="media.html">Media & press</a>
     </div>
   </div>
@@ -349,7 +359,8 @@
         <h4>Fauna Fantasy</h4>
         <p>A tactics RPG with holo cards: turn-based battles across infinite wild lands, a
         binder of 285 cards and 100 heroes, the real-time Rootdelve and the Arena. Made with
-        SwiftUI and RealityKit in Australia for iPhone, iPad, Mac, Apple TV and Apple Vision Pro.</p>
+        SwiftUI and RealityKit by SideResult Software in Portland, Oregon, for iPhone, iPad,
+        Mac, Apple TV and Apple Vision Pro.</p>
         <p class="small"><label><input type="checkbox" id="readableToggle"> Readable font
         (Atkinson Hyperlegible)</label>, the same option the game has in Settings.</p>
       </div>
@@ -357,7 +368,7 @@
         <h4>This site</h4>
         <ul>
           <li><a href="world.html">The Everwild</a></li>
-          <li><a href="heroes.html">The 100 heroes</a></li>
+          <li><a href="heroes.html">Meet the town</a></li>
           <li><a href="play.html">How to play</a></li>
           <li><a href="arena.html">The Arena</a></li>
           <li><a href="media.html">Media & press</a></li>
@@ -373,8 +384,8 @@
         </ul>
       </div>
     </div>
-    <p class="fine">© 2026 Side Result. Fauna Fantasy, the Everwild, the Wild Accord and all
-    characters are original works. Gameplay footage is captured from current builds; content and
+    <p class="fine">© 2026 <a href="https://sideresult.com">SideResult Software</a>, Portland, Oregon.
+    Fauna Fantasy, the Everwild, the Wild Accord and all characters are original works. Gameplay footage is captured from current builds; content and
     systems may change before release.</p>
   </div>
 </footer>

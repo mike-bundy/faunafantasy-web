@@ -1,6 +1,41 @@
-// Shared site behaviour: header, menus, reveals, lightbox, readable toggle.
+// Shared site behaviour: AVIF fallback, header, menus, reveals, lightbox, readable toggle.
 (function () {
   "use strict";
+
+  // Stills are AVIF with a JPEG twin beside each (build.py). Browsers that can't
+  // decode AVIF (Safari before 16, older Macs) get every .avif reference swapped for
+  // its .jpg, including ones added later (hero cards, the modal, the lightbox).
+  (function () {
+    var AVIF = /\.avif(?=$|[?#])/i;
+    var ATTRS = ["src", "poster", "data-lb", "href"];
+    function fix(root) {
+      if (!root.querySelectorAll) return;
+      var list = [root].concat([].slice.call(root.querySelectorAll("img, video, a, [data-lb]")));
+      list.forEach(function (el) {
+        ATTRS.forEach(function (a) {
+          var v = el.getAttribute && el.getAttribute(a);
+          if (v && AVIF.test(v)) el.setAttribute(a, v.replace(AVIF, ".jpg"));
+        });
+      });
+    }
+    var probe = new Image();
+    probe.onload = function () {
+      if (probe.width > 0) return;          // decoded: AVIF works
+      probe.onerror();
+    };
+    probe.onerror = function () {
+      document.documentElement.classList.add("no-avif");
+      fix(document.body);
+      if ("MutationObserver" in window) {
+        new MutationObserver(function (muts) {
+          muts.forEach(function (m) {
+            [].forEach.call(m.addedNodes, function (n) { if (n.nodeType === 1) fix(n); });
+          });
+        }).observe(document.body, { childList: true, subtree: true });
+      }
+    };
+    probe.src = "data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAE1pUHJhdmlmbWlhZm1pZjEAAAEhbWV0YQAAAAAAAAAhaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAAAAAAAkZGluZgAAABxkcmVmAAAAAAAAAAEAAAAMdXJsIAAAAAEAAAAOcGl0bQAAAAAAAQAAACNpaW5mAAAAAAABAAAAFWluZmUCAAAAAAEAAGF2MDEAAAAAgWlwcnAAAABgaXBjbwAAABNjb2xybmNseAACAAIABoAAAAAMY2xsaQDLAEAAAAAUaXNwZQAAAAAAAAACAAAAAgAAAAlpcm90AAAAABBwaXhpAAAAAAMICAgAAAAMYXYxQ4EADAAAAAAZaXBtYQAAAAAAAAABAAEGgQIDBYaEAAAAHmlsb2MAAAAARAAAAQABAAAAAQAAAVEAAAAmAAAAAW1kYXQAAAAAAAAANhIACgwAAAAABn/8CBAQNCAyFBABkgAIIIIgAGjTBoezviHWCduA";
+  })();
 
   var bar = document.querySelector(".topbar");
   if (bar) {
@@ -112,6 +147,8 @@
     } else {
       el = document.createElement("img");
       el.src = src;
+      var from = t.tagName === "IMG" ? t : t.querySelector("img");
+      el.alt = (from && from.getAttribute("alt")) || "";
     }
     lb.appendChild(el);
     lb.classList.add("on");

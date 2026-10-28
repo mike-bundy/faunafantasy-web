@@ -5,11 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Arena — PvP on Game Center · Fauna Fantasy</title>
 <meta name="description" content="Four heroes, a mirrored board, one rival: the Arena's deterministic lockstep PvP, Quick Match by team power, Friend challenges with SharePlay, and take-turns async matches.">
+<link rel="canonical" href="https://faunafantasy.com/arena.html">
+<link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<meta property="og:title" content="The Arena — cross-play PvP against other tamers">
-<meta property="og:description" content="Made in Australia for iPhone, iPad, Mac, Apple TV and Vision Pro.">
-<meta property="og:image" content="https://mike-bundy.github.io/faunafantasy-web/assets/img/keyart_wide.jpg">
-<meta property="og:url" content="https://mike-bundy.github.io/faunafantasy-web/arena.html">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0b110d">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Fauna Fantasy">
+<meta property="og:title" content="The Arena · PvP on Game Center">
+<meta property="og:description" content="Your real collection against real people: rated Quick Matches by team power, Friend challenges with SharePlay, and take-turns matches.">
+<meta property="og:url" content="https://faunafantasy.com/arena.html">
+<meta property="og:image" content="https://faunafantasy.com/assets/img/keyart_wide.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1066">
+<meta property="og:image:alt" content="Key art: a squire, a fox, a small lantern-bearer and a bear warrior on a flower-strewn hill below a treehouse village, a violet castle on the far horizon.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -29,12 +38,12 @@
     <a href="arena.html" class="on" aria-current="page">The Arena</a>
     <a href="media.html">Media</a>
   </nav>
-  <a class="wish" href="assets/vid/reel_1600.mp4" data-lb="assets/vid/reel_1600.mp4">▶ Watch gameplay</a>
+  <a class="wish" href="assets/vid/reel_1280.mp4" data-lb="assets/vid/reel_1280.mp4">▶ Watch gameplay</a>
 </header>
 
 <main id="main">
 
-<section class="hero" style="min-height: 78svh;">
+<section class="hero showreel">
   <div class="bg"><video autoplay muted loop playsinline preload="metadata" poster="assets/img/play/arena.avif" data-onscreen data-bg aria-hidden="true" style="transform: scale(1.22);">
     <source src="assets/vid/play/arena.mp4" type="video/mp4"></video></div>
   <div class="inner">
@@ -151,7 +160,7 @@
 </section>
 
 <section class="band">
-  <div class="band-bg kb"><img src="assets/img/battle/gloomroot_hollow_vista.avif" alt="" aria-hidden="true"></div>
+  <div class="band-bg kb"><img src="assets/img/battle/gloomroot_hollow_vista.avif" alt="" aria-hidden="true" loading="lazy"></div>
   <div class="wrap reveal">
     <p class="eyebrow">Rating & seasons</p>
     <h2>Rated by Glicko-2. Dressed by the grove.</h2>
@@ -183,7 +192,7 @@
     people, on five kinds of device, play one honest match with nothing between them but
     Game Center's pipes? It plays. Now go be insufferable about your rating.</p>
     <div class="ctas" style="margin-top: 24px;">
-      <a class="btn primary" href="assets/vid/reel_1600.mp4" data-lb="assets/vid/reel_1600.mp4">▶&nbsp; Watch gameplay</a>
+      <a class="btn primary" href="assets/vid/reel_1280.mp4" data-lb="assets/vid/reel_1280.mp4">▶&nbsp; Watch gameplay</a>
       <a class="btn ghost" href="index.html">Back to Grovehaven</a>
     </div>
   </div>
@@ -198,7 +207,8 @@
         <h4>Fauna Fantasy</h4>
         <p>A tactics RPG with holo cards: turn-based battles across infinite wild lands, a
         binder of 285 cards and 100 heroes, the real-time Rootdelve and the Arena. Made with
-        SwiftUI and RealityKit in Australia for iPhone, iPad, Mac, Apple TV and Apple Vision Pro.</p>
+        SwiftUI and RealityKit by SideResult Software in Portland, Oregon, for iPhone, iPad,
+        Mac, Apple TV and Apple Vision Pro.</p>
         <p class="small"><label><input type="checkbox" id="readableToggle"> Readable font
         (Atkinson Hyperlegible)</label>, the same option the game has in Settings.</p>
       </div>
@@ -206,7 +216,7 @@
         <h4>This site</h4>
         <ul>
           <li><a href="world.html">The Everwild</a></li>
-          <li><a href="heroes.html">The 100 heroes</a></li>
+          <li><a href="heroes.html">Meet the town</a></li>
           <li><a href="play.html">How to play</a></li>
           <li><a href="arena.html">The Arena</a></li>
           <li><a href="media.html">Media & press</a></li>
@@ -222,8 +232,8 @@
         </ul>
       </div>
     </div>
-    <p class="fine">© 2026 Side Result. Fauna Fantasy, the Everwild, the Wild Accord and all
-    characters are original works. Gameplay footage is captured from current builds; content and
+    <p class="fine">© 2026 <a href="https://sideresult.com">SideResult Software</a>, Portland, Oregon.
+    Fauna Fantasy, the Everwild, the Wild Accord and all characters are original works. Gameplay footage is captured from current builds; content and
     systems may change before release.</p>
   </div>
 </footer>

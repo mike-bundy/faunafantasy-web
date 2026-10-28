@@ -11,7 +11,9 @@ FF_FORCE=1 re-encodes everything (do that after changing a clip's cut or the
 encoder settings). Files under the generated dirs that this run did not produce
 are deleted at the end, so the published set always matches this script.
 
-Stills are AVIF (sips, macOS); the two key-art JPEGs stay for og:image.
+Stills are AVIF (sips, macOS), each with a JPEG twin beside it (same name, .jpg)
+that site.js swaps in on browsers without AVIF (Safari before 16, older Macs).
+The two key-art JPEGs double as og:image.
 Gameplay clips come from the App Store capture pipeline (work/store/captures,
 tools/cinema/store.py in the game): H.264, muted, 30 fps, faststart, each with
 an AVIF poster.
@@ -64,10 +66,32 @@ def jpg(src, dst, width=None, q=82):
     sh(cmd + [src, "--out", dst])
 
 
-def avif(src, dst, width=None, q=60):
-    """AVIF still via sips. Never upscales. Width and height always come out even:
-    Chrome draws nothing for sips' 4:2:0 AVIFs with an odd dimension."""
-    if fresh(dst, src):
+INK = "0x0b110d"   # the page colour; transparent stills are flattened onto it for JPEG
+
+
+def twin_jpg(src, dst, tw, th, q=62):
+    """The JPEG twin of an AVIF still, for browsers without AVIF. sips flattens alpha
+    onto white, so transparent sources are composited onto the page colour by ffmpeg."""
+    alpha = "yes" in subprocess.run(["sips", "-g", "hasAlpha", str(src)],
+                                    capture_output=True, text=True).stdout
+    if alpha:
+        sh(["ffmpeg", "-y", "-v", "error", "-i", src, "-filter_complex",
+            f"color=c={INK}:s={tw}x{th}[bg];[0]scale={tw}:{th}:flags=lanczos[fg];"
+            f"[bg][fg]overlay=shortest=1,format=yuvj420p",
+            "-frames:v", "1", "-q:v", "5", dst])
+    else:
+        sh(["sips", "-s", "format", "jpeg", "-s", "formatOptions", str(q),
+            "-z", str(th), str(tw), src, "--out", dst])
+
+
+def avif(src, dst, width=None, q=60, twin=True):
+    """AVIF still via sips, plus its JPEG twin. Never upscales. Width and height always
+    come out even: Chrome draws nothing for sips' 4:2:0 AVIFs with an odd dimension."""
+    jdst = dst.with_suffix(".jpg")
+    twin = twin and jdst.resolve() not in made   # key art: jpg() already made it
+    need_a = not fresh(dst, src)
+    need_j = twin and not fresh(jdst, src)
+    if not (need_a or need_j):
         return
     out = subprocess.run(["sips", "-g", "pixelWidth", "-g", "pixelHeight", str(src)],
                          capture_output=True, text=True).stdout.split()
@@ -75,8 +99,11 @@ def avif(src, dst, width=None, q=60):
     tw = min(width or w, w)
     th = round(h * tw / w)
     tw, th = tw - tw % 2, th - th % 2
-    sh(["sips", "-s", "format", "avif", "-s", "formatOptions", str(q),
-        "-z", str(th), str(tw), src, "--out", dst])
+    if need_a:
+        sh(["sips", "-s", "format", "avif", "-s", "formatOptions", str(q),
+            "-z", str(th), str(tw), src, "--out", dst])
+    if need_j:
+        twin_jpg(src, jdst, tw, th)
 
 
 def copy(src, dst):
@@ -86,8 +113,9 @@ def copy(src, dst):
 
 
 def h264(src, dst, width=None, crf=26, preset="slow", start=None, seconds=None,
-         fps=None, vf=None):
-    """Muted H.264 web clip (yuv420p, faststart)."""
+         fps=None, vf=None, sound=False):
+    """H.264 web clip (yuv420p, faststart). Muted unless sound=True, which keeps the
+    first audio track as AAC (the cinematics' dialogue and score)."""
     if fresh(dst, src):
         return
     cmd = ["ffmpeg", "-y", "-v", "error"]
@@ -104,19 +132,26 @@ def h264(src, dst, width=None, crf=26, preset="slow", start=None, seconds=None,
     if fps:
         filters.append(f"fps={fps}")
     filters.append("format=yuv420p")
+    audio = ["-map", "0:v:0", "-map", "0:a:0", "-c:a", "aac", "-b:a", "128k"] if sound else ["-an"]
     cmd += ["-vf", ",".join(filters), "-c:v", "libx264", "-crf", str(crf),
-            "-preset", preset, "-profile:v", "high", "-an", "-movflags", "+faststart", dst]
+            "-preset", preset, "-profile:v", "high", *audio, "-sn", "-movflags", "+faststart", dst]
     sh(cmd)
 
 
 def frame(src, at, dst, width=1280, q=58):
-    """One frame of a movie as an AVIF poster (via a temporary PNG)."""
-    if fresh(dst, src):
+    """One frame of a movie as an AVIF poster plus its JPEG twin (via a temporary PNG)."""
+    jdst = dst.with_suffix(".jpg")
+    need_a = not fresh(dst, src)
+    need_j = not fresh(jdst, src)
+    if not (need_a or need_j):
         return
     tmp = dst.with_suffix(".tmp.png")
     sh(["ffmpeg", "-y", "-v", "error", "-ss", f"{at:.3f}", "-i", src, "-frames:v", "1",
         "-vf", f"scale={width}:-2:flags=lanczos", tmp])
-    sh(["sips", "-s", "format", "avif", "-s", "formatOptions", str(q), tmp, "--out", dst])
+    if need_a:
+        sh(["sips", "-s", "format", "avif", "-s", "formatOptions", str(q), tmp, "--out", dst])
+    if need_j:
+        sh(["sips", "-s", "format", "jpeg", "-s", "formatOptions", "62", tmp, "--out", jdst])
     tmp.unlink()
 
 
@@ -160,6 +195,18 @@ def main():
 
     # ---- brand ---------------------------------------------------------------
     copy(A / "Brand/logo.png", IMG / "logo.png")
+    # home-screen and tab icons at the site root: the shipping app icon's layers, flattened,
+    # and the SVG favicon as a 32 px .ico for browsers that ask for /favicon.ico
+    icon = ROOT / "App/Shared/AppIcon.icon/Assets"
+    touch = SITE / "apple-touch-icon.png"
+    if not fresh(touch, icon / "back.png", icon / "middle.png", icon / "front.png"):
+        sh(["ffmpeg", "-y", "-v", "error", "-i", icon / "back.png", "-i", icon / "middle.png",
+            "-i", icon / "front.png", "-filter_complex",
+            "[0][1]overlay[a];[a][2]overlay,scale=180:180:flags=lanczos,format=rgb24",
+            "-frames:v", "1", touch])
+    ico = SITE / "favicon.ico"
+    if not fresh(ico, SITE / "favicon.svg"):
+        sh(["sips", "-s", "format", "ico", "-z", "32", "32", SITE / "favicon.svg", "--out", ico])
     jpg(W / "brand/keyart_wide.png", IMG / "keyart_wide.jpg", 1600, 85)   # og:image
     jpg(W / "brand/keyart_tall.png", IMG / "keyart_tall.jpg", 1200, 85)   # og:image
     avif(W / "brand/keyart_wide.png", IMG / "keyart_wide.avif", 1600, 62)
@@ -218,7 +265,7 @@ def main():
     clips = [
         ("battle", "tv/auto_canyon.mov", 16.0, 10.0, 1280, 1.8),
         ("plan", "tv/battle_coral.mov", 10.5, 9.0, 1280, 3.0),
-        ("pack", "tv/pack.mov", 2.6, 18.6, 1280, 14.0),
+        ("pack", "tv/pack.mov", 2.6, 18.6, 1280, 15.6),   # poster: the Legendary face up, not the flip flash
         ("hub", "tv/hub.mov", 0.7, 9.0, 1280, 6.0),
         ("crawl", "iphone/crawl.mov", 1.5, 12.0, 1280, 2.0),
         ("arena", "tv/arena_battle.mov", 0.4, 13.6, 1280, 5.5),
@@ -247,16 +294,21 @@ def main():
         (CAP / "iphone/battle_gloom.mov", 9.6, 3.6),
         (CAP / "tv/arena_battle.mov", 3.0, 3.6),
     ]
-    montage(reel, VID / "reel_1600.mp4", 1600, crf=27)
-    h264(VID / "reel_1600.mp4", VID / "reel_960.mp4", width=960, crf=28)
-    frame(VID / "reel_1600.mp4", 0.6, IMG / "reel_poster.avif", 1600)
+    # 1280 wide: the montage's centre crop holds about 1380 px of real detail, so a
+    # wider encode only adds weight (the 1600 version was 9 MB for 24 s)
+    montage(reel, VID / "reel_1280.mp4", 1280, crf=27)
+    h264(VID / "reel_1280.mp4", VID / "reel_960.mp4", width=960, crf=28)
+    frame(VID / "reel_1280.mp4", 0.6, IMG / "reel_poster.avif", 1280)
 
     # ---- cinematics (in-app renders) ------------------------------------------------
     print("cinematics")
     for clip in ("attract_loop", "intro_fernwood", "boss_gloomroot_hollow", "finale"):
         src = A / "Cinematics" / (clip + ".mp4")
         if src.exists():
-            h264(src, VID / (clip + "_h264.mp4"), crf=25)
+            h264(src, VID / (clip + "_h264.mp4"), crf=25, sound=True)   # "these play with sound"
+            vtt = src.with_suffix(".vtt")
+            if vtt.exists():
+                copy(vtt, VID / (clip + ".vtt"))   # captions for the <track>
     frame(A / "Cinematics/attract_loop.mp4", 1.2, IMG / "attract_poster.avif", 1600)
     frame(A / "Cinematics/intro_fernwood.mp4", 4.0, IMG / "intro_poster.avif", 1280)
     frame(A / "Cinematics/boss_gloomroot_hollow.mp4", 3.0, IMG / "boss_poster.avif", 1280)
