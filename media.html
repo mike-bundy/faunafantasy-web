@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Media & press · Fauna Fantasy</title>
-<meta name="description" content="The reel, the opening cinematic, gameplay stills and the soundtrack of Fauna Fantasy.">
+<meta name="description" content="Gameplay clips from current builds, the in-game cinematics, screenshots, the score and press notes for Fauna Fantasy, the tactics RPG with holo cards.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<meta property="og:title" content="Media & press — trailer, cinematics, soundtrack, stills">
+<meta property="og:title" content="Fauna Fantasy · media and press">
 <meta property="og:description" content="Made in Australia for iPhone, iPad, Mac, Apple TV and Vision Pro.">
 <meta property="og:image" content="https://mike-bundy.github.io/faunafantasy-web/assets/img/keyart_wide.jpg">
 <meta property="og:url" content="https://mike-bundy.github.io/faunafantasy-web/media.html">
@@ -16,6 +16,10 @@
   .vgrid { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; }
   @media (max-width: 860px) { .vgrid { grid-template-columns: 1fr; } }
   .vbig { grid-column: 1 / -1; }
+  .clipgrid { display: grid; gap: 22px 18px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); margin-top: 22px; align-items: end; }
+  .clipgrid figure { margin: 0; }
+  .shots.tall { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+  .shots.tall img { aspect-ratio: 3 / 4; object-position: top; }
   .g { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
   .g a { border-radius: 12px; overflow: hidden; border: 1px solid var(--line-soft); display: block; box-shadow: 0 8px 22px rgba(0,0,0,.4); }
   .g img { aspect-ratio: 16/10; width: 100%; object-fit: cover; transition: transform .5s; }
@@ -31,87 +35,156 @@
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="topbar">
-  <a class="logo" href="index.html" aria-label="Fauna Fantasy — home">
+  <a class="logo" href="index.html" aria-label="Fauna Fantasy, home">
     <img src="assets/img/logo.png" alt="Fauna Fantasy">
   </a>
-  <button class="burger" aria-label="Menu">☰</button>
-  <nav>
+  <button class="burger" aria-label="Menu" aria-expanded="false">☰</button>
+  <nav aria-label="Site">
     <a href="index.html">Home</a>
     <a href="world.html">The Everwild</a>
     <a href="heroes.html">Heroes</a>
     <a href="play.html">How to play</a>
     <a href="arena.html">The Arena</a>
-    <a href="media.html" class="on">Media</a>
+    <a href="media.html" class="on" aria-current="page">Media</a>
   </nav>
-  <a class="wish" href="#reel">▶ Play the reel</a>
+  <a class="wish" href="assets/vid/reel_1600.mp4" data-lb="assets/vid/reel_1600.mp4">▶ Watch gameplay</a>
 </header>
 
 <main id="main">
 
-<section class="hero" style="min-height: 58svh;">
-  <div class="bg"><video id="reelBg" autoplay muted loop playsinline preload="metadata" poster="assets/img/attract_poster.jpg" data-onscreen aria-hidden="true">
-    <source src="assets/vid/attract_loop_h264.mp4" type="video/mp4"></video></div>
+<section class="hero" style="min-height: 62svh;">
+  <div class="bg"><video autoplay muted loop playsinline preload="metadata" poster="assets/img/reel_poster.avif" data-onscreen data-bg aria-hidden="true">
+    <source src="assets/vid/reel_960.mp4" type="video/mp4" media="(max-width: 760px)">
+    <source src="assets/vid/reel_1600.mp4" type="video/mp4"></video></div>
   <div class="inner">
-    <p class="eyebrow">Media</p>
-    <h2 style="font-size: clamp(32px, 5vw, 54px);">Watch. Listen. Skim.</h2>
-    <p class="tag">Everything below is in-development material made for the game: the attract
-    reel, three cinematic cuts, gameplay stills from dev builds, and the score.</p>
+    <p class="eyebrow">Media & press</p>
+    <h1 class="display">Watch. Listen. Skim.</h1>
+    <p class="tag">Gameplay from current builds on iPhone, iPad and Apple TV, the in-game
+    cinematics, screenshots, the score, and the facts for the record.</p>
+    <div class="ctas">
+      <a class="btn primary" href="assets/vid/reel_1600.mp4" data-lb="assets/vid/reel_1600.mp4">▶&nbsp; Play the reel</a>
+      <a class="btn ghost" href="#press">Press notes</a>
+    </div>
   </div>
 </section>
 
 <section class="pad" id="reel">
   <div class="wrap">
-    <p class="eyebrow">Video</p>
-    <h2>The reel & the cuts</h2>
-    <div class="rule">◆</div>
-    <div class="vgrid">
-      <figure class="frame vbig" data-lb="assets/vid/attract_loop_h264.mp4">
-        <video controls loop muted playsinline preload="none" poster="assets/img/attract_poster.jpg" data-onscreen>
-          <source src="assets/vid/attract_loop_h264.mp4" type="video/mp4"></video>
-        <figcaption><span>Attract reel · 27 s</span><span>plays in-app on the title</span></figcaption>
+    <header class="sh">
+      <p class="eyebrow">Gameplay</p>
+      <h2>The game, moving</h2>
+      <div class="rule">◆</div>
+      <p class="lead">Captured from current builds. Every clip loops silently while it's on
+      screen; click any of them to watch it full size.</p>
+    </header>
+    <figure class="clip" data-lb="assets/vid/reel_1600.mp4" style="margin-top: 26px;">
+      <video muted loop playsinline preload="none" poster="assets/img/reel_poster.avif" data-onscreen aria-label="The gameplay reel: tactics, a pack opening, Grovehaven, the Rootdelve, Gloomroot Hollow and the Arena.">
+        <source src="assets/vid/reel_960.mp4" type="video/mp4" media="(max-width: 760px)">
+        <source src="assets/vid/reel_1600.mp4" type="video/mp4"></video>
+      <span class="dev">The reel · 24 s</span>
+    </figure>
+    <div class="clipgrid">
+      <figure>
+        <div class="clip" data-lb="assets/vid/play/battle.mp4"><video muted loop playsinline preload="none" poster="assets/img/play/battle.avif" data-onscreen aria-label="Tactics on Amber Canyons"><source src="assets/vid/play/battle.mp4" type="video/mp4"></video><span class="dev">Apple TV</span></div>
+        <figcaption class="clipcap"><span>Tactics on Amber Canyons</span></figcaption>
       </figure>
-      <figure class="frame" data-lb="assets/vid/intro_fernwood_h264.mp4">
-        <video controls loop muted playsinline preload="none" data-onscreen>
-          <source src="assets/vid/intro_fernwood_h264.mp4" type="video/mp4"></video>
-        <figcaption><span>Fernwood intro · first entry</span><span>~20 s</span></figcaption>
+      <figure>
+        <div class="clip" data-lb="assets/vid/play/plan.mp4"><video muted loop playsinline preload="none" poster="assets/img/play/plan.avif" data-onscreen aria-label="Planning a move"><source src="assets/vid/play/plan.mp4" type="video/mp4"></video><span class="dev">Apple TV</span></div>
+        <figcaption class="clipcap"><span>Planning a move</span></figcaption>
       </figure>
-      <figure class="frame" data-lb="assets/vid/boss_gloomroot_hollow_h264.mp4">
-        <video controls loop muted playsinline preload="none" data-onscreen>
-          <source src="assets/vid/boss_gloomroot_hollow_h264.mp4" type="video/mp4"></video>
-        <figcaption><span>Gloomroot boss intro · King Rotcrown</span><span>~12 s</span></figcaption>
+      <figure>
+        <div class="clip" data-lb="assets/vid/play/pack.mp4"><video muted loop playsinline preload="none" poster="assets/img/play/pack.avif" data-onscreen aria-label="Pack opening, a Legendary pull"><source src="assets/vid/play/pack.mp4" type="video/mp4"></video><span class="dev">Apple TV</span></div>
+        <figcaption class="clipcap"><span>Pack opening, a Legendary pull</span></figcaption>
       </figure>
-      <figure class="frame vbig" data-lb="assets/vid/finale_h264.mp4">
-        <video controls loop muted playsinline preload="none" data-onscreen>
-          <source src="assets/vid/finale_h264.mp4" type="video/mp4"></video>
-        <figcaption><span>"Every Song Has a Next Verse" · the finale</span><span>60 s · contains story</span></figcaption>
+      <figure>
+        <div class="clip phone" data-lb="assets/vid/play/crawl.mp4"><video muted loop playsinline preload="none" poster="assets/img/play/crawl.avif" data-onscreen aria-label="Rootdelve"><source src="assets/vid/play/crawl.mp4" type="video/mp4"></video><span class="dev">iPhone</span></div>
+        <figcaption class="clipcap"><span>Rootdelve</span></figcaption>
+      </figure>
+      <figure>
+        <div class="clip" data-lb="assets/vid/play/hub.mp4"><video muted loop playsinline preload="none" poster="assets/img/play/hub.avif" data-onscreen aria-label="Grovehaven: the heroes drop in"><source src="assets/vid/play/hub.mp4" type="video/mp4"></video><span class="dev">Apple TV</span></div>
+        <figcaption class="clipcap"><span>Grovehaven: the heroes drop in</span></figcaption>
+      </figure>
+      <figure>
+        <div class="clip" data-lb="assets/vid/play/arena.mp4"><video muted loop playsinline preload="none" poster="assets/img/play/arena.avif" data-onscreen aria-label="An Arena match"><source src="assets/vid/play/arena.mp4" type="video/mp4"></video><span class="dev">Apple TV</span></div>
+        <figcaption class="clipcap"><span>An Arena match</span></figcaption>
+      </figure>
+      <figure>
+        <div class="clip phone" data-lb="assets/vid/play/duel.mp4"><video muted loop playsinline preload="none" poster="assets/img/play/duel.avif" data-onscreen aria-label="Wild Duel at the Snug Root"><source src="assets/vid/play/duel.mp4" type="video/mp4"></video><span class="dev">iPhone</span></div>
+        <figcaption class="clipcap"><span>Wild Duel at the Snug Root</span></figcaption>
+      </figure>
+      <figure>
+        <div class="clip phone" data-lb="assets/vid/play/gloom.mp4"><video muted loop playsinline preload="none" poster="assets/img/play/gloom.avif" data-onscreen aria-label="Gloomroot Hollow"><source src="assets/vid/play/gloom.mp4" type="video/mp4"></video><span class="dev">iPhone</span></div>
+        <figcaption class="clipcap"><span>Gloomroot Hollow</span></figcaption>
+      </figure>
+      <figure>
+        <div class="clip" data-lb="assets/vid/play/coral.mp4"><video muted loop playsinline preload="none" poster="assets/img/play/coral.avif" data-onscreen aria-label="Coral Shallows"><source src="assets/vid/play/coral.mp4" type="video/mp4"></video><span class="dev">Apple TV</span></div>
+        <figcaption class="clipcap"><span>Coral Shallows</span></figcaption>
       </figure>
     </div>
-    <p class="muted small">Cinematics were directed in-house on local GPU; voices are performed
-    and tuned per character. Click any clip to pop it full-screen.</p>
   </div>
 </section>
 
-<section class="pad" style="padding-top: 12px;">
+<section class="pad" style="padding-top: 0;">
   <div class="wrap">
-    <p class="eyebrow">Stills</p>
-    <h2>The game, actually</h2>
-    <div class="rule">◆</div>
-    <p class="muted" style="max-width: 640px; margin-bottom: 20px;">Captures from dev builds on
-    iPhone, iPad, Apple TV and Mac. The look is still moving — HUD and frames are final-ish,
-    numbers are not.</p>
-    <div class="g">
-      <a href="assets/img/shots/05_battle_hud.jpg" data-lb="assets/img/shots/05_battle_hud.jpg"><img src="assets/img/shots/05_battle_hud.jpg" alt="Battle HUD on iPhone: electrified quarry, objectives, timeline." loading="lazy"></a>
-      <a href="assets/img/shots/08_ipad_battle.jpg" data-lb="assets/img/shots/08_ipad_battle.jpg"><img src="assets/img/shots/08_ipad_battle.jpg" alt="Battle on iPad." loading="lazy"></a>
-      <a href="assets/img/shots/battle_contact_iphone_fernwood.jpg" data-lb="assets/img/shots/battle_contact_iphone_fernwood.jpg"><img src="assets/img/shots/battle_contact_iphone_fernwood.jpg" alt="Nine battle boards, light biomes." loading="lazy"></a>
-      <a href="assets/img/shots/battle_contact_iphone_emberforge.jpg" data-lb="assets/img/shots/battle_contact_iphone_emberforge.jpg"><img src="assets/img/shots/battle_contact_iphone_emberforge.jpg" alt="Nine battle boards, dark biomes." loading="lazy"></a>
-      <a href="assets/img/shots/02_walking.jpg" data-lb="assets/img/shots/02_walking.jpg"><img src="assets/img/shots/02_walking.jpg" alt="The party walking the diorama Trail." loading="lazy"></a>
-      <a href="assets/img/shots/03_camp.jpg" data-lb="assets/img/shots/03_camp.jpg"><img src="assets/img/shots/03_camp.jpg" alt="Camp around the fire." loading="lazy"></a>
-      <a href="assets/img/shots/05_encounter.jpg" data-lb="assets/img/shots/05_encounter.jpg"><img src="assets/img/shots/05_encounter.jpg" alt="Encounter stop." loading="lazy"></a>
-      <a href="assets/img/shots/06_duel_hand.jpg" data-lb="assets/img/shots/06_duel_hand.jpg"><img src="assets/img/shots/06_duel_hand.jpg" alt="Wild Duel card game." loading="lazy"></a>
-      <a href="assets/img/shots/brew_ipad_play.jpg" data-lb="assets/img/shots/brew_ipad_play.jpg"><img src="assets/img/shots/brew_ipad_play.jpg" alt="Rune Brew mini-game." loading="lazy"></a>
-      <a href="assets/img/shots/grove_ipad_play.jpg" data-lb="assets/img/shots/grove_ipad_play.jpg"><img src="assets/img/shots/grove_ipad_play.jpg" alt="Grove Puzzle mini-game." loading="lazy"></a>
-      <a href="assets/img/shots/00_overview.jpg" data-lb="assets/img/shots/00_overview.jpg"><img src="assets/img/shots/00_overview.jpg" alt="Trail overview." loading="lazy"></a>
-      <a href="assets/img/keyart_wide.jpg" data-lb="assets/img/keyart_wide.jpg"><img src="assets/img/keyart_wide.jpg" alt="Key art: the Starter Set on a hill at golden hour." loading="lazy"></a>
+    <header class="sh">
+      <p class="eyebrow">Cinematics</p>
+      <h2>The story, told in-engine</h2>
+      <div class="rule">◆</div>
+    </header>
+    <div class="vgrid" style="margin-top: 22px;">
+      <figure class="frame vbig">
+        <video controls loop muted playsinline preload="none" poster="assets/img/attract_poster.avif">
+          <source src="assets/vid/attract_loop_h264.mp4" type="video/mp4"></video>
+        <figcaption><span>Attract reel · 27 s</span><span>plays on the title screen</span></figcaption>
+      </figure>
+      <figure class="frame">
+        <video controls playsinline preload="none" poster="assets/img/intro_poster.avif">
+          <source src="assets/vid/intro_fernwood_h264.mp4" type="video/mp4"></video>
+        <figcaption><span>Fernwood intro</span><span>first entry</span></figcaption>
+      </figure>
+      <figure class="frame">
+        <video controls playsinline preload="none" poster="assets/img/boss_poster.avif">
+          <source src="assets/vid/boss_gloomroot_hollow_h264.mp4" type="video/mp4"></video>
+        <figcaption><span>Gloomroot guardian · King Rotcrown</span><span>boss intro</span></figcaption>
+      </figure>
+      <figure class="frame vbig">
+        <video controls playsinline preload="none" poster="assets/img/finale_poster.avif">
+          <source src="assets/vid/finale_h264.mp4" type="video/mp4"></video>
+        <figcaption><span>"Every Song Has a Next Verse" · the finale</span><span>contains story</span></figcaption>
+      </figure>
+    </div>
+    <p class="muted small" style="margin-top: 14px;">Cinematics are directed in-house and rendered
+    on a local GPU; every voice is performed and tuned per character. These play with sound.</p>
+  </div>
+</section>
+
+<section class="pad" style="padding-top: 0;" id="stills">
+  <div class="wrap">
+    <header class="sh">
+      <p class="eyebrow">Screenshots</p>
+      <h2>Stills, uncaptioned</h2>
+      <div class="rule">◆</div>
+      <p class="lead">From current builds on Apple TV and iPad, plus the Trail from an earlier
+      dev build. Click for full size.</p>
+    </header>
+    <div class="shots" style="margin-top: 22px;">
+      <figure><a href="assets/img/shots/tv_battle_canyon.avif" data-lb="assets/img/shots/tv_battle_canyon.avif"><img src="assets/img/shots/tv_battle_canyon.avif" alt="Tactics with teeth: Amber Canyons" loading="lazy"></a><figcaption>Tactics with teeth: Amber Canyons</figcaption></figure>
+      <figure><a href="assets/img/shots/tv_pack_legend.avif" data-lb="assets/img/shots/tv_pack_legend.avif"><img src="assets/img/shots/tv_pack_legend.avif" alt="Rip packs, pull Legends" loading="lazy"></a><figcaption>Rip packs, pull Legends</figcaption></figure>
+      <figure><a href="assets/img/shots/tv_hub.avif" data-lb="assets/img/shots/tv_hub.avif"><img src="assets/img/shots/tv_hub.avif" alt="Grovehaven's main street" loading="lazy"></a><figcaption>Grovehaven's main street</figcaption></figure>
+      <figure><a href="assets/img/shots/tv_gate.avif" data-lb="assets/img/shots/tv_gate.avif"><img src="assets/img/shots/tv_gate.avif" alt="The Expedition Gate" loading="lazy"></a><figcaption>The Expedition Gate</figcaption></figure>
+      <figure><a href="assets/img/shots/tv_battle_plan.avif" data-lb="assets/img/shots/tv_battle_plan.avif"><img src="assets/img/shots/tv_battle_plan.avif" alt="Plan every move: Coral Shallows" loading="lazy"></a><figcaption>Plan every move: Coral Shallows</figcaption></figure>
+      <figure><a href="assets/img/shots/tv_coral.avif" data-lb="assets/img/shots/tv_coral.avif"><img src="assets/img/shots/tv_coral.avif" alt="A new board in every land" loading="lazy"></a><figcaption>A new board in every land</figcaption></figure>
+      <figure><a href="assets/img/shots/tv_binder.avif" data-lb="assets/img/shots/tv_binder.avif"><img src="assets/img/shots/tv_binder.avif" alt="The Binder" loading="lazy"></a><figcaption>The Binder</figcaption></figure>
+      <figure><a href="assets/img/shots/tv_crawl.avif" data-lb="assets/img/shots/tv_crawl.avif"><img src="assets/img/shots/tv_crawl.avif" alt="Rootdelve" loading="lazy"></a><figcaption>Rootdelve</figcaption></figure>
+      <figure><a href="assets/img/shots/tv_arena_reveal.avif" data-lb="assets/img/shots/tv_arena_reveal.avif"><img src="assets/img/shots/tv_arena_reveal.avif" alt="The Arena: before the first move" loading="lazy"></a><figcaption>The Arena: before the first move</figcaption></figure>
+      <figure><a href="assets/img/shots/tv_shop.avif" data-lb="assets/img/shots/tv_shop.avif"><img src="assets/img/shots/tv_shop.avif" alt="Pemberton's Peddlery" loading="lazy"></a><figcaption>Pemberton's Peddlery</figcaption></figure>
+      <figure><a href="assets/img/shots/02_walking.avif" data-lb="assets/img/shots/02_walking.avif"><img src="assets/img/shots/02_walking.avif" alt="The Trail diorama" loading="lazy"></a><figcaption>The Trail diorama</figcaption></figure>
+      <figure><a href="assets/img/shots/03_camp.avif" data-lb="assets/img/shots/03_camp.avif"><img src="assets/img/shots/03_camp.avif" alt="Camp" loading="lazy"></a><figcaption>Camp</figcaption></figure>
+    </div>
+    <div class="shots tall" style="margin-top: 16px;">
+      <figure><a href="assets/img/shots/ipad_hub.avif" data-lb="assets/img/shots/ipad_hub.avif"><img src="assets/img/shots/ipad_hub.avif" alt="Grovehaven on iPad" loading="lazy"></a><figcaption>Grovehaven on iPad</figcaption></figure>
+      <figure><a href="assets/img/shots/ipad_crawl.avif" data-lb="assets/img/shots/ipad_crawl.avif"><img src="assets/img/shots/ipad_crawl.avif" alt="Rootdelve on iPad" loading="lazy"></a><figcaption>Rootdelve on iPad</figcaption></figure>
+      <figure><a href="assets/img/shots/ipad_shop.avif" data-lb="assets/img/shots/ipad_shop.avif"><img src="assets/img/shots/ipad_shop.avif" alt="The Shop on iPad" loading="lazy"></a><figcaption>The Shop on iPad</figcaption></figure>
     </div>
   </div>
 </section>
@@ -145,33 +218,38 @@
   </div>
 </section>
 
-<section class="pad" style="padding-top: 26px;">
+<section class="pad" style="padding-top: 26px;" id="press">
   <div class="wrap reveal">
     <p class="eyebrow">Press notes</p>
     <h2>What this is, for the record</h2>
     <div class="rule">◆</div>
-    <div class="duo">
+    <div class="duo" style="align-items: start;">
       <div>
-        <p><b>Fauna Fantasy</b> is an isometric turn-based tactics RPG with roguelite runs and a
-        collectible-card Binder, built SwiftUI + RealityKit for iPhone Duo, iPhone, iPad, macOS,
-        tvOS and visionOS (minimum OS 26). One build, five surfaces, controller support,
-        Game Center multiplayer.</p>
-        <p>Project facts, if you're counting: 100 hand-painted heroes across 20 job schools and
-        8 elements; ~240 skills; 9 battle boards across 9 biomes; 5 Trail mini-games plus Wild
-        Duel; 110 Hero Trials; 20 original cinematic scenes; 23 music cues; 149 sound events cut
-        from licensed banks; deterministic lockstep PvP with no dedicated server.</p>
-        <p>Everything you've seen on this site — art, writing, music direction, the site itself —
-        was made for this project. The game is in development; nothing here is launch-final.</p>
+        <p><b>Fauna Fantasy</b> is an isometric turn-based tactics RPG with roguelite expeditions,
+        a collectible holo-card Binder and a real-time dungeon delve, built natively in SwiftUI and
+        RealityKit for iPhone (iPhone Duo included), iPad, Mac, Apple TV and Apple Vision Pro.</p>
+        <p>By the numbers: 100 heroes across 20 jobs and 8 elements; 285 cards in four rarities,
+        each with its own holo finish; boards generated fresh in every land; five Trail
+        mini-games plus the Wild Duel card game; 110 Hero Trials; the Rootdelve; rated Arena
+        seasons over Game Center with no dedicated server; 20 cinematic scenes; 19 music tracks
+        and four fanfares.</p>
+        <p>Auto-Battle is an optional in-app purchase. Every pack shows its odds before you buy
+        or open it.</p>
+        <p>Everything on this site (art, writing, music direction, the site itself) was made for
+        this game. The game is in development; nothing here is launch-final.</p>
       </div>
       <div>
-        <div class="chipset">
-          <span class="chip"><b>Genre</b><small>tactics / roguelite / cards</small></span>
-          <span class="chip"><b>Studio</b><small>Side Result (AU)</small></span>
-          <span class="chip"><b>Tech</b><small>SwiftUI · RealityKit</small></span>
-          <span class="chip"><b>Platforms</b><small>iPhone Duo · iPad · Mac · Apple TV · Vision Pro</small></span>
-          <span class="chip"><b>Multiplayer</b><small>Game Center, no server</small></span>
-          <span class="chip"><b>Status</b><small>in development</small></span>
-        </div>
+        <dl class="storebox">
+          <dt>Name</dt><dd>Fauna Fantasy</dd>
+          <dt>Subtitle</dt><dd>Tactics RPG with holo cards</dd>
+          <dt>In one line</dt><dd>Lead four of 100 heroes across infinite wild lands in
+          turn-based tactics, rip packs for holo Legendaries and brave the real-time Rootdelve.</dd>
+          <dt>Genre</dt><dd>Tactics RPG · roguelite · card collecting</dd>
+          <dt>Platforms</dt><dd>iPhone · iPad · Mac · Apple TV · Apple Vision Pro</dd>
+          <dt>Multiplayer</dt><dd>Game Center: rated Quick Match, friends live or turn by turn, SharePlay</dd>
+          <dt>Studio</dt><dd>Side Result (Australia)</dd>
+          <dt>Status</dt><dd>In development</dd>
+        </dl>
       </div>
     </div>
   </div>
@@ -191,9 +269,38 @@
 
 <footer>
   <div class="wrap">
-    <p class="fine" style="margin-top: 0;">© 2026 Side Result. All media on this page is
-    project-original or licensed for use (BOOM Library, Quaternius, Mixamo — where applicable).
-    Preview build captures; not launch-final. <a href="index.html">Home</a></p>
+    <div class="fcols">
+      <div>
+        <h4>Fauna Fantasy</h4>
+        <p>A tactics RPG with holo cards: turn-based battles across infinite wild lands, a
+        binder of 285 cards and 100 heroes, the real-time Rootdelve and the Arena. Made with
+        SwiftUI and RealityKit in Australia for iPhone, iPad, Mac, Apple TV and Apple Vision Pro.</p>
+        <p class="small"><label><input type="checkbox" id="readableToggle"> Readable font
+        (Atkinson Hyperlegible)</label>, the same option the game has in Settings.</p>
+      </div>
+      <div>
+        <h4>This site</h4>
+        <ul>
+          <li><a href="world.html">The Everwild</a></li>
+          <li><a href="heroes.html">The 100 heroes</a></li>
+          <li><a href="play.html">How to play</a></li>
+          <li><a href="arena.html">The Arena</a></li>
+          <li><a href="media.html">Media & press</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Made with</h4>
+        <ul>
+          <li>Fraunces & Lilita One, the display faces</li>
+          <li>Atkinson Hyperlegible Next, the readable option</li>
+          <li>All three under the SIL Open Font Licence</li>
+          <li>Every image on this site was made for the game</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine">© 2026 Side Result. Fauna Fantasy, the Everwild, the Wild Accord and all
+    characters are original works. Gameplay footage is captured from current builds; content and
+    systems may change before release. Sound effects are cut from licensed libraries (BOOM Library).</p>
   </div>
 </footer>
 

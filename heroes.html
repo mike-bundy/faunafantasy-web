@@ -37,39 +37,53 @@
     padding: 3px 9px; border-radius: 999px; color: #10160f;
     background: linear-gradient(180deg, #f0cf8a, #d4a44c);
     border: 1px solid rgba(0,0,0,.45); box-shadow: 0 2px 10px rgba(0,0,0,.55); }
+  .scard { display: flex; flex-direction: column; }
+  .scard .nm, .scard .hook { display: block; }
+  .scard .hook { flex: 1; }
   .scard img { aspect-ratio: 3/4; width: 100%; object-fit: cover; object-position: top; }
   .scard .nm { padding: 12px 14px; background: linear-gradient(180deg, rgba(19,27,20,.4), rgba(11,16,12,.96) 40%); }
   .scard .nm b { display: block; font-size: 17px; }
   .scard .nm span { font-family: "Lilita One", sans-serif; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--cream-dim); }
   .scard .hook { padding: 0 14px 14px; font-size: 13.5px; color: var(--cream-dim); background: rgba(11,16,12,.96); font-style: italic; }
   .loadmore { display: block; margin: 26px auto 0; }
+  .alive { display: grid; gap: 16px; grid-template-columns: repeat(6, minmax(0, 1fr)); margin-top: 24px; }
+  @media (max-width: 980px) { .alive { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 520px) { .alive { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } }
+  .alivecard { margin: 0; }
+  .alivecard video { width: 100%; aspect-ratio: 5 / 7; object-fit: cover; display: block; border-radius: 12px;
+    border: 1px solid color-mix(in srgb, var(--rar) 60%, transparent); background: #10160f;
+    box-shadow: 0 14px 34px rgba(0,0,0,.55), 0 0 26px color-mix(in srgb, var(--rar) 22%, transparent); }
+  .alivecard figcaption { margin-top: 9px; font-weight: 600; font-size: 15px; line-height: 1.25; }
+  .alivecard small { display: block; font-family: "Lilita One", sans-serif; font-weight: 400; font-size: 10.5px;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--cream-dim); margin-top: 2px; }
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="topbar">
-  <a class="logo" href="index.html" aria-label="Fauna Fantasy — home">
+  <a class="logo" href="index.html" aria-label="Fauna Fantasy, home">
     <img src="assets/img/logo.png" alt="Fauna Fantasy">
   </a>
-  <button class="burger" aria-label="Menu">☰</button>
-  <nav>
+  <button class="burger" aria-label="Menu" aria-expanded="false">☰</button>
+  <nav aria-label="Site">
     <a href="index.html">Home</a>
     <a href="world.html">The Everwild</a>
-    <a href="heroes.html" class="on">Heroes</a>
+    <a href="heroes.html" class="on" aria-current="page">Heroes</a>
     <a href="play.html">How to play</a>
     <a href="arena.html">The Arena</a>
+    <a href="media.html">Media</a>
   </nav>
-  <a class="wish" href="media.html">Media & press</a>
+  <a class="wish" href="assets/vid/reel_1600.mp4" data-lb="assets/vid/reel_1600.mp4">▶ Watch gameplay</a>
 </header>
 
 <main id="main">
 
-<section class="herohead">
-  <div class="band-bg"><img src="assets/img/keyart_tall.jpg" alt=""></div>
+<section class="herohead pagehead">
+  <div class="band-bg"><img src="assets/img/keyart_tall.avif" alt=""></div>
   <div class="wrap">
     <p class="eyebrow">The hundred</p>
-    <h2 style="font-size: clamp(30px, 4.5vw, 48px);">No chosen ones. Just neighbours.</h2>
+    <h1 class="display">No chosen ones. Just neighbours.</h1>
     <div class="rule">◆</div>
     <p style="max-width: 680px;">The first hero you meet is a fifteen-year-old squire in armour
     one size too big. After him: a hedgehog spearman, a three-eyed rabbit samurai, an axolotl
@@ -82,6 +96,7 @@
       <div><b>20</b><span>job schools</span></div>
       <div><b>8</b><span>elements</span></div>
       <div><b>40 / 32 / 18 / 10</b><span>Common / Rare / Epic / Legendary</span></div>
+      <div><b>285</b><span>cards in the binder</span></div>
     </div>
   </div>
 </section>
@@ -98,7 +113,55 @@
   </div>
 </section>
 
-<section class="pad" style="padding-top: 10px;" id="roster">
+<section class="band" id="tiers">
+  <div class="band-bg kb"><img src="assets/img/menu/binder.avif" alt="" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="sh reveal">
+      <p class="eyebrow">Holo cards</p>
+      <h2>Four rarities, four finishes</h2>
+      <div class="rule">◆</div>
+      <p class="lead">Every card wears its rarity twice: in the frame's silhouette and in the
+      holo that moves over it as you tilt your device. Each tier adds its layers on top of the one
+      below, so a Legendary reads across the room.</p>
+    </header>
+    <div class="tiers reveal">
+      <div class="tier r-common"><b>Common</b><strong>Hearthwood</strong><p>Carved oak, ivy and
+      acorn-cup corners. A soft gloss and paper grain that catch the light.</p></div>
+      <div class="tier r-rare"><b>Rare</b><strong>Moonsilver</strong><p>Silver filigree and
+      sapphire cabochons. A metallic sheen, a glare band and a scatter of sparkle.</p></div>
+      <div class="tier r-epic"><b>Epic</b><strong>Arcane Amethyst</strong><p>Violet enamel ringed
+      with element runes. A prism foil: rainbow inside the frame as you tilt.</p></div>
+      <div class="tier r-legendary"><b>Legendary</b><strong>Sunforged Aurum</strong><p>Radiant
+      gold and a sunburst crest. A cosmic aurora with parallax depth and a moving starfield.</p></div>
+    </div>
+    <p class="muted small reveal" style="margin-top: 14px;">Any card can turn up as a Foil, with an
+    extra shimmer over the frame, and a card raised to <span class="star5">★5</span> can be shown
+    Prismatic.</p>
+
+    <header class="sh reveal" style="margin-top: 56px;">
+      <p class="eyebrow">The card comes alive</p>
+      <h2>Some cards don't sit still</h2>
+      <p class="lead">Every Epic and Legendary hero has a living card: the painting breathes,
+      glints and moves under the holo. Tap any of them in the roster below to watch.</p>
+    </header>
+    <div class="alive reveal">
+      <figure class="alivecard r-legendary"><video muted loop playsinline preload="none" data-onscreen poster="assets/img/heroes/f/agnes_valor.avif" aria-label="Agnes Valor's card art, moving"><source src="assets/vid/alive/agnes_valor.mp4" type="video/mp4"></video>
+        <figcaption>Agnes Valor<small>Legendary · Holy Knight</small></figcaption></figure>
+      <figure class="alivecard r-legendary"><video muted loop playsinline preload="none" data-onscreen poster="assets/img/heroes/f/wolfgang_wildmane.avif" aria-label="Wolfgang Wildmane's card art, moving"><source src="assets/vid/alive/wolfgang_wildmane.mp4" type="video/mp4"></video>
+        <figcaption>Wolfgang Wildmane<small>Legendary · Beastmaster</small></figcaption></figure>
+      <figure class="alivecard r-legendary"><video muted loop playsinline preload="none" data-onscreen poster="assets/img/heroes/f/kuzunoha_ninetails.avif" aria-label="Kuzunoha Ninetails's card art, moving"><source src="assets/vid/alive/kuzunoha_ninetails.mp4" type="video/mp4"></video>
+        <figcaption>Kuzunoha Ninetails<small>Legendary · Ninja</small></figcaption></figure>
+      <figure class="alivecard r-legendary"><video muted loop playsinline preload="none" data-onscreen poster="assets/img/heroes/f/aurora_frostbrew.avif" aria-label="Aurora Frostbrew's card art, moving"><source src="assets/vid/alive/aurora_frostbrew.mp4" type="video/mp4"></video>
+        <figcaption>Aurora Frostbrew<small>Legendary · Alchemist</small></figcaption></figure>
+      <figure class="alivecard r-legendary"><video muted loop playsinline preload="none" data-onscreen poster="assets/img/heroes/f/leonhart_sunmane.avif" aria-label="Leonhart Sunmane's card art, moving"><source src="assets/vid/alive/leonhart_sunmane.mp4" type="video/mp4"></video>
+        <figcaption>Leonhart Sunmane<small>Legendary · Paladin</small></figcaption></figure>
+      <figure class="alivecard r-legendary"><video muted loop playsinline preload="none" data-onscreen poster="assets/img/heroes/f/amara.avif" aria-label="Amara's card art, moving"><source src="assets/vid/alive/amara.mp4" type="video/mp4"></video>
+        <figcaption>Amara<small>Legendary · White Mage</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="pad" id="roster">
   <div class="wrap">
     <p class="eyebrow">The Binder</p>
     <h2>All hundred, unpocketed</h2>
@@ -152,8 +215,38 @@
 
 <footer>
   <div class="wrap">
-    <p class="fine" style="margin-top: 0;">Fauna Fantasy · the Binder. Card art painted for this
-    project (some holographic in-app). Fonts under the SIL OFL. <a href="index.html">Home</a></p>
+    <div class="fcols">
+      <div>
+        <h4>Fauna Fantasy</h4>
+        <p>A tactics RPG with holo cards: turn-based battles across infinite wild lands, a
+        binder of 285 cards and 100 heroes, the real-time Rootdelve and the Arena. Made with
+        SwiftUI and RealityKit in Australia for iPhone, iPad, Mac, Apple TV and Apple Vision Pro.</p>
+        <p class="small"><label><input type="checkbox" id="readableToggle"> Readable font
+        (Atkinson Hyperlegible)</label>, the same option the game has in Settings.</p>
+      </div>
+      <div>
+        <h4>This site</h4>
+        <ul>
+          <li><a href="world.html">The Everwild</a></li>
+          <li><a href="heroes.html">The 100 heroes</a></li>
+          <li><a href="play.html">How to play</a></li>
+          <li><a href="arena.html">The Arena</a></li>
+          <li><a href="media.html">Media & press</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Made with</h4>
+        <ul>
+          <li>Fraunces & Lilita One, the display faces</li>
+          <li>Atkinson Hyperlegible Next, the readable option</li>
+          <li>All three under the SIL Open Font Licence</li>
+          <li>Every image on this site was made for the game</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine">© 2026 Side Result. Fauna Fantasy, the Everwild, the Wild Accord and all
+    characters are original works. Gameplay footage is captured from current builds; content and
+    systems may change before release.</p>
   </div>
 </footer>
 

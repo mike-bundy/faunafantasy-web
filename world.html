@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Everwild — a world bible · Fauna Fantasy</title>
-<meta name="description" content="Nine lands, eight Wyrms and a grieving king: the world of Fauna Fantasy. Fernwood to the Blightheart — moods, landmarks, wildlife and bosses.">
+<meta name="description" content="Infinite wild lands, Eight Wyrms and a grieving king: the world of Fauna Fantasy. Fernwood to the Blightheart: moods, landmarks, wildlife and guardians.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<meta property="og:title" content="The Everwild — nine lands, Eight Wyrms, one Blight">
+<meta property="og:title" content="The Everwild · infinite wild lands, Eight Wyrms, one Blight">
 <meta property="og:description" content="Made in Australia for iPhone, iPad, Mac, Apple TV and Vision Pro.">
 <meta property="og:image" content="https://mike-bundy.github.io/faunafantasy-web/assets/img/keyart_wide.jpg">
 <meta property="og:url" content="https://mike-bundy.github.io/faunafantasy-web/world.html">
@@ -63,27 +63,28 @@
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="topbar">
-  <a class="logo" href="index.html" aria-label="Fauna Fantasy — home">
+  <a class="logo" href="index.html" aria-label="Fauna Fantasy, home">
     <img src="assets/img/logo.png" alt="Fauna Fantasy">
   </a>
-  <button class="burger" aria-label="Menu">☰</button>
-  <nav>
+  <button class="burger" aria-label="Menu" aria-expanded="false">☰</button>
+  <nav aria-label="Site">
     <a href="index.html">Home</a>
-    <a href="world.html" class="on">The Everwild</a>
+    <a href="world.html" class="on" aria-current="page">The Everwild</a>
     <a href="heroes.html">Heroes</a>
     <a href="play.html">How to play</a>
     <a href="arena.html">The Arena</a>
+    <a href="media.html">Media</a>
   </nav>
-  <a class="wish" href="media.html">Media & press</a>
+  <a class="wish" href="assets/vid/reel_1600.mp4" data-lb="assets/vid/reel_1600.mp4">▶ Watch gameplay</a>
 </header>
 
 <main id="main">
 
 <section class="hero" style="min-height: 66svh;">
-  <div class="bg"><img src="assets/img/battle/landscape.jpg" alt="Painted map of the Everwild: a wide valley of forests, reefs, canyons, volcanoes and sky-peaks at dusk." data-lb="assets/img/battle/landscape.jpg"></div>
+  <div class="bg"><img src="assets/img/battle/landscape.avif" alt="Painted map of the Everwild: a wide valley of forests, reefs, canyons, volcanoes and sky-peaks at dusk." data-lb="assets/img/battle/landscape.avif"></div>
   <div class="inner">
     <p class="eyebrow">A world bible</p>
-    <h2 style="font-size: clamp(34px, 5vw, 58px);">The Everwild</h2>
+    <h1 class="display" style="font-size: clamp(36px, 5.4vw, 62px);">The Everwild</h1>
     <p class="tag" style="margin-top: 4px;">A single, wide, unmapped land of forests, reefs,
     canyons, volcanoes, sky-peaks, copper cities, sun-temples and twilight gardens — which once
     sang with eight great voices.</p>
@@ -151,7 +152,7 @@
         tend it:</p>
       </div>
       <figure class="frame">
-        <img src="assets/img/menu/title.jpg" alt="The Hearth Oak: a colossal tree turned dwelling, with platforms, huts, rope bridges and glowing lanterns over a misty valley at sunrise." loading="lazy" data-lb="assets/img/menu/title.jpg">
+        <img src="assets/img/menu/title.avif" alt="The Hearth Oak: a colossal tree turned dwelling, with platforms, huts, rope bridges and glowing lanterns over a misty valley at sunrise." loading="lazy" data-lb="assets/img/menu/title.avif">
         <figcaption><span>Grovehaven</span><span>the Hearth Oak</span></figcaption>
       </figure>
     </div>
@@ -185,10 +186,32 @@
   </div>
 </section>
 
+<!-- ============ BOARDS ============ -->
+<section class="pad">
+  <div class="wrap">
+    <article class="feature reveal" style="margin-top: 0;">
+      <figure class="clip" data-lb="assets/vid/play/coral.mp4">
+        <video muted loop playsinline preload="none" poster="assets/img/play/coral.avif" data-onscreen
+               aria-label="A battle on a Coral Shallows board: sandstone terraces, tide pools and a watchtower over the reef.">
+          <source src="assets/vid/play/coral.mp4" type="video/mp4"></video>
+        <span class="dev">Apple TV</span>
+      </figure>
+      <div>
+        <p class="eyebrow">Infinite wild lands</p>
+        <h3>The lands keep their moods. The boards never repeat.</h3>
+        <p>Every land below has its own palette, wildlife, music and guardian. Its battle boards
+        are generated fresh from the land's own blocks each time you set out: reef terraces and
+        tide pools, canyon mesas, lava fields, root-choked hollows. Learn a land, never a map.</p>
+        <a class="more" href="play.html#run">How expeditions work →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
 <!-- ============ BIOMES ============ -->
 
 <section class="band biome el-grass" id="fernwood">
-  <div class="band-bg kb"><img src="assets/img/battle/fernwood_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="band-bg kb"><img src="assets/img/battle/fernwood_vista.avif" alt="" aria-hidden="true"></div>
   <div class="wrap">
     <div class="reveal">
       <div class="bmeta">
@@ -231,7 +254,7 @@
 </section>
 
 <section class="band biome el-water" id="coral_shallows">
-  <div class="band-bg kb"><img src="assets/img/battle/coral_shallows_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="band-bg kb"><img src="assets/img/battle/coral_shallows_vista.avif" alt="" aria-hidden="true"></div>
   <div class="wrap">
     <div class="reveal">
       <div class="bmeta">
@@ -273,7 +296,7 @@
 </section>
 
 <section class="band biome el-earth" id="amber_canyons">
-  <div class="band-bg kb"><img src="assets/img/battle/amber_canyons_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="band-bg kb"><img src="assets/img/battle/amber_canyons_vista.avif" alt="" aria-hidden="true"></div>
   <div class="wrap">
     <div class="reveal">
       <div class="bmeta">
@@ -315,7 +338,7 @@
 </section>
 
 <section class="band biome el-fire" id="emberforge_caldera">
-  <div class="band-bg kb"><img src="assets/img/battle/emberforge_caldera_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="band-bg kb"><img src="assets/img/battle/emberforge_caldera_vista.avif" alt="" aria-hidden="true"></div>
   <div class="wrap">
     <div class="reveal">
       <div class="bmeta">
@@ -357,7 +380,7 @@
 </section>
 
 <section class="band biome el-wind" id="skyreach_peaks">
-  <div class="band-bg kb"><img src="assets/img/battle/skyreach_peaks_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="band-bg kb"><img src="assets/img/battle/skyreach_peaks_vista.avif" alt="" aria-hidden="true"></div>
   <div class="wrap">
     <div class="reveal">
       <div class="bmeta">
@@ -400,7 +423,7 @@
 </section>
 
 <section class="band biome el-electric" id="stormspire">
-  <div class="band-bg kb"><img src="assets/img/battle/stormspire_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="band-bg kb"><img src="assets/img/battle/stormspire_vista.avif" alt="" aria-hidden="true"></div>
   <div class="wrap">
     <div class="reveal">
       <div class="bmeta">
@@ -440,7 +463,7 @@
 </section>
 
 <section class="band biome el-light" id="sunspire_sanctum">
-  <div class="band-bg kb"><img src="assets/img/battle/sunspire_sanctum_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="band-bg kb"><img src="assets/img/battle/sunspire_sanctum_vista.avif" alt="" aria-hidden="true"></div>
   <div class="wrap">
     <div class="reveal">
       <div class="bmeta">
@@ -482,7 +505,7 @@
 </section>
 
 <section class="band biome el-dark" id="gloomroot_hollow">
-  <div class="band-bg kb"><img src="assets/img/battle/gloomroot_hollow_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="band-bg kb"><img src="assets/img/battle/gloomroot_hollow_vista.avif" alt="" aria-hidden="true"></div>
   <div class="wrap">
     <div class="reveal">
       <div class="bmeta">
@@ -526,7 +549,7 @@
 </section>
 
 <section class="band biome" id="blightheart" style="--el: var(--blight);">
-  <div class="band-bg kb"><img src="assets/img/battle/blightheart_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="band-bg kb"><img src="assets/img/battle/blightheart_vista.avif" alt="" aria-hidden="true"></div>
   <div class="wrap">
     <div class="reveal">
       <div class="bmeta">
@@ -557,7 +580,7 @@
 <section class="pad center reveal">
   <div class="wrap">
     <div class="rule">◆</div>
-    <p style="max-width: 640px; margin: 0 auto;">Nine lands, eight Wyrms, one grieving king — and
+    <p style="max-width: 640px; margin: 0 auto;">Wild lands without end, Eight Wyrms, one grieving king, and
     a village that stays safe because its people keep choosing each other. The game's rule: every
     victory <i>lets something rest</i>.</p>
     <div class="ctas" style="margin-top: 26px;">
@@ -571,9 +594,38 @@
 
 <footer>
   <div class="wrap">
-    <p class="fine" style="margin-top: 0;">Fauna Fantasy · The Everwild. World writing and art
-    made for this project; fonts (Fraunces, Lilita One, Atkinson Hyperlegible Next) under the SIL
-    Open Font Licence. <a href="index.html">Home</a></p>
+    <div class="fcols">
+      <div>
+        <h4>Fauna Fantasy</h4>
+        <p>A tactics RPG with holo cards: turn-based battles across infinite wild lands, a
+        binder of 285 cards and 100 heroes, the real-time Rootdelve and the Arena. Made with
+        SwiftUI and RealityKit in Australia for iPhone, iPad, Mac, Apple TV and Apple Vision Pro.</p>
+        <p class="small"><label><input type="checkbox" id="readableToggle"> Readable font
+        (Atkinson Hyperlegible)</label>, the same option the game has in Settings.</p>
+      </div>
+      <div>
+        <h4>This site</h4>
+        <ul>
+          <li><a href="world.html">The Everwild</a></li>
+          <li><a href="heroes.html">The 100 heroes</a></li>
+          <li><a href="play.html">How to play</a></li>
+          <li><a href="arena.html">The Arena</a></li>
+          <li><a href="media.html">Media & press</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Made with</h4>
+        <ul>
+          <li>Fraunces & Lilita One, the display faces</li>
+          <li>Atkinson Hyperlegible Next, the readable option</li>
+          <li>All three under the SIL Open Font Licence</li>
+          <li>Every image on this site was made for the game</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine">© 2026 Side Result. Fauna Fantasy, the Everwild, the Wild Accord and all
+    characters are original works. Gameplay footage is captured from current builds; content and
+    systems may change before release.</p>
   </div>
 </footer>
 

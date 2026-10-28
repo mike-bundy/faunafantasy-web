@@ -7,7 +7,8 @@
     var burger = bar.querySelector(".burger");
     if (burger) {
       burger.addEventListener("click", function () {
-        bar.classList.toggle("open");
+        var open = bar.classList.toggle("open");
+        burger.setAttribute("aria-expanded", open ? "true" : "false");
       });
     }
     var onScroll = function () {
@@ -40,8 +41,18 @@
     });
   }
 
-  // Play videos only while on screen (battery + thermals).
-  if ("IntersectionObserver" in window) {
+  // Play muted loops only while on screen (battery + thermals). With Reduce
+  // Motion or Save-Data on, nothing autoplays: clips keep their poster and get
+  // controls, and the hero reel stays a still.
+  var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+    !!(navigator.connection && navigator.connection.saveData);
+  if (calm) {
+    document.querySelectorAll("video[data-onscreen]").forEach(function (v) {
+      v.removeAttribute("autoplay");
+      v.pause();
+      if (!v.hasAttribute("data-bg")) v.controls = true;
+    });
+  } else if ("IntersectionObserver" in window) {
     var vio = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (e) {
@@ -71,7 +82,9 @@
     lb.classList.remove("on");
     lb.innerHTML = "";
   };
-  lb.addEventListener("click", kill);
+  lb.addEventListener("click", function (e) {
+    if (e.target === lb) kill();   // the backdrop or its close mark, not the media
+  });
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
       kill();
@@ -81,7 +94,7 @@
   });
   document.addEventListener("click", function (e) {
     var t = e.target.closest("[data-lb]");
-    if (!t) return;
+    if (!t || (calm && e.target.tagName === "VIDEO")) return;
     e.preventDefault();
     lb.innerHTML = "";
     var src = t.getAttribute("data-lb") || t.getAttribute("href") ||
@@ -94,6 +107,8 @@
       el.controls = true;
       el.autoplay = true;
       el.loop = true;
+      el.muted = /\/vid\/(play\/|reel_)/.test(src);   // gameplay clips have no sound
+      el.playsInline = true;
     } else {
       el = document.createElement("img");
       el.src = src;

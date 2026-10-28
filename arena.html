@@ -17,34 +17,58 @@
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="topbar">
-  <a class="logo" href="index.html" aria-label="Fauna Fantasy — home">
+  <a class="logo" href="index.html" aria-label="Fauna Fantasy, home">
     <img src="assets/img/logo.png" alt="Fauna Fantasy">
   </a>
-  <button class="burger" aria-label="Menu">☰</button>
-  <nav>
+  <button class="burger" aria-label="Menu" aria-expanded="false">☰</button>
+  <nav aria-label="Site">
     <a href="index.html">Home</a>
     <a href="world.html">The Everwild</a>
     <a href="heroes.html">Heroes</a>
     <a href="play.html">How to play</a>
-    <a href="arena.html" class="on">The Arena</a>
+    <a href="arena.html" class="on" aria-current="page">The Arena</a>
+    <a href="media.html">Media</a>
   </nav>
-  <a class="wish" href="media.html">Media & press</a>
+  <a class="wish" href="assets/vid/reel_1600.mp4" data-lb="assets/vid/reel_1600.mp4">▶ Watch gameplay</a>
 </header>
 
 <main id="main">
 
-<section class="hero" style="min-height: 74svh;">
-  <div class="bg"><img src="assets/img/battle/stormspire_vista.jpg" alt="A copper city on a storm plateau at dusk."></div>
+<section class="hero" style="min-height: 78svh;">
+  <div class="bg"><video autoplay muted loop playsinline preload="metadata" poster="assets/img/play/arena.avif" data-onscreen data-bg aria-hidden="true" style="transform: scale(1.22);">
+    <source src="assets/vid/play/arena.mp4" type="video/mp4"></video></div>
   <div class="inner">
     <p class="eyebrow">The Arena</p>
-    <h2 style="font-size: clamp(32px, 5vw, 56px);">Two sides. Four heroes each.<br>No mercy, no servers.</h2>
-    <p class="tag">The Arena lives in Grovehaven — a station in the Snug Root tavern where
-    you field <b>your real collection</b> against another player's, on a mirrored board of any
-    biome, under the game's own battle rules.</p>
+    <h1 class="display">Two sides. Four heroes each.<br>No mercy, no servers.</h1>
+    <p class="tag">Grovehaven's tourney ground, where you field <b>your real collection</b>
+    against another player's on a mirrored board, under the game's own battle rules.</p>
     <div class="ctas">
-      <a class="btn primary" href="#modes">Read the rules</a>
-      <a class="btn ghost" href="heroes.html">Build a team</a>
+      <a class="btn primary" href="#modes">How matches work</a>
+      <a class="btn ghost" href="assets/vid/play/arena.mp4" data-lb="assets/vid/play/arena.mp4">▶&nbsp; Watch a match</a>
     </div>
+  </div>
+</section>
+
+<section class="pad">
+  <div class="wrap">
+    <article class="feature reveal" style="margin-top: 0;">
+      <figure class="clip" data-lb="assets/img/shots/tv_arena_reveal.avif">
+        <img src="assets/img/shots/tv_arena_reveal.avif" alt="The pre-match screen: your four heroes in gold rings, the rival's four in crimson, the versus crest between, and Ready." loading="lazy">
+        <span class="dev">Apple TV</span>
+      </figure>
+      <div>
+        <p class="eyebrow">The tourney ground</p>
+        <h3>Your team, on show</h3>
+        <p>Your Arena team stands as four card paintings with their level, stars, element, job,
+        weapon and power. Your rating sits on a medallion with its title and season. Find a match
+        and the versus crest lights in the arch; win, and the rating change lands on the medallion.</p>
+        <ul class="ticks">
+          <li>Quick Match, Challenge a Friend and Practice from one screen</li>
+          <li>Both teams side by side before the first move: no surprises</li>
+          <li>Matches in progress kept on their own plates</li>
+        </ul>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -76,9 +100,9 @@
       </div>
       <div class="card reveal">
         <h3>Practice</h3>
-        <p>Loopback and AI-mirrored matches in every build, so the Arena is playable on a plane,
-        and a hidden Dev mode plays two AIs against each other for the test suite (one hundred
-        matches, 7,912 state checkpoints — all equal).</p>
+        <p>A practice rival on the same rules, any time, offline: learn a board, try a new team,
+        or play the Arena on a plane. The test suite plays the AI against itself across a hundred
+        matches and checks every state along the way.</p>
       </div>
     </div>
   </div>
@@ -127,7 +151,7 @@
 </section>
 
 <section class="band">
-  <div class="band-bg kb"><img src="assets/img/battle/gloomroot_hollow_vista.jpg" alt="" aria-hidden="true"></div>
+  <div class="band-bg kb"><img src="assets/img/battle/gloomroot_hollow_vista.avif" alt="" aria-hidden="true"></div>
   <div class="wrap reveal">
     <p class="eyebrow">Rating & seasons</p>
     <h2>Rated by Glicko-2. Dressed by the grove.</h2>
@@ -144,8 +168,8 @@
       </div>
       <div>
         <figure class="frame">
-          <img src="assets/img/shots/05_battle_hud.jpg" alt="A battle in progress: the turn timeline and command panel, with the objective 'Electrify the flooded quarry'." loading="lazy" data-lb="assets/img/shots/05_battle_hud.jpg">
-          <figcaption><span>The Arena uses the normal battle HUD</span><span>plus a rival's name</span></figcaption>
+          <img src="assets/img/shots/tv_arena_battle.avif" alt="An Arena match on a coral board: the rival's name and turn under the pause button, the turn strip across the top." loading="lazy" data-lb="assets/img/shots/tv_arena_battle.avif">
+          <figcaption><span>The normal battle HUD</span><span>plus your rival's name</span></figcaption>
         </figure>
       </div>
     </div>
@@ -159,7 +183,7 @@
     people, on five kinds of device, play one honest match with nothing between them but
     Game Center's pipes? It plays. Now go be insufferable about your rating.</p>
     <div class="ctas" style="margin-top: 24px;">
-      <a class="btn primary" href="media.html">Watch the trailer</a>
+      <a class="btn primary" href="assets/vid/reel_1600.mp4" data-lb="assets/vid/reel_1600.mp4">▶&nbsp; Watch gameplay</a>
       <a class="btn ghost" href="index.html">Back to Grovehaven</a>
     </div>
   </div>
@@ -169,8 +193,38 @@
 
 <footer>
   <div class="wrap">
-    <p class="fine" style="margin-top: 0;">Fauna Fantasy · The Arena. PvP details from the
-    game's Arena design notes; systems may grow before release. <a href="index.html">Home</a></p>
+    <div class="fcols">
+      <div>
+        <h4>Fauna Fantasy</h4>
+        <p>A tactics RPG with holo cards: turn-based battles across infinite wild lands, a
+        binder of 285 cards and 100 heroes, the real-time Rootdelve and the Arena. Made with
+        SwiftUI and RealityKit in Australia for iPhone, iPad, Mac, Apple TV and Apple Vision Pro.</p>
+        <p class="small"><label><input type="checkbox" id="readableToggle"> Readable font
+        (Atkinson Hyperlegible)</label>, the same option the game has in Settings.</p>
+      </div>
+      <div>
+        <h4>This site</h4>
+        <ul>
+          <li><a href="world.html">The Everwild</a></li>
+          <li><a href="heroes.html">The 100 heroes</a></li>
+          <li><a href="play.html">How to play</a></li>
+          <li><a href="arena.html">The Arena</a></li>
+          <li><a href="media.html">Media & press</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Made with</h4>
+        <ul>
+          <li>Fraunces & Lilita One, the display faces</li>
+          <li>Atkinson Hyperlegible Next, the readable option</li>
+          <li>All three under the SIL Open Font Licence</li>
+          <li>Every image on this site was made for the game</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine">© 2026 Side Result. Fauna Fantasy, the Everwild, the Wild Accord and all
+    characters are original works. Gameplay footage is captured from current builds; content and
+    systems may change before release.</p>
   </div>
 </footer>
 

@@ -57,13 +57,16 @@ body {
   margin: 0;
   background: var(--ink);
   color: var(--cream);
-  font: 400 17px/1.65 "Fraunces", Georgia, serif;
+  font: 400 17px/1.68 "Fraunces", Georgia, serif;
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 body.readable { font-family: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", sans-serif; }
 
-h1, h2, h3, h4 { font-weight: 600; line-height: 1.15; margin: 0 0 .6em; }
-h2 { font-size: clamp(26px, 3.4vw, 40px); letter-spacing: .01em; }
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.12; margin: 0 0 .6em; text-wrap: balance; }
+h2 { font-size: clamp(28px, 3.6vw, 44px); letter-spacing: -.005em; }
+p { text-wrap: pretty; }
 h3 { font-size: 21px; }
 p { margin: 0 0 1em; }
 a { color: var(--gold-hi); }
@@ -83,7 +86,7 @@ img { max-width: 100%; display: block; }
   content: ""; height: 1px; flex: 1;
   background: linear-gradient(90deg, transparent, var(--line), transparent);
 }
-section.pad { padding: 76px 0; }
+section.pad { padding: clamp(56px, 7.5vw, 96px) 0; }
 
 /* ---------- header ---------- */
 .topbar {
@@ -96,7 +99,7 @@ section.pad { padding: 76px 0; }
   border-bottom: 1px solid var(--line-soft);
   transition: background .3s ease;
 }
-.topbar .logo { flex: 0 0 auto; display: block; width: 178px; }
+.topbar .logo { flex: 0 0 auto; display: block; width: clamp(142px, 14vw, 178px); }
 .topbar .logo img { width: 100%; filter: drop-shadow(0 2px 6px rgba(0,0,0,.6)); }
 .topbar nav { display: flex; gap: 4px; margin-left: auto; }
 .topbar nav a {
@@ -146,17 +149,22 @@ section.pad { padding: 76px 0; }
 .hero .bg::after {
   content: ""; position: absolute; inset: 0;
   background:
-    radial-gradient(60% 48% at 50% 55%, rgba(5, 9, 6, .82), transparent 72%),
-    radial-gradient(120% 90% at 50% 45%, transparent 28%, rgba(8, 12, 9, .84) 100%),
-    linear-gradient(180deg, rgba(9,13,9,.55) 0%, rgba(9,13,9,.25) 38%, rgba(11,17,13,.94) 92%);
+    radial-gradient(56% 44% at 50% 52%, rgba(5, 9, 6, .74), transparent 74%),
+    radial-gradient(120% 90% at 50% 45%, transparent 30%, rgba(8, 12, 9, .8) 100%),
+    linear-gradient(180deg, rgba(9,13,9,.6) 0%, rgba(9,13,9,.18) 34%, rgba(11,17,13,.96) 94%);
 }
 .hero .inner { position: relative; max-width: 780px; padding: 8px 30px 2px; }
 .hero .wordmark { width: min(560px, 76vw); margin: 0 auto 6px; filter: drop-shadow(0 10px 26px rgba(0,0,0,.78)); }
+.hero .kicker {
+  font-family: "Lilita One", sans-serif; font-size: clamp(13px, 1.5vw, 16px);
+  letter-spacing: .26em; text-transform: uppercase; color: var(--gold-hi);
+  margin: 4px 0 0; text-shadow: 0 2px 12px rgba(0,0,0,.9);
+}
 .hero .tag {
-  font-style: italic; font-size: clamp(17px, 2.2vw, 22px); color: #f6efdd;
-  margin: 18px auto 22px; max-width: 600px;
-  background: rgba(5, 9, 6, .40);
-  padding: .55em .9em; border-radius: 12px;
+  font-style: italic; font-size: clamp(17px, 2.1vw, 21px); color: #f6efdd; line-height: 1.5;
+  margin: 16px auto 26px; max-width: 620px;
+  background: rgba(5, 9, 6, .42);
+  padding: .6em 1em; border-radius: 14px;
   -webkit-box-decoration-break: clone; box-decoration-break: clone;
   text-shadow: 0 1px 0 rgba(0,0,0,.85), 0 2px 2px rgba(0,0,0,.7), 0 6px 26px rgba(0, 0, 0, .95);
 }
@@ -197,7 +205,7 @@ section.pad { padding: 76px 0; }
 }
 
 /* ---------- full-bleed background sections ---------- */
-.band { position: relative; padding: 90px 0; isolation: isolate; }
+.band { position: relative; padding: clamp(64px, 8.5vw, 108px) 0; isolation: isolate; }
 .band > .band-bg {
   position: absolute; inset: 0; z-index: -2; overflow: hidden;
 }
@@ -495,3 +503,220 @@ a.tile, a.hcard { -webkit-tap-highlight-color: transparent; }
 .skip:focus { transform: none; }
 
 :focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 2px; }
+
+/* =====================================================================
+   v2 components (WEB.polish, 2026-10-27): gameplay clips, feature rows,
+   stat strip, mini cards, platform list, holo tiers, store box.
+   ===================================================================== */
+.lead { font-size: clamp(18px, 1.7vw, 20px); line-height: 1.6; color: #d9cfb5; max-width: 700px; }
+.sh { margin-bottom: 8px; }
+.sh.center { text-align: center; }
+.sh.center .lead { margin-left: auto; margin-right: auto; }
+.new {
+  display: inline-block; vertical-align: .25em; margin-left: 8px;
+  font-family: "Lilita One", sans-serif; font-size: 10.5px; letter-spacing: .16em;
+  text-transform: uppercase; color: #10160f; padding: 3px 9px 2px; border-radius: 999px;
+  background: linear-gradient(180deg, #b8e39b, var(--jade));
+  box-shadow: 0 2px 10px rgba(0,0,0,.45);
+}
+
+/* stat strip under the home hero */
+.statstrip {
+  border-block: 1px solid var(--line-soft);
+  background: linear-gradient(180deg, #0f1611, var(--ink));
+}
+.stats {
+  list-style: none; margin: 0 auto; padding: 22px 0 20px; max-width: 980px;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; text-align: center;
+}
+.stats li { position: relative; }
+.stats li + li::before {
+  content: ""; position: absolute; left: -6px; top: 18%; bottom: 18%; width: 1px;
+  background: linear-gradient(180deg, transparent, var(--line), transparent);
+}
+.stats b {
+  display: block; font-family: "Lilita One", sans-serif; font-weight: 400; line-height: 1.05;
+  font-size: clamp(26px, 3.4vw, 40px); color: var(--gold-hi);
+  text-shadow: 0 2px 18px rgba(212,164,76,.25);
+}
+.stats span {
+  font-family: "Lilita One", sans-serif; font-size: 11.5px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--cream-dim);
+}
+@media (max-width: 640px) {
+  .stats { grid-template-columns: repeat(3, 1fr); row-gap: 16px; padding: 18px 0; }
+  .stats li:nth-child(4)::before { display: none; }
+}
+
+/* gameplay clips: a framed, muted loop with a poster; click for full size */
+.clip {
+  position: relative; margin: 0; border-radius: 16px; overflow: hidden;
+  aspect-ratio: 16 / 9; background: #070b08 center / cover no-repeat;
+  border: 1px solid rgba(212,164,76,.28);
+  box-shadow: 0 26px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(0,0,0,.55);
+  cursor: zoom-in;
+}
+.clip video, .clip > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.clip.phone {
+  aspect-ratio: 2868 / 1320; border-radius: 30px; border: 9px solid #0c0e0d;
+  box-shadow: 0 0 0 1px rgba(212,164,76,.38), 0 26px 60px rgba(0,0,0,.6);
+}
+.clip.tablet { aspect-ratio: 3 / 4; border-radius: 26px; border: 10px solid #0c0e0d;
+  box-shadow: 0 0 0 1px rgba(212,164,76,.38), 0 26px 60px rgba(0,0,0,.6); }
+.clip .dev {
+  position: absolute; left: 12px; bottom: 12px; z-index: 2;
+  font-family: "Lilita One", sans-serif; font-size: 10.5px; letter-spacing: .16em;
+  text-transform: uppercase; color: #efe6cf; padding: 5px 10px 4px; border-radius: 999px;
+  background: rgba(7, 10, 8, .72); border: 1px solid rgba(212,164,76,.3);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); pointer-events: none;
+}
+.clip.phone .dev { left: 18px; bottom: 14px; }
+.clip::after {   /* inner sheen so a dark frame still reads as glass */
+  content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), inset 0 0 0 1px rgba(255,255,255,.03);
+}
+.clipcap {
+  margin-top: 10px; font-family: "Lilita One", sans-serif; font-size: 11.5px;
+  letter-spacing: .14em; text-transform: uppercase; color: #9f977f;
+  display: flex; justify-content: space-between; gap: 10px;
+}
+
+/* feature rows: clip beside copy, alternating */
+.feature {
+  display: grid; grid-template-columns: minmax(0, 1.18fr) minmax(0, .82fr);
+  gap: clamp(26px, 4.4vw, 60px); align-items: center;
+  margin-top: clamp(44px, 6.5vw, 84px);
+}
+.feature.flip > :first-child { order: 2; }
+@media (max-width: 880px) {
+  .feature { grid-template-columns: 1fr; }
+  .feature.flip > :first-child { order: 0; }
+}
+.feature h3 {
+  font-size: clamp(25px, 2.7vw, 34px); color: var(--cream); margin: 0 0 .45em;
+}
+.feature .eyebrow { margin-bottom: 8px; }
+.feature p { color: #d0c6ab; }
+.ticks { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 9px; }
+.ticks li { position: relative; padding-left: 24px; color: #c9bfa4; font-size: 16px; line-height: 1.5; }
+.ticks li::before {
+  content: "◆"; position: absolute; left: 3px; top: .12em; font-size: 10px; color: var(--gold);
+}
+.more {
+  display: inline-block; margin-top: 18px; text-decoration: none;
+  font-family: "Lilita One", sans-serif; font-size: 12.5px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--gold);
+}
+.more:hover { color: var(--gold-hi); }
+
+/* mini cards: smaller modes with a clip on top */
+.minis { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 30px; }
+.mini {
+  border-radius: 14px; overflow: hidden; display: flex; flex-direction: column;
+  background: linear-gradient(180deg, #162019, #111913);
+  border: 1px solid rgba(212,164,76,.2);
+  box-shadow: 0 12px 34px rgba(0,0,0,.45);
+  transition: transform .22s ease, border-color .22s ease;
+}
+.mini:hover { transform: translateY(-3px); border-color: rgba(212,164,76,.5); }
+.mini .clip { border-radius: 0; border: 0; border-bottom: 1px solid rgba(212,164,76,.18); box-shadow: none; }
+.mini .mt { padding: 16px 18px 18px; }
+.mini h3 {
+  font-family: "Lilita One", sans-serif; font-weight: 400; font-size: 18px;
+  letter-spacing: .03em; color: var(--gold-hi); margin: 0 0 6px;
+}
+.mini p { font-size: 15px; line-height: 1.55; color: #c3b99e; margin: 0; }
+
+/* platforms */
+.plats {
+  list-style: none; margin: 28px 0 0; padding: 0;
+  display: grid; gap: 12px; grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+@media (max-width: 980px) { .plats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 460px) { .plats { grid-template-columns: 1fr; } }
+.plats li {
+  padding: 16px 16px 15px; border-radius: 12px;
+  background: rgba(10, 15, 11, .78); border: 1px solid var(--line-soft);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.plats b { display: block; font-family: "Lilita One", sans-serif; font-weight: 400; font-size: 17px; color: var(--gold-hi); letter-spacing: .03em; }
+.plats span { display: block; font-size: 14px; color: var(--cream-dim); line-height: 1.45; margin-top: 3px; }
+
+/* holo tiers (card rarities) */
+.tiers { display: grid; gap: 14px; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 26px; }
+@media (max-width: 860px) { .tiers { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.tier {
+  position: relative; border-radius: 14px; padding: 18px 18px 16px; overflow: hidden;
+  background: linear-gradient(180deg, rgba(22,30,23,.94), rgba(13,19,14,.94));
+  border: 1px solid color-mix(in srgb, var(--rar) 55%, transparent);
+  box-shadow: 0 12px 30px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.03);
+}
+.tier::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 4px;
+  background: linear-gradient(90deg, var(--rar), color-mix(in srgb, var(--rar) 40%, #fff));
+}
+.tier.r-legendary::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .14;
+  background: linear-gradient(115deg, transparent 30%, #f2d489 42%, #e79ac2 50%, #8fd0e8 58%, transparent 70%);
+}
+.tier b { display: block; font-family: "Lilita One", sans-serif; font-weight: 400; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--rar); }
+.tier strong { display: block; font-size: 18px; margin: 4px 0 6px; color: var(--cream); }
+.tier p { font-size: 14.5px; line-height: 1.5; color: var(--cream-dim); margin: 0; }
+
+/* store copy box (media page) */
+.storebox {
+  border-radius: 14px; padding: 20px 22px; background: rgba(10, 15, 11, .82);
+  border: 1px solid var(--line); box-shadow: var(--shadow);
+}
+.storebox dt {
+  font-family: "Lilita One", sans-serif; font-size: 11.5px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--gold); margin-top: 14px;
+}
+.storebox dt:first-child { margin-top: 0; }
+.storebox dd { margin: 4px 0 0; color: var(--cream); font-size: 16px; }
+
+/* stills gallery with captions */
+.shots { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.shots figure { margin: 0; }
+.shots a {
+  display: block; border-radius: 12px; overflow: hidden; border: 1px solid var(--line-soft);
+  box-shadow: 0 10px 26px rgba(0,0,0,.45); background: #0b100c;
+}
+.shots img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; transition: transform .5s ease; }
+.shots a:hover img { transform: scale(1.04); }
+.shots figcaption {
+  margin-top: 8px; font-family: "Lilita One", sans-serif; font-size: 11.5px; letter-spacing: .14em;
+  text-transform: uppercase; color: #a69d84;
+}
+
+/* lightbox close affordance */
+.lightbox::after {
+  content: "✕"; position: fixed; top: 14px; right: 18px; width: 40px; height: 40px;
+  display: grid; place-items: center; border-radius: 50%;
+  color: var(--cream); background: rgba(20, 28, 21, .8); border: 1px solid var(--line);
+  font-size: 16px;
+}
+
+/* phones: tighter gutters, full-width buttons in hero */
+@media (max-width: 520px) {
+  .wrap { padding: 0 18px; }
+  .hero { padding: 88px 16px 92px; }
+  .hero .ctas .btn { min-width: 0; flex: 1 1 100%; }
+  .btn { padding: 14px 20px; }
+  .card { padding: 22px 20px 20px; }
+  .hero .plat { font-size: 10px; letter-spacing: .16em; padding: 8px 14px; bottom: 16px; }
+}
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0; }
+
+/* page heads: clear the fixed bar; a display h1 that matches the home hero */
+.pagehead { padding-top: clamp(124px, 15vw, 176px); }
+h1.display { font-size: clamp(32px, 4.6vw, 54px); line-height: 1.08; margin: 0 0 .4em; }
+.hero h1.display, .hero h2 { text-shadow: 0 2px 22px rgba(0,0,0,.85); }
+a.hcard, a.hcard:hover { text-decoration: none; }
+figure { margin: 0; }
+button { font: inherit; color: inherit; }
+@media (max-width: 520px) {
+  .hero { flex-direction: column; }
+  .hero .plat { position: static; transform: none; margin: 30px auto 0; max-width: 100%; }
+}
+@media (max-width: 520px) { .frame figcaption { flex-direction: column; gap: 2px; } }

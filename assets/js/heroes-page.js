@@ -21,7 +21,7 @@
   var mTxt = document.getElementById("mTxt");
 
   function openHero(h) {
-    var art = '<img src="assets/img/heroes/f/' + h.id + '.jpg" alt="Card art of ' +
+    var art = '<img src="assets/img/heroes/f/' + h.id + '.avif" alt="Card art of ' +
       esc(h.name) + '">';
     if (h.alive) {
       art += '<video src="assets/vid/alive/' + h.alive + '" controls loop autoplay ' +
@@ -69,7 +69,7 @@
   H.filter(function (h) { return h.starter; }).forEach(function (h) {
     var b = el("button", "scard r-" + h.rarity + " el-" + h.el);
     b.innerHTML =
-      '<img src="assets/img/heroes/f/' + h.id + '.jpg" alt="Card art of ' + esc(h.name) + '" loading="lazy">' +
+      '<img src="assets/img/heroes/f/' + h.id + '.avif" alt="Card art of ' + esc(h.name) + '" loading="lazy">' +
       '<span class="nm"><b>' + esc(h.name) + "</b><span>#" + h.n + " · " + esc(h.jobName) +
       " · " + esc(h.el) + "</span></span>" +
       '<span class="hook">' + esc(h.hook) + "</span>";
@@ -121,7 +121,7 @@
       var b = el("button", "hcard r-" + h.rarity + " el-" + h.el);
       b.setAttribute("aria-label", h.name + ", " + h.jobName + " " + h.el + " " + h.rarity);
       b.innerHTML =
-        '<img src="assets/img/heroes/f/' + h.id + '.jpg" alt="Card art of ' + esc(h.name) + '" loading="lazy">' +
+        '<img src="assets/img/heroes/f/' + h.id + '.avif" alt="Card art of ' + esc(h.name) + '" loading="lazy">' +
         '<span class="dot"></span><span class="rar">' + esc(h.rarity) + "</span>" +
         '<span class="nm"><b>' + esc(h.name) + "</b><span>#" + h.n + " · " + esc(h.jobName) +
         " · " + esc(h.el) + "</span></span>";
