@@ -112,6 +112,22 @@ def copy(src, dst):
     shutil.copy2(src, dst)
 
 
+def share_card(art, logo, dst, w=1200, h=630):
+    """The link-preview card (og:image, twitter:image) at the 1.91:1 size Open Graph and X
+    expect: the wide key art cropped to keep the heroes' heads, darkened toward the foot,
+    with the logo there. Kept small (under 300 KB) so every messenger shows it."""
+    if fresh(dst, art, logo):
+        return
+    lw = round(w * 0.5)
+    sh(["ffmpeg", "-y", "-v", "error", "-i", art, "-i", logo, "-filter_complex",
+        f"[0]scale={w}:-2:flags=lanczos,crop={w}:{h}:0:(ih-{h})*0.30,format=rgba[bg];"
+        f"color=c=black:s={w}x{h},format=rgba,"
+        f"geq=r=0:g=0:b=0:a='if(gt(Y,H*0.6),pow((Y-H*0.6)/(H*0.4),1.4)*215,0)'[shade];"
+        f"[1]scale={lw}:-2:flags=lanczos[logo];"
+        f"[bg][shade]overlay[a];[a][logo]overlay=(W-w)/2:H-h-24,format=yuvj420p",
+        "-frames:v", "1", "-q:v", "3", dst])
+
+
 def h264(src, dst, width=None, crf=26, preset="slow", start=None, seconds=None,
          fps=None, vf=None, sound=False):
     """H.264 web clip (yuv420p, faststart). Muted unless sound=True, which keeps the
@@ -211,6 +227,7 @@ def main():
     jpg(W / "brand/keyart_tall.png", IMG / "keyart_tall.jpg", 1200, 85)   # og:image
     avif(W / "brand/keyart_wide.png", IMG / "keyart_wide.avif", 1600, 62)
     avif(W / "brand/keyart_tall.png", IMG / "keyart_tall.avif", 1200, 62)
+    share_card(W / "brand/keyart_wide.png", A / "Brand/logo.png", IMG / "share_1200x630.jpg")
 
     # ---- menu / world backgrounds ----------------------------------------------
     print("backgrounds")
