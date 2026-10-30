@@ -36,7 +36,7 @@
       pal = '<p class="small muted">' + esc(h.pal) + "<br>" + pal + "</p>";
     }
     mTxt.innerHTML =
-      "<h3>" + esc(h.name) + (h.title ? " <span class='muted'>— " + esc(h.title) + "</span>" : "") + "</h3>" +
+      "<h3>" + (h.title ? "<span class='muted'>" + esc(h.title) + "</span> " : "") + esc(h.name) + "</h3>" +
       '<div class="chips" style="margin-bottom:14px">' +
         '<span class="chip"><b>' + esc(h.jobName) + "</b> · " + esc(h.role) + "</span>" +
         '<span class="chip">Element · <b>' + esc(h.el) + "</b></span>" +
@@ -44,8 +44,8 @@
         (h.starter ? '<span class="chip">Starter Set</span>' : "") +
       "</div>" +
       (h.hook ? "<p><i>" + esc(h.hook) + "</i></p>" : "") +
-      (h.sig ? '<p class="small muted"><b style="color:var(--cream)">Signature:</b> ' + esc(h.sig) + ".</p>" : "") +
-      (h.sp ? '<p class="small" style="margin:4px 0 0"><span class="chip">' + esc(h.sp) + "</span></p>" : "") +
+      (h.sig ? '<p class="small muted"><b style="color:var(--cream)">On the card:</b> ' + esc(h.sig) + ".</p>" : "") +
+      (h.sp ? '<p class="small" style="margin:4px 0 0"><span class="chip">' + esc(h.sp.replace(/_/g, " ")) + "</span></p>" : "") +
       (h.flav ? "<blockquote class='quote'>" + esc(h.flav) + "</blockquote>" : "") +
       pal;
     modal.classList.add("on");
@@ -105,7 +105,7 @@
       if (fEl.value && h.el !== fEl.value) return false;
       if (fRar.value && h.rarity !== fRar.value) return false;
       if (q) {
-        var hay = (h.name + " " + (h.title || "") + " " + h.sp + " " + h.jobName).toLowerCase();
+        var hay = (h.name + " " + (h.title || "") + " " + h.sp.replace(/_/g, " ") + " " + h.jobName).toLowerCase();
         if (hay.indexOf(q) === -1) return false;
       }
       return true;
@@ -130,7 +130,7 @@
     });
     shown += next.length;
     more.hidden = shown >= filtered.length;
-    count.textContent = filtered.length + " heroes match · " +
+    count.textContent = filtered.length + (filtered.length === 1 ? " hero matches · " : " heroes match · ") +
       Math.min(shown, filtered.length) + " on page";
   }
 
