@@ -389,7 +389,7 @@ def main():
     hype = W / "marketing/hype_v2/fauna_hype_v2.mp4"
     if hype.exists():
         trailer(hype, VID / "trailer_1280.mp4")
-        frame(hype, 55.0, IMG / "trailer_poster.avif", 1280)
+        frame(hype, 1.2, IMG / "trailer_poster.avif", 1280)   # the young Wyrms over the great oak: bright, no text
         edl = ROOT / "tools/marketing/hype_v2_edl.json"
         if edl.exists():
             trailer_vtt(edl, VID / "trailer.vtt")
