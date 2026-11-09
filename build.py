@@ -245,6 +245,17 @@ def montage(segments, dst, width, fade=0.5, crf=26, zoom=0.72):
     sh(cmd)
 
 
+def brand_take(brand, name):
+    """The take of a forge.brand piece that forge itself uses (its source()): the one named in selected.json,
+    else the newest reroll, else the first."""
+    sel = brand / "selected.json"
+    pick = json.loads(sel.read_text()).get(name) if sel.exists() else None
+    if pick and (brand / pick).exists():
+        return brand / pick
+    takes = sorted(brand.glob(f"{name}_r*.png"), key=lambda p: int(p.stem.rsplit("_r", 1)[1]))
+    return takes[-1] if takes else brand / f"{name}.png"
+
+
 # The Legendaries the site shows (moving, unnamed) on the Heroes page and the home rail.
 TEASED = ("agnes_valor", "wolfgang_wildmane", "kuzunoha_ninetails",
           "aurora_frostbrew", "leonhart_sunmane", "amara")
@@ -278,11 +289,11 @@ def main():
     ico = SITE / "favicon.ico"
     if not fresh(ico, SITE / "favicon.svg"):
         sh(["sips", "-s", "format", "ico", "-z", "32", "32", SITE / "favicon.svg", "--out", ico])
-    jpg(W / "brand/keyart_wide.png", IMG / "keyart_wide.jpg", 1600, 85)   # og:image
-    jpg(W / "brand/keyart_tall.png", IMG / "keyart_tall.jpg", 1200, 85)   # og:image
-    avif(W / "brand/keyart_wide.png", IMG / "keyart_wide.avif", 1600, 62)
-    avif(W / "brand/keyart_tall.png", IMG / "keyart_tall.avif", 1200, 62)
-    share_card(W / "brand/keyart_wide.png", A / "Brand/logo.png", IMG / "share_1200x630.jpg")
+    # the Starter Set key art (forge.brand's newest take: Rowan, Ember, Hazel and Clover, 9 November)
+    keyart = brand_take(W / "brand", "keyart_wide")
+    jpg(keyart, IMG / "keyart_wide.jpg", 1600, 85)   # og:image
+    avif(keyart, IMG / "keyart_wide.avif", 1600, 62)
+    share_card(keyart, A / "Brand/logo.png", IMG / "share_1200x630.jpg")
 
     # ---- menu / world backgrounds ----------------------------------------------
     print("backgrounds")
