@@ -180,7 +180,6 @@
           <li>Holo that shifts as you tilt</li>
           <li>The odds shown on every pack</li>
         </ul>
-        <a class="more" href="/heroes#tiers">The four holo tiers →</a>
       </div>
     </article>
 
@@ -250,9 +249,9 @@
       <div class="rail" id="heroRail" aria-label="Featured heroes">
         <!-- populated by inline script from heroes.js -->
       </div>
-      <p class="railhint">The starters and every Legendary →</p>
+      <p class="railhint">The four you start with, and a few you might pull →</p>
     </div>
-    <p style="margin-top: 18px;"><a class="btn primary" href="/heroes">Meet all 100 →</a></p>
+    <p style="margin-top: 18px;"><a class="btn primary" href="/heroes">Meet the heroes →</a></p>
   </div>
 </section>
 
@@ -313,20 +312,21 @@
 
 <script src="assets/data/heroes.js"></script>
 <script>
-  // Featured hero rail: starters + every legendary, in number order.
+  // Hero rail: the four starters by name, then the teased Legendaries with no names.
   (function () {
     var rail = document.getElementById("heroRail");
     if (!rail || !window.HEROES) return;
-    var feat = HEROES.filter(function (h) { return h.starter || h.rarity === "legendary"; });
-    feat.forEach(function (h) {
+    HEROES.filter(function (h) { return h.starter; })
+      .concat(HEROES.filter(function (h) { return !h.starter; })).forEach(function (h) {
       var a = document.createElement("a");
       a.className = "hcard r-" + h.rarity + " el-" + h.el;
-      a.href = "/heroes";
-      a.setAttribute("aria-label", h.name + ", " + h.jobName);
+      a.href = h.starter ? "/heroes" : "/heroes#more";
+      a.setAttribute("aria-label", h.starter ? h.name + ", " + h.jobName : "A Legendary hero, waiting in the packs");
       a.innerHTML =
         '<img src="assets/img/heroes/f/' + h.id + '.avif" alt="" loading="lazy">' +
         '<span class="dot"></span><span class="rar">' + h.rarity + "</span>" +
-        '<span class="nm"><b>' + h.name + "</b><span>" + h.jobName + " · " + h.el + "</span></span>";
+        (h.starter ? '<span class="nm"><b>' + h.name + "</b><span>" + h.jobName + " · " + h.el + "</span></span>"
+                   : '<span class="nm"><b>?</b><span>In the packs</span></span>');
       rail.appendChild(a);
     });
   })();

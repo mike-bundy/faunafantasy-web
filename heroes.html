@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Meet the town · the 100 heroes of Fauna Fantasy</title>
-<meta name="description" content="Everyone in Grovehaven is a hero you can lead: 100 unlikely neighbours across 20 jobs and eight elements, each with a holo card and a personality. Browse and meet them.">
+<title>Meet the town · Fauna Fantasy</title>
+<meta name="description" content="Meet the four heroes every Fauna Fantasy journal starts with. The rest are waiting in the packs.">
 <link rel="canonical" href="https://faunafantasy.com/heroes">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -13,8 +13,8 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Fauna Fantasy">
 <meta property="og:locale" content="en_US">
-<meta property="og:title" content="Meet the town · the 100 heroes who live in Grovehaven">
-<meta property="og:description" content="Everyone in Grovehaven is a hero you can lead: a hundred unlikely neighbours, each with a card of their own. Browse, filter and meet them.">
+<meta property="og:title" content="Meet the town · Fauna Fantasy">
+<meta property="og:description" content="Meet the four heroes you start with. The rest are waiting in the packs.">
 <meta property="og:url" content="https://faunafantasy.com/heroes">
 <meta property="og:image" content="https://faunafantasy.com/assets/img/share_1200x630.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -43,7 +43,6 @@
   .scard .nm b { display: block; font-size: 17px; }
   .scard .nm span { font-family: "Lilita One", sans-serif; font-size: 12px; letter-spacing: .01em; text-transform: capitalize; color: var(--cream-dim); }
   .scard .hook { padding: 0 14px 14px; font-size: 13.5px; color: var(--cream-dim); background: rgba(11,16,12,.96); font-style: italic; }
-  .loadmore { display: block; margin: 26px auto 0; }
   .alive { display: grid; gap: 16px; grid-template-columns: repeat(6, minmax(0, 1fr)); margin-top: 24px; }
   @media (max-width: 980px) { .alive { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   @media (max-width: 520px) { .alive { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } }
@@ -88,68 +87,28 @@
   <div class="wrap">
     <h2>The four you start with</h2>
     <div class="rule">◆</div>
+    <p class="lead">Everyone starts with the same four. Who joins them is up to the packs.</p>
     <div class="starters" id="starters"></div>
   </div>
 </section>
 
-<section class="band" id="tiers">
+<section class="band" id="more">
   <div class="band-bg kb"><img src="assets/img/menu/binder.avif" alt="" aria-hidden="true" loading="lazy"></div>
   <div class="wrap">
     <header class="sh reveal">
-      <h2>Four rarities, four finishes</h2>
+      <h2>Who else is in there?</h2>
       <div class="rule">◆</div>
-    </header>
-    <div class="tiers reveal">
-      <div class="tier r-common"><b>Common</b><strong>Hearthwood</strong><p>Carved oak and a soft gloss.</p></div>
-      <div class="tier r-rare"><b>Rare</b><strong>Moonsilver</strong><p>Silver filigree and a sparkling sheen.</p></div>
-      <div class="tier r-epic"><b>Epic</b><strong>Arcane Amethyst</strong><p>Violet enamel and a rainbow foil.</p></div>
-      <div class="tier r-legendary"><b>Legendary</b><strong>Sunforged Aurum</strong><p>Radiant gold over a moving starfield.</p></div>
-    </div>
-
-    <header class="sh reveal" style="margin-top: 56px;">
-      <h2>Some cards don't sit still</h2>
-      <p class="lead">Every Epic and Legendary hero's card moves.</p>
+      <p class="lead">Plenty. You'll meet them the way everyone does, one pack at a time.</p>
     </header>
     <div class="alive reveal">
-      <figure class="alivecard r-legendary"><video muted loop playsinline preload="none" data-onscreen poster="assets/img/heroes/f/agnes_valor.avif" aria-label="Agnes Valor's card art, moving"><source src="assets/vid/alive/agnes_valor.mp4" type="video/mp4"></video>
-        <figcaption>Agnes Valor<small>Legendary · Holy Knight</small></figcaption></figure>
-      <figure class="alivecard r-legendary"><video muted loop playsinline preload="none" data-onscreen poster="assets/img/heroes/f/wolfgang_wildmane.avif" aria-label="Wolfgang Wildmane's card art, moving"><source src="assets/vid/alive/wolfgang_wildmane.mp4" type="video/mp4"></video>
-        <figcaption>Wolfgang Wildmane<small>Legendary · Beastmaster</small></figcaption></figure>
-      <figure class="alivecard r-legendary"><video muted loop playsinline preload="none" data-onscreen poster="assets/img/heroes/f/kuzunoha_ninetails.avif" aria-label="Kuzunoha Ninetails's card art, moving"><source src="assets/vid/alive/kuzunoha_ninetails.mp4" type="video/mp4"></video>
-        <figcaption>Kuzunoha Ninetails<small>Legendary · Ninja</small></figcaption></figure>
-      <figure class="alivecard r-legendary"><video muted loop playsinline preload="none" data-onscreen poster="assets/img/heroes/f/aurora_frostbrew.avif" aria-label="Aurora Frostbrew's card art, moving"><source src="assets/vid/alive/aurora_frostbrew.mp4" type="video/mp4"></video>
-        <figcaption>Aurora Frostbrew<small>Legendary · Alchemist</small></figcaption></figure>
-      <figure class="alivecard r-legendary"><video muted loop playsinline preload="none" data-onscreen poster="assets/img/heroes/f/leonhart_sunmane.avif" aria-label="Leonhart Sunmane's card art, moving"><source src="assets/vid/alive/leonhart_sunmane.mp4" type="video/mp4"></video>
-        <figcaption>Leonhart Sunmane<small>Legendary · Paladin</small></figcaption></figure>
-      <figure class="alivecard r-legendary"><video muted loop playsinline preload="none" data-onscreen poster="assets/img/heroes/f/amara.avif" aria-label="Amara's card art, moving"><source src="assets/vid/alive/amara.mp4" type="video/mp4"></video>
-        <figcaption>Amara<small>Legendary · White Mage</small></figcaption></figure>
+      <figure class="alivecard r-legendary"><video muted loop playsinline preload="none" data-onscreen poster="assets/img/heroes/f/agnes_valor.avif" aria-label="A Legendary hero card, moving"><source src="assets/vid/alive/agnes_valor.mp4" type="video/mp4"></video></figure>
+      <figure class="alivecard r-legendary"><video muted loop playsinline preload="none" data-onscreen poster="assets/img/heroes/f/wolfgang_wildmane.avif" aria-label="A Legendary hero card, moving"><source src="assets/vid/alive/wolfgang_wildmane.mp4" type="video/mp4"></video></figure>
+      <figure class="alivecard r-legendary"><video muted loop playsinline preload="none" data-onscreen poster="assets/img/heroes/f/kuzunoha_ninetails.avif" aria-label="A Legendary hero card, moving"><source src="assets/vid/alive/kuzunoha_ninetails.mp4" type="video/mp4"></video></figure>
+      <figure class="alivecard r-legendary"><video muted loop playsinline preload="none" data-onscreen poster="assets/img/heroes/f/aurora_frostbrew.avif" aria-label="A Legendary hero card, moving"><source src="assets/vid/alive/aurora_frostbrew.mp4" type="video/mp4"></video></figure>
+      <figure class="alivecard r-legendary"><video muted loop playsinline preload="none" data-onscreen poster="assets/img/heroes/f/leonhart_sunmane.avif" aria-label="A Legendary hero card, moving"><source src="assets/vid/alive/leonhart_sunmane.mp4" type="video/mp4"></video></figure>
+      <figure class="alivecard r-legendary"><video muted loop playsinline preload="none" data-onscreen poster="assets/img/heroes/f/amara.avif" aria-label="A Legendary hero card, moving"><source src="assets/vid/alive/amara.mp4" type="video/mp4"></video></figure>
     </div>
-  </div>
-</section>
-
-<section class="pad" id="roster">
-  <div class="wrap">
-    <h2>All 100</h2>
-    <div class="rule">◆</div>
-
-    <div class="filters" role="search">
-      <select id="fJob" aria-label="Filter by job"><option value="">All jobs</option></select>
-      <select id="fEl" aria-label="Filter by element">
-        <option value="">All elements</option>
-        <option value="fire">Fire</option><option value="water">Water</option><option value="grass">Grass</option><option value="electric">Electric</option>
-        <option value="earth">Earth</option><option value="wind">Wind</option><option value="light">Light</option><option value="dark">Dark</option>
-      </select>
-      <select id="fRar" aria-label="Filter by rarity">
-        <option value="">All rarities</option>
-        <option value="common">Common</option><option value="rare">Rare</option>
-        <option value="epic">Epic</option><option value="legendary">Legendary</option>
-      </select>
-      <input id="fText" type="search" placeholder="Search a name or species…" aria-label="Search by name or species">
-      <span class="count" id="count"></span>
-    </div>
-
-    <div class="hgrid" id="grid"></div>
-    <button class="btn ghost loadmore" id="more" hidden>Show more</button>
+    <p class="lead reveal" style="margin-top: 22px;">Pull a Legendary and its card comes alive.</p>
   </div>
 </section>
 

@@ -1,8 +1,16 @@
-// Heroes browser: starter cards, filterable roster, detail modal.
+// Heroes page: the four starters and their detail modal. Everyone else stays in the packs.
 (function () {
   "use strict";
   if (!window.HEROES) return;
   var H = window.HEROES;
+
+  // What each starter does for your party, in a line (the game's own hooks wait in the modal).
+  var INTRO = {
+    rowan_ashford: "The front line. Rowan stands in front so the other three don't have to.",
+    hazel_acornshot: "The archer. Hazel picks enemies off from a distance, and hits harder from higher ground.",
+    ember_pike: "The fire mage. Ember's spells hit hard from the back row, so keep him there.",
+    clover_softpaw: "The healer. Clover keeps the others on their feet, and hops toward trouble, not away from it."
+  };
 
   function el(tag, cls, html) {
     var e = document.createElement(tag);
@@ -21,123 +29,42 @@
   var mTxt = document.getElementById("mTxt");
 
   function openHero(h) {
-    var art = '<img src="assets/img/heroes/f/' + h.id + '.avif" alt="Card art of ' +
-      esc(h.name) + '">';
-    if (h.alive) {
-      art += '<video src="assets/vid/alive/' + h.alive + '" controls loop autoplay ' +
-        'muted playsinline preload="metadata" aria-label="' + esc(h.name) +
-        ' — the card comes alive"></video>';
-    }
-    mArt.innerHTML = art;
-    var pal = (h.palc || []).map(function (c) {
-      return '<span class="sw" style="background:' + c + '"></span>';
-    }).join("");
-    if (h.pal) {
-      pal = '<p class="small muted">' + esc(h.pal) + "<br>" + pal + "</p>";
-    }
+    var poster = "assets/img/heroes/f/" + h.id + ".avif";
+    // One piece of art: the moving card when there is one (its poster is the still), else the still.
+    // Both at once sat side by side and pushed over the text.
+    mArt.innerHTML = h.alive
+      ? '<video src="assets/vid/alive/' + h.alive + '" poster="' + poster + '" loop autoplay muted playsinline ' +
+        'aria-label="' + esc(h.name) + "'s card, moving\"></video>"
+      : '<img src="' + poster + '" alt="Card art of ' + esc(h.name) + '">';
     mTxt.innerHTML =
-      "<h3>" + (h.title ? "<span class='muted'>" + esc(h.title) + "</span> " : "") + esc(h.name) + "</h3>" +
+      "<h3>" + esc(h.name) + "</h3>" +
       '<div class="chips" style="margin-bottom:14px">' +
-        '<span class="chip"><b>' + esc(h.jobName) + "</b> · " + esc(h.role) + "</span>" +
-        '<span class="chip">Element · <b>' + esc(h.el) + "</b></span>" +
-        '<span class="chip"><b>' + esc(h.rarity) + "</b></span>" +
-        (h.starter ? '<span class="chip">Starter Set</span>' : "") +
+        '<span class="chip"><b>' + esc(h.jobName) + "</b></span>" +
+        '<span class="chip"><b>' + esc(h.el) + "</b></span>" +
       "</div>" +
-      (h.hook ? "<p><i>" + esc(h.hook) + "</i></p>" : "") +
+      "<p>" + esc(INTRO[h.id] || h.hook) + "</p>" +
       (h.sig ? '<p class="small muted"><b style="color:var(--cream)">On the card:</b> ' + esc(h.sig) + ".</p>" : "") +
-      (h.sp ? '<p class="small" style="margin:4px 0 0"><span class="chip">' + esc(h.sp.replace(/_/g, " ")) + "</span></p>" : "") +
-      (h.flav ? "<blockquote class='quote'>" + esc(h.flav) + "</blockquote>" : "") +
-      pal;
+      (h.flav ? "<blockquote class='quote'>" + esc(h.flav) + "</blockquote>" : "");
     modal.classList.add("on");
   }
 
+  function close() {
+    modal.classList.remove("on");
+    mArt.innerHTML = "";
+  }
   modal.addEventListener("click", function (e) {
-    if (e.target === modal || e.target.classList.contains("x")) {
-      modal.classList.remove("on");
-      mArt.innerHTML = "";
-    }
+    if (e.target === modal) close();
   });
-  document.querySelectorAll(".modal .x").forEach(function (b) {
-    b.addEventListener("click", function () {
-      modal.classList.remove("on");
-      mArt.innerHTML = "";
-    });
-  });
+  modal.querySelector(".x").addEventListener("click", close);
 
-  // ---- Starter Set ----
   var st = document.getElementById("starters");
   H.filter(function (h) { return h.starter; }).forEach(function (h) {
     var b = el("button", "scard r-" + h.rarity + " el-" + h.el);
     b.innerHTML =
       '<img src="assets/img/heroes/f/' + h.id + '.avif" alt="Card art of ' + esc(h.name) + '" loading="lazy">' +
-      '<span class="nm"><b>' + esc(h.name) + "</b><span>#" + h.n + " · " + esc(h.jobName) +
-      " · " + esc(h.el) + "</span></span>";   // the hook waits in the card's detail (a click away)
+      '<span class="nm"><b>' + esc(h.name) + "</b><span>" + esc(h.jobName) + " · " + esc(h.el) + "</span></span>" +
+      '<span class="hook">' + esc(INTRO[h.id] || h.hook) + "</span>";
     b.addEventListener("click", function () { openHero(h); });
     st.appendChild(b);
   });
-
-  // ---- Roster grid + filters ----
-  var grid = document.getElementById("grid");
-  var more = document.getElementById("more");
-  var count = document.getElementById("count");
-  var fJob = document.getElementById("fJob");
-  var fEl = document.getElementById("fEl");
-  var fRar = document.getElementById("fRar");
-  var fText = document.getElementById("fText");
-  var PAGE = 24;
-  var shown = 0;
-  var filtered = H;
-
-  // Job dropdown, populated from the data.
-  var jobs = {};
-  H.forEach(function (h) { jobs[h.jobName] = (jobs[h.jobName] || 0) + 1; });
-  Object.keys(jobs).sort().forEach(function (j) {
-    var o = document.createElement("option");
-    o.value = j; o.textContent = j + " (" + jobs[j] + ")";
-    fJob.appendChild(o);
-  });
-
-  function apply() {
-    var q = fText.value.trim().toLowerCase();
-    filtered = H.filter(function (h) {
-      if (fJob.value && h.jobName !== fJob.value) return false;
-      if (fEl.value && h.el !== fEl.value) return false;
-      if (fRar.value && h.rarity !== fRar.value) return false;
-      if (q) {
-        var hay = (h.name + " " + (h.title || "") + " " + h.sp.replace(/_/g, " ") + " " + h.jobName).toLowerCase();
-        if (hay.indexOf(q) === -1) return false;
-      }
-      return true;
-    });
-    grid.innerHTML = "";
-    shown = 0;
-    renderMore();
-  }
-
-  function renderMore() {
-    var next = filtered.slice(shown, shown + PAGE);
-    next.forEach(function (h) {
-      var b = el("button", "hcard r-" + h.rarity + " el-" + h.el);
-      b.setAttribute("aria-label", h.name + ", " + h.jobName + " " + h.el + " " + h.rarity);
-      b.innerHTML =
-        '<img src="assets/img/heroes/f/' + h.id + '.avif" alt="Card art of ' + esc(h.name) + '" loading="lazy">' +
-        '<span class="dot"></span><span class="rar">' + esc(h.rarity) + "</span>" +
-        '<span class="nm"><b>' + esc(h.name) + "</b><span>#" + h.n + " · " + esc(h.jobName) +
-        " · " + esc(h.el) + "</span></span>";
-      b.addEventListener("click", function () { openHero(h); });
-      grid.appendChild(b);
-    });
-    shown += next.length;
-    more.hidden = shown >= filtered.length;
-    count.textContent = filtered.length + (filtered.length === 1 ? " hero matches · " : " heroes match · ") +
-      Math.min(shown, filtered.length) + " on page";
-  }
-
-  [fJob, fEl, fRar].forEach(function (s) {
-    s.addEventListener("change", apply);
-  });
-  fText.addEventListener("input", apply);
-  more.addEventListener("click", renderMore);
-
-  apply();
 })();

@@ -245,6 +245,11 @@ def montage(segments, dst, width, fade=0.5, crf=26, zoom=0.72):
     sh(cmd)
 
 
+# The Legendaries the site shows (moving, unnamed) on the Heroes page and the home rail.
+TEASED = ("agnes_valor", "wolfgang_wildmane", "kuzunoha_ninetails",
+          "aurora_frostbrew", "leonhart_sunmane", "amara")
+
+
 def main():
     if not (ROOT / "Content/heroes.json").exists():
         raise SystemExit(f"game checkout not found at {ROOT} (set FF_GAME_REPO)")
@@ -396,12 +401,15 @@ def main():
     frame(A / "Cinematics/finale.mp4", 6.0, IMG / "finale_poster.avif", 1600)
 
     heroes = json.loads((ROOT / "Content/heroes.json").read_text())["heroes"]
+    # The site introduces the four starters and teases a few Legendaries without names; everyone
+    # else is met in the packs, so their art and data never ship (WEB.tease, 9 November).
+    heroes = [h for h in heroes if h.get("starter") or h["id"].removeprefix("hero.") in TEASED]
     jobs = {}
     for jf in (ROOT / "Content/jobs").glob("*.json"):
         jd = json.loads(jf.read_text())["job"]
         jobs[jd["id"]] = jd
 
-    # ---- hero card art (480 w, used by the grid, the rails and the modal) ------------
+    # ---- hero card art (480 w, used by the starters, the rails and the modal) ----------
     print("hero card art")
     n = 0
     for h in heroes:
@@ -415,7 +423,7 @@ def main():
         n += 1
     print(f"  {n} cards")
 
-    # "the card comes alive" loops: every hero that has one (Epic and Legendary)
+    # "the card comes alive" loops: the teased Legendaries
     alive = []
     for h in heroes:
         stem = h["id"].removeprefix("hero.")
@@ -451,6 +459,11 @@ def main():
     for h in heroes:
         stem = h["id"].removeprefix("hero.")
         job = jobs.get(h["job"], {})
+        if not h.get("starter"):
+            # a teased Legendary: its card and nothing that says who it is
+            rows.append({"id": stem, "el": h["element"], "rarity": h["rarity"], "starter": False,
+                         "alive": (stem + ".mp4") if stem in alive else None})
+            continue
         rows.append({
             "n": h["number"], "id": stem, "name": h["name"],
             "title": h.get("title"), "job": h["job"],
