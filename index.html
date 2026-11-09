@@ -93,11 +93,9 @@
   <button class="burger" aria-label="Menu" aria-expanded="false">☰</button>
   <nav aria-label="Site">
     <a href="/" class="on" aria-current="page">Home</a>
-    <a href="/world">The Everwild</a>
     <a href="/heroes">Heroes</a>
-    <a href="/play">How to play</a>
-    <a href="/arena">The Arena</a>
     <a href="/media">Media</a>
+    <a href="/support">Support</a>
   </nav>
   <a class="wish" href="assets/vid/trailer_1280.mp4" data-lb="assets/vid/trailer_1280.mp4" data-poster="assets/img/trailer_poster.jpg">▶ Watch the trailer</a>
 </header>
@@ -142,20 +140,29 @@
   </div>
 </section>
 
-<!-- ============ WHAT IT IS: feature rows with gameplay ============ -->
-<section class="pad">
+<!-- ============ THE TRAILER ============ -->
+<section class="pad" id="trailer">
   <div class="wrap">
     <header class="sh reveal">
-      <p class="eyebrow">What it is</p>
+      <p class="eyebrow">The trailer</p>
       <h2>Pick four heroes.<br>Calm the wild.</h2>
       <div class="rule">◆</div>
-      <p class="lead">Fauna Fantasy is a turn-based tactical RPG with a roguelite streak and a
-      binder full of holo cards. Nobody dies in it. Beaten beasts are <i>calmed</i>: the violet
-      fades from their eyes and they wander off home. A hero who falls is carried back to Grovehaven
-      by lanternbugs and sits out the rest of the run.</p>
     </header>
+    <figure class="frame reveal">
+      <video controls playsinline preload="none" poster="assets/img/trailer_poster.avif"
+             aria-label="The Fauna Fantasy trailer, one minute, with music and narration.">
+        <source src="assets/vid/trailer_1280.mp4" type="video/mp4">
+        <track kind="captions" src="assets/vid/trailer.vtt" srclang="en" label="English"></video>
+      <figcaption><span>One minute</span><span>sound on</span></figcaption>
+    </figure>
+  </div>
+</section>
 
-    <article class="feature reveal">
+<!-- ============ FIVE THINGS: a clip or still, a headline, a few bullets ============ -->
+<section class="pad" style="padding-top: 0;">
+  <div class="wrap">
+
+    <article class="feature reveal" id="battles" style="margin-top: 0;">
       <figure class="clip" data-lb="assets/vid/play/battle.mp4">
         <video muted loop playsinline preload="none" poster="assets/img/play/battle.avif" data-onscreen
                aria-label="A battle in Amber Canyons on Apple TV: the party takes on a tyrannosaur, a triceratops and two raptors across red-rock terraces.">
@@ -164,40 +171,16 @@
       </figure>
       <div>
         <p class="eyebrow">Turn-based tactical battles</p>
-        <h3>Mind the puddles</h3>
-        <p>Get above a raptor and you hit harder. Get behind it and you hit harder still. The
-        ground joins in too: lightning runs through standing water and fire catches on oil. Before
-        you commit, the game shows you the odds.</p>
+        <h3>Every square matters</h3>
         <ul class="ticks">
-          <li>Hit chance, damage range and reactions on every forecast</li>
-          <li>Eight elements, and every land has its favourite</li>
-          <li>Fill the Bond gauge and call a summon, up to one of the great Wyrms</li>
+          <li>Take the high ground. Strike from behind.</li>
+          <li>Eight elements. Zap the puddle they're standing in.</li>
+          <li>See the odds before you commit</li>
         </ul>
-        <a class="more" href="/play#battle">How battles work →</a>
       </div>
     </article>
 
-    <article class="feature flip reveal">
-      <figure class="clip phone" data-lb="assets/vid/play/gloom.mp4">
-        <video muted loop playsinline preload="none" poster="assets/img/play/gloom.avif" data-onscreen
-               aria-label="A battle in Gloomroot Hollow on iPhone: the party moves across a violet, root-choked board.">
-          <source src="assets/vid/play/gloom.mp4" type="video/mp4"></video>
-        <span class="dev">iPhone</span>
-      </figure>
-      <div>
-        <p class="eyebrow">Roguelite expeditions</p>
-        <h3>Set out for infinite wild lands</h3>
-        <p>Pick a land at the Expedition Gate and walk its Trail. You'll fight a battle, pick a
-        locked chest of relics, fight again, spend a night at camp, take on an Elite and then meet
-        the land's guardian. The boards are built fresh every time, so yesterday's reef won't be
-        today's.</p>
-        <p>Every win pays Infusions, and Infusions level your cards for good. Lose the run and you
-        still come home with something.</p>
-        <a class="more" href="/play#run">The roguelite loop →</a>
-      </div>
-    </article>
-
-    <article class="feature reveal">
+    <article class="feature flip reveal" id="packs">
       <figure class="clip phone" data-lb="assets/vid/play/pack.mp4">
         <video muted loop playsinline preload="none" poster="assets/img/play/pack.avif" data-onscreen
                aria-label="A Starseed pack opening on iPhone: the cards fan out and turn one by one, Cackle Brimstone in an Epic's rune ring, then Agnes Valor, Legendary, in a gold sunburst.">
@@ -205,49 +188,41 @@
         <span class="dev">iPhone</span>
       </figure>
       <div>
-        <p class="eyebrow">Card collection</p>
+        <p class="eyebrow">Holo card packs</p>
         <h3>Rip packs, pull Legends</h3>
-        <p>There are 285 cards to find. Heroes, weapons, relics, Tactic cards, summons, charms and
-        crests all come in packs. Commons wear carved oak. Legendaries wear sunforged gold, and their
-        holo shifts when you tilt your device.</p>
         <ul class="ticks">
-          <li>Four rarities, each with its own frame and holo finish</li>
-          <li>The odds printed on every pack, and a free gift each day</li>
-          <li>Favourites raised to <span class="star5">★5 Prismatic</span> over months</li>
+          <li>285 cards, and 100 of them are heroes</li>
+          <li>Holo that shifts as you tilt</li>
+          <li>The odds shown on every pack</li>
         </ul>
-        <a class="more" href="/heroes#tiers">The holo tiers →</a>
+        <a class="more" href="/heroes#tiers">The four holo tiers →</a>
       </div>
     </article>
 
-    <article class="feature flip reveal">
-      <figure class="clip" data-lb="assets/vid/play/crawl.mp4">
-        <video muted loop playsinline preload="none" poster="assets/img/play/crawl.avif" data-onscreen
-               aria-label="The Rootdelve on Apple TV: Agnes Valor crosses a Stormspire floor of copper and blue light, reaches the stairs and drops down to Gloomroot Hollow.">
-          <source src="assets/vid/play/crawl.mp4" type="video/mp4"></video>
+    <article class="feature reveal" id="expeditions">
+      <figure class="clip">
+        <img src="assets/img/shots/tv_trail.avif" alt="The party walks Fernwood's Trail on Apple TV, with the next stop, a battle, flagged ahead." loading="lazy" data-lb="assets/img/shots/tv_trail.avif">
         <span class="dev">Apple TV</span>
       </figure>
       <div>
-        <p class="eyebrow">Real-time delves</p>
-        <h3>Brave the Rootdelve</h3>
-        <p>Take one hero down under the roots and play in real time. Jump the gaps, roll out of a
-        raptor's charge, and save that potion for the floor that needs it. Your hero's job and
-        weapon decide how they fight, so a Dragoon's delve feels nothing like a White Mage's.</p>
+        <p class="eyebrow">Roguelite expeditions</p>
+        <h3>Never the same board twice</h3>
         <ul class="ticks">
-          <li>A new layout on every floor</li>
-          <li>Loot in four rarities, equipped as you find it</li>
-          <li>A guardian sealing the stairs every third floor</li>
+          <li>Pick a land and walk its Trail</li>
+          <li>Free the guardian at the end</li>
+          <li>Win or lose, your cards keep their levels</li>
         </ul>
-        <a class="more" href="/play#rootdelve">Into the Rootdelve →</a>
       </div>
     </article>
+
   </div>
 </section>
 
-<!-- ============ GROVEHAVEN: the hub and everything around it ============ -->
 <section class="band">
   <div class="band-bg kb"><img src="assets/img/menu/hub.avif" alt="" aria-hidden="true" loading="lazy"></div>
   <div class="wrap">
-    <article class="feature reveal" style="margin-top: 0;">
+
+    <article class="feature flip reveal" id="grovehaven" style="margin-top: 0;">
       <figure class="clip" data-lb="assets/vid/play/hub.mp4">
         <video muted loop playsinline preload="none" poster="assets/img/play/hub.avif" data-onscreen
                aria-label="Grovehaven's main street on Apple TV: Rowan, Agnes, Wolfgang and Ember land and get to their feet, with their name plates and the menu below.">
@@ -256,160 +231,60 @@
       </figure>
       <div>
         <p class="eyebrow">Grovehaven</p>
-        <h3>Grovehaven is home</h3>
-        <p>Your four drop onto the main street in a puff of dust. Swap any of them for another
-        hero you've collected, or spin one round to look at their kit. The Pack Altar, the Binder,
-        the Fusion Forge and Pemberton's stall are a few steps away, and so are the stairs down to
-        the Rootdelve.</p>
-        <a class="more" href="/play#grovehaven">Around the village →</a>
+        <h3>Home is a village in a tree</h3>
+        <ul class="ticks">
+          <li>Swap in any hero you've collected</li>
+          <li>The Pack Altar and the Forge, a few steps away</li>
+          <li>Stairs down to the real-time Rootdelve</li>
+        </ul>
       </div>
     </article>
 
-    <div class="minis">
-      <article class="mini reveal">
-        <figure class="clip" data-lb="assets/vid/play/arena.mp4">
-          <video muted loop playsinline preload="none" poster="assets/img/play/arena.avif" data-onscreen
-                 aria-label="An Arena match against a practice rival on a coral board."><source src="assets/vid/play/arena.mp4" type="video/mp4"></video>
-        </figure>
-        <div class="mt"><h3>The Arena</h3><p>Your four against someone else's. Quick Matches are
-        rated over six-week seasons. Matches with friends can be live, or a turn at a time.</p>
-        <a class="more" href="/arena">Inside the Arena →</a></div>
-      </article>
-      <article class="mini reveal">
-        <figure class="clip" data-lb="assets/vid/play/duel.mp4">
-          <video muted loop playsinline preload="none" poster="assets/img/play/duel.avif" data-onscreen
-                 aria-label="A Wild Duel in the tavern: cards are played onto a three-by-three board and flip colour as they capture."><source src="assets/vid/play/duel.mp4" type="video/mp4"></video>
-        </figure>
-        <div class="mt"><h3>Wild Duel</h3><p>The tavern's 3×3 card game, played with your own
-        cards against eight regulars at the Snug Root. Beat one and the next pulls up a stool.</p>
-        <a class="more" href="/play#tavern">Pull up a stool →</a></div>
-      </article>
-      <article class="mini reveal">
-        <figure class="clip"><img src="assets/img/shots/tv_hub.avif" alt="Grovehaven's menu on Apple TV: the party's name plates, then Chapter 1, The Wild Accord, and the World Map." loading="lazy" style="object-position: 50% 100%;" data-lb="assets/img/shots/tv_hub.avif"></figure>
-        <div class="mt"><h3>Hero Trials & Errands</h3><p>Every hero has a trial of their own,
-        and ten Legend trials sit on top: 110 in all, plus a Daily Trial. Heroes on the bench run
-        errands and come back with Acorns, shards and the odd tale.</p>
-        <a class="more" href="/play#grovehaven">Between runs →</a></div>
-      </article>
-      <article class="mini reveal">
-        <figure class="clip"><img src="assets/img/shots/tv_shop.avif" alt="Pemberton's Peddlery: packs on shelves with their odds labelled, today's gift and the Deal of the Day." loading="lazy" data-lb="assets/img/shots/tv_shop.avif"></figure>
-        <div class="mt"><h3>Pemberton's Peddlery</h3><p>Pemberton keeps his stock in his beak
-        pouch. He has a free gift for you every day and a deal he'll talk up for a while. Every pack
-        shows its odds, and money never buys a specific card.</p>
-        <a class="more" href="/play#shop">Visit the stall →</a></div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ STORY TEASER ============ -->
-<section class="band">
-  <div class="band-bg kb"><img src="assets/img/menu/title.avif" alt="" aria-hidden="true" loading="lazy"></div>
-  <div class="wrap">
-    <div class="duo reveal">
-      <div>
-        <p class="eyebrow">The story</p>
-        <h2>When the Wyrms went quiet</h2>
-        <div class="rule">◆</div>
-        <p>The Everwild once sang with eight great voices: the <b>Eight Wyrms</b>, elemental
-        dragons who did not rule the land but <i>kept time</i> for it. Warmed the forges. Turned
-        the tides. Woke the spring. Brought the dusk, and with it rest.</p>
-        <p>Now a creeping rot called the <b>Blight</b> turns the gentle beasts of the wild feral.
-        It began with a grieving king who closed the Well of Endings and forbade anything to end.
-        The world's endings pooled beneath the roots like water behind a dam, and festered.</p>
-        <p>A sanctuary village of humans and fauna-folk sends its bravest through the living
-        <b>Rootgate</b>: a young squire in armour one size too big, a tiny grandmaster who eats
-        apples mid-battle, a gentleman fox thief with lightning in his daggers. They're out to calm
-        the wild and free the Wyrms, and in the end to face King Rotcrown, who wanted nothing he loved
-        ever to end.</p>
-        <blockquote class="quote">
-          "He tried to save the rose by never letting it close, and so it never opened again."
-          <span class="who">Elder Mossback, keeper of the Wild Accord</span>
-        </blockquote>
-        <p><a class="btn ghost" href="/world">Walk the Everwild →</a></p>
-      </div>
-      <figure class="frame">
-        <img src="assets/img/keyart_wide.avif" alt="Key art: a squire, a fox, a small lantern-bearer and a bear warrior stand on a flower-strewn hill below a treehouse village, a violet castle on the far horizon." loading="lazy" data-lb="assets/img/keyart_wide.avif">
-        <figcaption><span>Rowan, Reynard, Ember and Ursa</span><span>key art</span></figcaption>
+    <article class="feature reveal" id="arena">
+      <figure class="clip" data-lb="assets/vid/play/arena.mp4">
+        <video muted loop playsinline preload="none" poster="assets/img/play/arena.avif" data-onscreen
+               aria-label="An Arena match against a practice rival on a coral board."><source src="assets/vid/play/arena.mp4" type="video/mp4"></video>
+        <span class="dev">Apple TV</span>
       </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ============ EVERWILD RAIL ============ -->
-<section class="pad">
-  <div class="wrap reveal">
-    <p class="eyebrow">The Everwild</p>
-    <h2>Every land, its own mood</h2>
-    <div class="rule">◆</div>
-    <p class="lead">Fernwood has ferns tall enough to shelter houses. Coral Shallows has pirates.
-    Amber Canyons has a field of stone dinosaurs that may or may not be statues. Each land keeps a
-    sealed Wyrm and a guardian of its own, and its battle boards are built fresh every time you set out.</p>
-    <div class="railwrap">
-      <div class="rail">
-        <a class="tile el-grass" href="/world#fernwood"><img src="assets/img/battle/fernwood_vista.avif" alt="" loading="lazy"><span class="cap">Fernwood<small>Grass · Act I</small></span></a>
-        <a class="tile el-water" href="/world#coral_shallows"><img src="assets/img/battle/coral_shallows_vista.avif" alt="" loading="lazy"><span class="cap">Coral Shallows<small>Water · Act I</small></span></a>
-        <a class="tile el-earth" href="/world#amber_canyons"><img src="assets/img/battle/amber_canyons_vista.avif" alt="" loading="lazy"><span class="cap">Amber Canyons<small>Earth · Act I</small></span></a>
-        <a class="tile el-fire" href="/world#emberforge_caldera"><img src="assets/img/battle/emberforge_caldera_vista.avif" alt="" loading="lazy"><span class="cap">Emberforge Caldera<small>Fire · Act II</small></span></a>
-        <a class="tile el-wind" href="/world#skyreach_peaks"><img src="assets/img/battle/skyreach_peaks_vista.avif" alt="" loading="lazy"><span class="cap">Skyreach Peaks<small>Wind · Act II</small></span></a>
-        <a class="tile el-electric" href="/world#stormspire"><img src="assets/img/battle/stormspire_vista.avif" alt="" loading="lazy"><span class="cap">Stormspire<small>Electric · Act II</small></span></a>
-        <a class="tile el-light" href="/world#sunspire_sanctum"><img src="assets/img/battle/sunspire_sanctum_vista.avif" alt="" loading="lazy"><span class="cap">Sunspire Sanctum<small>Light · Act III</small></span></a>
-        <a class="tile el-dark" href="/world#gloomroot_hollow"><img src="assets/img/battle/gloomroot_hollow_vista.avif" alt="" loading="lazy"><span class="cap">Gloomroot Hollow<small>Dark · Act III</small></span></a>
-        <a class="tile" style="--el: #a06bd8;" href="/world#blightheart"><img src="assets/img/battle/blightheart_vista.avif" alt="" loading="lazy"><span class="cap">The Blightheart<small>The Unending · finale</small></span></a>
+      <div>
+        <p class="eyebrow">The Arena</p>
+        <h3>Your four against theirs</h3>
+        <ul class="ticks">
+          <li>Rated Quick Matches on Game Center</li>
+          <li>Play friends live, or a turn at a time</li>
+        </ul>
       </div>
-      <p class="railhint">Scroll or drag →</p>
-    </div>
+    </article>
+
   </div>
 </section>
 
 <!-- ============ HEROES RAIL ============ -->
-<section class="pad" style="padding-top: 0;">
+<section class="pad" id="heroes">
   <div class="wrap reveal">
     <p class="eyebrow">The town</p>
     <h2>No chosen ones. Just neighbours.</h2>
     <div class="rule">◆</div>
-    <p class="lead">Everyone you lead lives in Grovehaven. Sir Bristleton is a pocket-sized
-    hedgehog knight with a big oath. Tsuki Moonblade only draws her sword by moonlight, and it is
-    always moonlight somewhere. Capy may be the calmest creature in history. Lotl the axolotl thinks
-    splashing someone is a greeting. There are 100 of them across 20 jobs, and each has a card.</p>
     <div class="railwrap">
       <div class="rail" id="heroRail" aria-label="Featured heroes">
         <!-- populated by inline script from heroes.js -->
       </div>
       <p class="railhint">The starters and every Legendary →</p>
     </div>
-    <p style="margin-top: 18px;"><a class="btn primary" href="/heroes">Meet the whole town →</a></p>
+    <p style="margin-top: 18px;"><a class="btn primary" href="/heroes">Meet all 100 →</a></p>
   </div>
 </section>
 
-<!-- ============ PLATFORMS ============ -->
-<section class="band">
-  <div class="band-bg"><img src="assets/img/battle/landscape.avif" alt="" aria-hidden="true" loading="lazy"></div>
-  <div class="wrap reveal">
-    <p class="eyebrow">Across your Apple devices</p>
-    <h2>One journal, wherever you play</h2>
-    <div class="rule">◆</div>
-    <p class="lead">Start a run on your iPhone and finish it on the big screen. Your journal
-    follows you through iCloud, and the Arena finds your friends on Game Center.</p>
-    <ul class="plats">
-      <li><b>iPhone</b><span>Touch-first, upright or on its side, iPhone Duo included</span></li>
-      <li><b>iPad</b><span>Room for the whole board and the forecast beside it</span></li>
-      <li><b>Apple TV</b><span>Siri Remote or a game controller, from the sofa</span></li>
-      <li><b>Apple Vision Pro</b><span>The battle stands on your table</span></li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============ CLOSER ============ -->
+<!-- ============ CLOSER: platforms and the call to action ============ -->
 <section class="band" style="padding-bottom: 110px;">
   <div class="band-bg"><img src="assets/img/menu/pack_altar.avif" alt="" aria-hidden="true" loading="lazy"></div>
   <div class="wrap center reveal">
-    <p class="eyebrow">The Rootgate is open</p>
+    <p class="eyebrow">Coming soon to the App Store</p>
     <h2>Pack your four.</h2>
     <div class="rule">◆</div>
-    <p class="lead" style="margin: 0 auto 28px;">Fauna Fantasy is coming to iPhone, iPad,
-    Apple&nbsp;TV and Apple&nbsp;Vision&nbsp;Pro. Rowan is already at the gate, adjusting his
-    helmet.</p>
+    <p class="lead" style="margin: 0 auto 28px;">For iPhone, iPad, Apple&nbsp;TV and
+    Apple&nbsp;Vision&nbsp;Pro, with one journal across all of them. Rowan is already at the gate,
+    adjusting his helmet.</p>
     <div class="ctas">
       <a class="btn primary" href="assets/vid/trailer_1280.mp4" data-lb="assets/vid/trailer_1280.mp4" data-poster="assets/img/trailer_poster.jpg">▶&nbsp; Watch the trailer</a>
       <a class="btn ghost" href="/media">Media & press</a>
@@ -424,21 +299,18 @@
     <div class="fcols">
       <div>
         <h4>Fauna Fantasy</h4>
-        <p>A tactical RPG with holo cards: turn-based battles across infinite wild lands, a
-        Binder of 285 cards (100 of them heroes), the real-time Rootdelve and the Arena. Made with
-        SwiftUI and RealityKit by SideResult Software in Portland, Oregon, for iPhone, iPad,
-        Apple TV and Apple Vision Pro.</p>
+        <p>A tactical RPG with holo card packs for iPhone, iPad, Apple&nbsp;TV and
+        Apple&nbsp;Vision&nbsp;Pro, made by SideResult Software in Portland, Oregon.</p>
         <p class="small"><label><input type="checkbox" id="readableToggle"> Readable font
         (Atkinson Hyperlegible)</label>, the same option the game has in Settings.</p>
       </div>
       <div>
         <h4>This site</h4>
         <ul>
-          <li><a href="/world">The Everwild</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="/heroes">Meet the town</a></li>
-          <li><a href="/play">How to play</a></li>
-          <li><a href="/arena">The Arena</a></li>
           <li><a href="/media">Media & press</a></li>
+          <li><a href="/support">Support</a></li>
         </ul>
       </div>
       <div>
@@ -454,7 +326,7 @@
     <p class="fine">© 2026 <a href="https://sideresult.com">SideResult Software</a>, Portland, Oregon.
     Fauna Fantasy, the Everwild, the Wild Accord and all characters are original works. Gameplay footage is captured from current builds; content and
     systems may change before release.
-    iPhone, iPad, Mac, Apple TV, Apple Vision Pro, App Store, Game Center, iCloud, FaceTime and SharePlay are trademarks of Apple Inc., registered in the U.S. and other countries and regions.</p>
+    iPhone, iPad, Apple TV, Apple Vision Pro, App Store, Game Center, iCloud, FaceTime and SharePlay are trademarks of Apple Inc., registered in the U.S. and other countries and regions.</p>
     <p class="legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/support">Support</a><span>No ads · no trackers · no cookies</span></p>
   </div>
 </footer>

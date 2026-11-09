@@ -3,230 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Arena · PvP on Game Center · Fauna Fantasy</title>
-<meta name="description" content="Four heroes, a mirrored board, one rival: Quick Match by team power, friend challenges live or turn by turn, SharePlay in a FaceTime call, and a seasonal rating.">
-<link rel="canonical" href="https://faunafantasy.com/arena">
-<link rel="icon" href="favicon.ico" sizes="32x32">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>The Arena · Fauna Fantasy</title>
+<!-- arena moved to the home page in the lean launch site (WEB.lean). The full page is on the
+     site-v2-full branch. This stub keeps old links working. -->
+<link rel="canonical" href="https://faunafantasy.com/">
+<meta http-equiv="refresh" content="0; url=/#arena">
+<script>
+  // Old deep links keep their place: /arena#{old} lands on the matching home section.
+  (function () {
+    var map = {"modes": "arena"};
+    var h = location.hash.slice(1);
+    location.replace("/#" + (map[h] || "arena"));
+  })();
+</script>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
 <meta name="theme-color" content="#0b110d">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Fauna Fantasy">
-<meta property="og:locale" content="en_US">
-<meta property="og:title" content="The Arena · PvP on Game Center">
-<meta property="og:description" content="Your real collection against real people: rated Quick Matches by team power, friend challenges with SharePlay, and take-turns matches.">
-<meta property="og:url" content="https://faunafantasy.com/arena">
-<meta property="og:image" content="https://faunafantasy.com/assets/img/share_1200x630.jpg">
-<meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Fauna Fantasy key art: a squire, a fox, a small lantern-bearer and a bear warrior on a flower-strewn hill below a treehouse village, with the Fauna Fantasy logo.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image:alt" content="Fauna Fantasy key art: a squire, a fox, a small lantern-bearer and a bear warrior on a flower-strewn hill below a treehouse village, with the Fauna Fantasy logo.">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
-
-<header class="topbar">
-  <a class="logo" href="/" aria-label="Fauna Fantasy, home">
-    <img src="assets/img/logo.png" alt="Fauna Fantasy">
-  </a>
-  <button class="burger" aria-label="Menu" aria-expanded="false">☰</button>
-  <nav aria-label="Site">
-    <a href="/">Home</a>
-    <a href="/world">The Everwild</a>
-    <a href="/heroes">Heroes</a>
-    <a href="/play">How to play</a>
-    <a href="/arena" class="on" aria-current="page">The Arena</a>
-    <a href="/media">Media</a>
-  </nav>
-  <a class="wish" href="assets/vid/trailer_1280.mp4" data-lb="assets/vid/trailer_1280.mp4" data-poster="assets/img/trailer_poster.jpg">▶ Watch the trailer</a>
-</header>
-
-<main id="main">
-
-<section class="hero showreel">
-  <div class="bg"><video autoplay muted loop playsinline preload="metadata" poster="assets/img/play/arena.avif" data-onscreen data-bg aria-hidden="true" style="transform: scale(1.22);">
-    <source src="assets/vid/play/arena.mp4" type="video/mp4"></video></div>
-  <div class="inner">
-    <p class="eyebrow">The Arena</p>
-    <h1 class="display">Your four.<br>Their four. One board.</h1>
-    <p class="tag">Grovehaven's tourney ground. Bring the heroes <b>you've collected and
-    levelled</b>, meet another player's four on a mirrored board, and fight by the same rules as
-    every other battle.</p>
-    <div class="ctas">
-      <a class="btn primary" href="#modes">How matches work</a>
-      <a class="btn ghost" href="assets/vid/play/arena.mp4" data-lb="assets/vid/play/arena.mp4">▶&nbsp; Watch a match</a>
-    </div>
-  </div>
-</section>
-
-<section class="pad">
-  <div class="wrap">
-    <article class="feature reveal" style="margin-top: 0;">
-      <figure class="clip" data-lb="assets/img/shots/tv_arena_reveal.avif">
-        <img src="assets/img/shots/tv_arena_reveal.avif" alt="The pre-match screen: your four heroes in gold rings, the rival's four in crimson, the versus crest between, and Ready." loading="lazy">
-        <span class="dev">Apple TV</span>
-      </figure>
-      <div>
-        <p class="eyebrow">The tourney ground</p>
-        <h3>Your team, on show</h3>
-        <p>Your Arena team stands in the arch as four card paintings, each with its level, stars
-        and power, and your rating hangs on a medallion beside them. When the match starts, both
-        teams are dealt face down in their owners' card backs and turned over in a quick zigzag.
-        You know exactly who you're up against before anyone moves.</p>
-        <ul class="ticks">
-          <li>Quick Match, Challenge a Friend and Practice from one screen</li>
-          <li>Win, and the rating change lands right on your medallion</li>
-          <li>Turn-by-turn matches wait on their own plates until you're back</li>
-        </ul>
-      </div>
-    </article>
-  </div>
-</section>
-
-<section class="pad" id="modes">
-  <div class="wrap">
-    <div class="reveal">
-      <p class="eyebrow">Modes</p>
-      <h2>Four ways to meet a rival</h2>
-      <div class="rule">◆</div>
-    </div>
-    <div class="cards">
-      <div class="card reveal">
-        <h3>Quick Match</h3>
-        <p>Opponents are matched by team power, and the search widens after 20 seconds. Each
-        hero's turn has a 30-second clock; if it runs out, the AI finishes that turn for you. If
-        your opponent's clock runs out and they stay quiet for 15 seconds more, the AI covers their
-        moves, so the battle never stalls.</p>
-      </div>
-      <div class="card reveal">
-        <h3>Challenge a Friend</h3>
-        <p>Invite a friend through Game Center by message, from your contacts or nearby, or
-        start a match with SharePlay during a FaceTime call. Then pick <b>Live</b> or <b>Take turns</b>.</p>
-      </div>
-      <div class="card reveal">
-        <h3>Take turns</h3>
-        <p>A friend match that carries on after you both close the app. Every hero's turn is
-        saved, and when you come back, your opponent's moves play out from exactly where you left
-        off. Leave a turn for 24 hours and you forfeit; you can always resign.</p>
-      </div>
-      <div class="card reveal">
-        <h3>Practice</h3>
-        <p>An AI rival with a team like yours, on the same rules, any time, even offline. It's
-        never rated, so it's the place to try out a new four, or to play the Arena on a plane.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="pad" style="padding-top: 10px;">
-  <div class="wrap">
-    <div class="reveal">
-      <p class="eyebrow">Fair play</p>
-      <h2>Nobody peeks, nobody stalls</h2>
-      <div class="rule">◆</div>
-    </div>
-    <div class="duo reveal">
-      <div>
-        <p>Both players lock in their teams before either sees the other's, so nobody can pick
-        a counter to your party. Every turn is checked on both devices as it's played, and if
-        they ever disagree, the match is called <i>no contest</i>.</p>
-        <p>You'll both need the same version of the game. There's no server in the middle, so
-        the Arena takes your team on trust: bring heroes you earned.</p>
-      </div>
-      <div>
-        <div class="chipset">
-          <span class="chip"><b>Mirrored boards</b><small>land by land</small></span>
-          <span class="chip"><b>A Bond gauge each</b><small>and a knockout rule of its own</small></span>
-          <span class="chip"><b>Tie-breaks</b><small>that alternate who goes first</small></span>
-          <span class="chip"><b>Any mix of devices</b><small>iPhone, iPad, Apple&nbsp;TV, Apple&nbsp;Vision&nbsp;Pro</small></span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="band">
-  <div class="band-bg kb"><img src="assets/img/battle/gloomroot_hollow_vista.avif" alt="" aria-hidden="true" loading="lazy"></div>
-  <div class="wrap reveal">
-    <p class="eyebrow">Rating & seasons</p>
-    <h2>From Sprout to Accord Champion</h2>
-    <div class="rule">◆</div>
-    <div class="duo">
-      <div>
-        <p>Quick Matches are rated. Everyone starts at 1,500, and each six-week season hands
-        out titles on the way up: <b>Sprout</b>, <b>Grove Warden</b>, <b>Thornguard</b>,
-        <b>Wildheart</b> and, at the very top, <b>Accord Champion</b>. The leaderboard is your Game
-        Center friends, so the people you're beating are people you know.</p>
-        <p>Your first win of the day pays Acorns and shards, and the next four pay a little.
-        Matches with friends are never rated. The Arena is for showing off, not for grinding.</p>
-      </div>
-      <div>
-        <figure class="frame">
-          <img src="assets/img/shots/tv_arena_battle.avif" alt="An Arena match on a coral board: the rival's name and turn under the pause button, the turn strip across the top." loading="lazy" data-lb="assets/img/shots/tv_arena_battle.avif">
-          <figcaption><span>The normal battle HUD</span><span>plus your rival's name</span></figcaption>
-        </figure>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="pad center">
-  <div class="wrap reveal">
-    <div class="rule">◆</div>
-    <p style="max-width: 640px; margin: 0 auto;">One of you on an iPad, the other on the sofa
-    with the Siri Remote. Win the match, then go be insufferable about your rating.</p>
-    <div class="ctas" style="margin-top: 24px;">
-      <a class="btn primary" href="assets/vid/play/arena.mp4" data-lb="assets/vid/play/arena.mp4">▶&nbsp; Watch a match</a>
-      <a class="btn ghost" href="/">Back to Grovehaven</a>
-    </div>
-  </div>
-</section>
-
+<main id="main" class="wrap" style="padding: 120px 24px;">
+  <p>This page has moved to the <a href="/#arena">home page</a>.</p>
 </main>
-
-<footer>
-  <div class="wrap">
-    <div class="fcols">
-      <div>
-        <h4>Fauna Fantasy</h4>
-        <p>A tactical RPG with holo cards: turn-based battles across infinite wild lands, a
-        Binder of 285 cards (100 of them heroes), the real-time Rootdelve and the Arena. Made with
-        SwiftUI and RealityKit by SideResult Software in Portland, Oregon, for iPhone, iPad,
-        Apple TV and Apple Vision Pro.</p>
-        <p class="small"><label><input type="checkbox" id="readableToggle"> Readable font
-        (Atkinson Hyperlegible)</label>, the same option the game has in Settings.</p>
-      </div>
-      <div>
-        <h4>This site</h4>
-        <ul>
-          <li><a href="/world">The Everwild</a></li>
-          <li><a href="/heroes">Meet the town</a></li>
-          <li><a href="/play">How to play</a></li>
-          <li><a href="/arena">The Arena</a></li>
-          <li><a href="/media">Media & press</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Made with</h4>
-        <ul>
-          <li>Fraunces & Lilita One, the display faces</li>
-          <li>Atkinson Hyperlegible Next, the readable option</li>
-          <li>All three under the SIL Open Font License</li>
-          <li>Every image on this site was made for the game</li>
-        </ul>
-      </div>
-    </div>
-    <p class="fine">© 2026 <a href="https://sideresult.com">SideResult Software</a>, Portland, Oregon.
-    Fauna Fantasy, the Everwild, the Wild Accord and all characters are original works. Gameplay footage is captured from current builds; content and
-    systems may change before release.
-    iPhone, iPad, Mac, Apple TV, Apple Vision Pro, App Store, Game Center, iCloud, FaceTime and SharePlay are trademarks of Apple Inc., registered in the U.S. and other countries and regions.</p>
-    <p class="legal"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/support">Support</a><span>No ads · no trackers · no cookies</span></p>
-  </div>
-</footer>
-
-<script src="assets/js/site.js"></script>
 </body>
 </html>

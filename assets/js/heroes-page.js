@@ -71,8 +71,7 @@
     b.innerHTML =
       '<img src="assets/img/heroes/f/' + h.id + '.avif" alt="Card art of ' + esc(h.name) + '" loading="lazy">' +
       '<span class="nm"><b>' + esc(h.name) + "</b><span>#" + h.n + " · " + esc(h.jobName) +
-      " · " + esc(h.el) + "</span></span>" +
-      '<span class="hook">' + esc(h.hook) + "</span>";
+      " · " + esc(h.el) + "</span></span>";   // the hook waits in the card's detail (a click away)
     b.addEventListener("click", function () { openHero(h); });
     st.appendChild(b);
   });

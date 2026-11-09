@@ -1,16 +1,26 @@
 # The Fauna Fantasy website
 
-A static, dependency-free marketing site for the game: six pages plus the Privacy Policy and
-Terms of Service, no framework, no build step needed to browse. This repo (`~/www/faunafantasy-web`, github.com/mike-bundy/faunafantasy-web)
+A static, dependency-free marketing site for the game: a lean launch site (home, heroes, media,
+support) plus the Privacy Policy and Terms of Service, no framework, no build step needed to browse. This repo (`~/www/faunafantasy-web`, github.com/mike-bundy/faunafantasy-web)
 is the site's only working copy. Everything committed here is published by GitHub Pages from
 the `main` branch root.
 
 ## Layout
-- `*.html`: the six pages (index, world, heroes, play, arena, media), the legal pages (`privacy.html`,
-  `terms.html`), the support page (`support.html`, the App Store's Support URL), and `404.html`.
-  Every footer links Privacy, Terms and Support.
-- **Clean URLs.** Pages are linked and published without `.html`: `/`, `/world`, `/heroes`,
-  `/play`, `/arena`, `/media`, `/support`, `/privacy`, `/terms`. GitHub Pages serves `/heroes`
+- `*.html`: the pages (index, heroes, media), the legal pages (`privacy.html`, `terms.html`), the
+  support page (`support.html`, the App Store's Support URL), and `404.html`. The nav is Home ·
+  Heroes · Media · Support plus the trailer button. Every footer links Privacy, Terms and Support.
+- **Lean launch site (WEB.lean, 2026-11-09).** Bullets and visuals, not every system: the home
+  page is the hero reel, the trailer, five feature rows (battles, packs, expeditions, Grovehaven,
+  the Arena; each a clip or still, a headline and two or three short bullets), the hero rail and
+  the closing call to action. Lore is a reward, not exposition: no lore paragraphs on the pages;
+  it shows only where a visitor goes looking (a hero card's detail on Heroes, cinematic captions on
+  Media). The full v2 site (world, play and arena pages, the lore and biome tour) is on the local
+  branch `site-v2-full`.
+- `play.html`, `world.html` and `arena.html` are redirect stubs (meta refresh, a canonical to the
+  home page, a plain link, and a small script that maps old `#anchors`) to `/#battles`,
+  `/#expeditions` and `/#arena`, so no old link 404s.
+- **Clean URLs.** Pages are linked and published without `.html`: `/`, `/heroes`, `/media`,
+  `/support`, `/privacy`, `/terms` (and the stubs `/world`, `/play`, `/arena`). GitHub Pages serves `/heroes`
   from `heroes.html`. Page links are root-relative (`href="/heroes#tiers"`, home is `href="/"`,
   never `index.html`); asset paths stay relative (`assets/…`), which resolve the same from any
   top-level clean URL. Old `.html` addresses still load, and their canonical points at the clean
@@ -81,15 +91,16 @@ the `main` branch root.
   the wide key art and the logo), with its alt text repeated as `twitter:image:alt`. The home page
   carries the JSON-LD (`Organization`, `WebSite`, `VideoGame` with the trailer); add `offers` and the App Store URL to it at release. `404.html` uses root-absolute
   paths for everything (links and assets) because Pages serves it at any depth, and it is
-  `noindex`. `robots.txt` names the sitemap; `sitemap.xml` lists the clean URLs of the six pages,
-  the support page and the two legal pages.
+  `noindex`. `robots.txt` names the sitemap; `sitemap.xml` lists the clean URLs of the home, heroes
+  and media pages, the support page and the two legal pages (not the stubs).
 - Studio credit: SideResult Software, Portland, Oregon (https://sideresult.com).
 - The legal pages make factual claims about the app (no ads, no trackers, no third-party code,
   saves in the player's private iCloud). Re-check them against the game before shipping anything that
   changes data handling; the evidence list is `_review/legal.html` (local). The site itself must keep
   loading nothing from third parties and setting no cookies, or `privacy.html` must change.
-- The hero roster and world data are data-driven from `Content/heroes.json`,
-  `Content/biomes.json` and `Content/jobs/*.json` via `build.py`.
+- The hero roster is data-driven from `Content/heroes.json` and `Content/jobs/*.json` via
+  `build.py`. `build.py` still writes `assets/data/biomes_raw.js` from `Content/biomes.json`; only the
+  v2 world page used it.
 
 ## Deploy (GitHub Pages)
 Pages serves the `main` branch root (`.nojekyll` is kept). The live URL is

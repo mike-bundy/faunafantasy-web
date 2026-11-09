@@ -3,7 +3,7 @@
   "use strict";
 
   // Stills are AVIF with a JPEG twin beside each (build.py). Browsers that can't
-  // decode AVIF (Safari before 16, older Macs) get every .avif reference swapped for
+  // decode AVIF (Safari before 16) get every .avif reference swapped for
   // its .jpg, including ones added later (hero cards, the modal, the lightbox).
   (function () {
     var AVIF = /\.avif(?=$|[?#])/i;
