@@ -344,7 +344,7 @@ section[id], article[id] { scroll-margin-top: 76px; }
 .rail .hcard { width: 200px; flex: 0 0 200px; }
 .rail .hcard img { aspect-ratio: 4 / 4.8; }
 .hcard .nm {
-  padding: 11px 13px 12px; background: #131a12; border-top: 1px solid rgba(212,164,76,.16);
+  display: block; padding: 11px 13px 12px; background: #131a12; border-top: 1px solid rgba(212,164,76,.16);
   overflow: hidden;
 }
 .hcard .nm b {
@@ -353,7 +353,7 @@ section[id], article[id] { scroll-margin-top: 76px; }
 }
 .hcard .nm span {
   display: block; font-family: "Lilita One", sans-serif; font-size: 12px; letter-spacing: .01em;
-  text-transform: capitalize; color: var(--cream-dim); margin-top: 2px;
+  color: var(--cream-dim); margin-top: 2px;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .hcard .dot {

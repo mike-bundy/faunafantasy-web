@@ -325,7 +325,7 @@
       a.innerHTML =
         '<img src="assets/img/heroes/f/' + h.id + '.avif" alt="" loading="lazy">' +
         '<span class="dot"></span><span class="rar">' + h.rarity + "</span>" +
-        (h.starter ? '<span class="nm"><b>' + h.name + "</b><span>" + h.jobName + " · " + h.el + "</span></span>"
+        (h.starter ? '<span class="nm"><b>' + h.name + "</b><span>" + h.jobName + " · " + h.el.charAt(0).toUpperCase() + h.el.slice(1) + "</span></span>"
                    : '<span class="nm"><b>?</b><span>In the packs</span></span>');
       rail.appendChild(a);
     });

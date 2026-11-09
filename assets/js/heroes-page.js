@@ -6,9 +6,9 @@
 
   // What each starter does for your party, in a line (the game's own hooks wait in the modal).
   var INTRO = {
-    rowan_ashford: "The front line. Rowan stands in front so the other three don't have to.",
+    rowan_ashford: "The front line. Rowan stands in front so the other three don't have to, his little brother Ember most of all.",
     hazel_acornshot: "The archer. Hazel picks enemies off from a distance, and hits harder from higher ground.",
-    ember_pike: "The fire mage. Ember's spells hit hard from the back row, so keep him there.",
+    ember_pike: "The fire mage, and Rowan's little brother. His spells hit hard from the back row, so keep him there.",
     clover_softpaw: "The healer. Clover keeps the others on their feet, and hops toward trouble, not away from it."
   };
 
@@ -18,6 +18,7 @@
     if (html != null) e.innerHTML = html;
     return e;
   }
+  function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
@@ -62,7 +63,7 @@
     var b = el("button", "scard r-" + h.rarity + " el-" + h.el);
     b.innerHTML =
       '<img src="assets/img/heroes/f/' + h.id + '.avif" alt="Card art of ' + esc(h.name) + '" loading="lazy">' +
-      '<span class="nm"><b>' + esc(h.name) + "</b><span>" + esc(h.jobName) + " · " + esc(h.el) + "</span></span>" +
+      '<span class="nm"><b>' + esc(h.name) + "</b><span>" + esc(h.jobName) + " · " + esc(cap(h.el)) + "</span></span>" +
       '<span class="hook">' + esc(INTRO[h.id] || h.hook) + "</span>";
     b.addEventListener("click", function () { openHero(h); });
     st.appendChild(b);
