@@ -680,7 +680,7 @@ a.tile, a.hcard { -webkit-tap-highlight-color: transparent; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0; }
 
 /* page heads: clear the fixed bar; a display h1 that matches the home hero */
-.pagehead { padding-top: clamp(124px, 15vw, 176px); }
+.pagehead, section.pad.pagehead { padding-top: clamp(124px, 15vw, 176px); }
 h1.display { font-size: clamp(32px, 4.6vw, 54px); line-height: 1.08; margin: 0 0 .4em; }
 .hero h1.display, .hero h2 { text-shadow: 0 2px 22px rgba(0,0,0,.85); }
 a.hcard, a.hcard:hover { text-decoration: none; }
