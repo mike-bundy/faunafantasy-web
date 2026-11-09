@@ -36,6 +36,7 @@
   .loop .arrow { align-self: center; color: var(--gold); font-size: 14px; }
   .shotgrid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
   .shotgrid img { aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 45%; }
+  .shotgrid.wide img { aspect-ratio: 16 / 9; object-position: 50% 50%; }
   .phones { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; margin-top: 30px; }
   .phones figure { margin: 0; width: min(200px, 28vw); text-align: center; }
   .phones img { width: 100%; border-radius: 22px; border: 6px solid #0c0e0d; cursor: zoom-in;
@@ -63,7 +64,7 @@
     <a href="/arena">The Arena</a>
     <a href="/media">Media</a>
   </nav>
-  <a class="wish" href="assets/vid/reel_1280.mp4" data-lb="assets/vid/reel_1280.mp4">▶ Watch gameplay</a>
+  <a class="wish" href="assets/vid/trailer_1280.mp4" data-lb="assets/vid/trailer_1280.mp4" data-poster="assets/img/trailer_poster.jpg">▶ Watch the trailer</a>
 </header>
 
 <main id="main">
@@ -81,10 +82,9 @@
       <span class="stepchip">Win, lose, come home</span><span class="arrow" aria-hidden="true">→</span>
       <span class="stepchip">Grow your favourites</span><span class="arrow" aria-hidden="true">⟲</span>
     </div>
-    <p class="lead" style="margin: 0 auto;">An expedition is a walk through wild lands: a trail
-    of forks, a campfire, a guardian at the end of each act. It ends at a boss throne or at your
-    own decision to retreat. A failed run still pays out, and your story progress stays: every victory
-    <i>lets something rest</i>.</p>
+    <p class="lead" style="margin: 0 auto;">An expedition crosses three lands, one act each, and
+    every act ends with a guardian. You can turn for home whenever you like. Win or lose, the levels
+    your cards earned on the way are theirs to keep, and every guardian you calm stays calmed.</p>
   </div>
 </section>
 
@@ -93,41 +93,39 @@
   <div class="wrap">
     <header class="sh reveal">
       <p class="eyebrow">Battle</p>
-      <h2>Read the board, not the fine print</h2>
+      <h2>Every square matters</h2>
       <div class="rule">◆</div>
-      <p class="lead">Battles are turn-based on a tiled board in three-quarter view, with a turn
-      strip that shows who acts when. Your tools are the ones tactical RPGs were built on, and
-      then some.</p>
+      <p class="lead">Battles are turn-based, on a board of tiles seen from three-quarter view.
+      A strip along the top shows who moves next. Every square has a height and a surface, and
+      some of them conduct electricity.</p>
     </header>
     <article class="feature reveal" style="margin-top: 34px;">
-      <figure class="clip" data-lb="assets/vid/play/plan.mp4">
+      <figure class="clip phone" data-lb="assets/vid/play/plan.mp4">
         <video muted loop playsinline preload="none" poster="assets/img/play/plan.avif" data-onscreen
-               aria-label="Planning a move on Coral Shallows: the path and the landing tile are previewed, then a facing is chosen.">
+               aria-label="Planning a turn on Coral Shallows on iPhone: the move is previewed tile by tile, a facing is chosen, and the next hero steps up.">
           <source src="assets/vid/play/plan.mp4" type="video/mp4"></video>
-        <span class="dev">Apple TV</span>
+        <span class="dev">iPhone</span>
       </figure>
       <div>
         <h3>Take the high ground, then pick your facing</h3>
-        <p>Every move is previewed tile by tile before you confirm it: how far, how high, whether
-        anyone gets a free swing on the way. Then you choose which way to face, because a flank
-        or a back attack hits harder, and the game says so in numbers.</p>
+        <p>Tap a tile and the path lights up square by square. You can see how high you'll
+        climb and whether anyone gets a free swing as you pass. Then pick which way to face. A blow
+        from the side or behind hits harder, and the forecast tells you by how much.</p>
       </div>
     </article>
     <div class="rules reveal" style="margin-top: 40px;">
-      <div class="card"><h3>Height & facing</h3><p>High ground earns its keep. Attack from the
-      flank and the forecast shows it before you commit.</p></div>
-      <div class="card"><h3>Living surfaces</h3><p>Puddles conduct, oil burns, mist muffles. A
-      lightning bolt into a flooded quarry is a <i>decision</i>, and the objective that asks you to
-      do it is an <i>invitation</i>.</p></div>
-      <div class="card"><h3>Twenty jobs, eight elements</h3><p>From Knight to Time Mage. Elements
-      answer the land: in Emberforge Caldera the foes are fire-born, so Fire hits them for half.</p></div>
-      <div class="card"><h3>The Bond gauge</h3><p>Fight together and the gauge fills until you can
-      call in your summon: a beast that fights beside you for three rounds, or a Wyrm's single,
-      decisive strike.</p></div>
-      <div class="card"><h3>Everything is previewed</h3><p>Hit chance, damage range, statuses,
-      reactions, order. The test every rule has to pass: could a player have predicted this?</p></div>
-      <div class="card"><h3>A HUD that steps aside</h3><p>One anchor per corner, commands only on
-      your turn, and a Clean, Standard or Detailed setting for how much the board shows.</p></div>
+      <div class="card"><h3>Height & facing</h3><p>Strike from above and you're likelier to hit,
+      and harder. Falls hurt, so mind the edges.</p></div>
+      <div class="card"><h3>Living surfaces</h3><p>Water carries lightning and oil catches fire. One
+      well-aimed spell into a flooded quarry can do the work of three.</p></div>
+      <div class="card"><h3>Twenty jobs, eight elements</h3><p>From Knight to Time Mage. In
+      Emberforge Caldera the locals are fire-born, so Fire only hits them for half. Pack some water.</p></div>
+      <div class="card"><h3>The Bond gauge</h3><p>Fight side by side and the gauge fills. Then call
+      your summon: a beast who fights with you for three rounds, or a Wyrm who strikes once.</p></div>
+      <div class="card"><h3>No nasty surprises</h3><p>Before you commit you'll see the hit chance,
+      the damage range, any status it causes and who gets to react.</p></div>
+      <div class="card"><h3>A HUD that steps aside</h3><p>Commands appear on your turn and get out
+      of the way on everyone else's. Clean, Standard or Detailed sets how much the board shows.</p></div>
     </div>
     <article class="feature flip reveal">
       <figure class="clip phone" data-lb="assets/vid/play/gloom.mp4">
@@ -138,11 +136,11 @@
       </figure>
       <div>
         <h3>Peril, never gore</h3>
-        <p>This is a story about <i>calming</i> the wild, not conquering it: every guardian you
-        beat is freed from the Blight, and its land's Wyrm wakes. A hero who falls in battle sits
-        out only for the rest of that run.</p>
-        <p>Battles play the same on every screen, from an iPhone held upright to a volume on the
-        table in front of you on Apple Vision Pro.</p>
+        <p>Beat a guardian and you've freed it. The violet drains away, the old creature
+        remembers itself, and its land's Wyrm wakes up. A hero who falls is out for the rest of that
+        run and no longer.</p>
+        <p>Battles play the same on every screen. On Apple&nbsp;Vision&nbsp;Pro the board stands on
+        your table, and you can lean in for a closer look.</p>
       </div>
     </article>
   </div>
@@ -153,19 +151,20 @@
   <div class="band-bg kb"><img src="assets/img/battle/coral_shallows_mid.avif" alt="" aria-hidden="true" loading="lazy"></div>
   <div class="wrap reveal">
     <p class="eyebrow">The run</p>
-    <h2>The Trail: a walk with forks</h2>
+    <h2>Six stops to the guardian</h2>
     <div class="rule">◆</div>
     <div class="duo">
       <div>
-        <p>Choose your land at the <b>Expedition Gate</b>, with its guardian, its creatures and
-        its landmarks laid out before you set out. Each act is a short trail drawn as a 3D diorama
-        of the land, and your party walks every step of it. At every fork you see both routes.
-        There is no fog, no secret path, no coin flip pretending to be strategy.</p>
-        <p>Camp is the party round a fire: Rest, Train or Reinforce, and a <b>camp story</b>
-        ("who handles this?"), answered by a hero's job, kin or element in a short written scene
-        with the party's banter.</p>
-        <p>An Encounter brings a mini-game or a <b>Wild Duel</b>, played with your real cards: a
-        break between battles, not a second full game.</p>
+        <p>Pick a land at the <b>Expedition Gate</b>. Its painting fills the screen with the
+        guardian waiting at the end, a few of the creatures you'll meet and the landmarks on the way.
+        Then the party sets off along the <b>Trail</b>, a path winding across the land's own blocks,
+        and walks every step of it.</p>
+        <p>Each act runs the same six stops: a battle, a locked chest, another battle, a night at
+        camp, an Elite, and the guardian. Every win pays <b>Infusions</b>. Tap your party's cards to
+        spend them, and the levels they earn stay when the run is over.</p>
+        <p>Camp is the party round a fire. Rest, Train or Reinforce, see what Pemberton has on his
+        cart, and settle a <b>camp story</b>. Tonight it's <i>The Lost Hatchling</i>, and the game
+        wants to know who handles it.</p>
       </div>
       <div>
         <figure class="frame">
@@ -174,15 +173,15 @@
         </figure>
       </div>
     </div>
-    <div class="phones">
-      <figure><img src="assets/img/shots/02_walking.avif" alt="The party walking the diorama Trail between forked stops." loading="lazy" data-lb="assets/img/shots/02_walking.avif"><figcaption>The Trail diorama</figcaption></figure>
-      <figure><img src="assets/img/shots/03_camp.avif" alt="Camp: the party around a campfire, with Rest, Train and Reinforce." loading="lazy" data-lb="assets/img/shots/03_camp.avif"><figcaption>Camp</figcaption></figure>
-      <figure><img src="assets/img/shots/05_encounter.avif" alt="An Encounter stop on the Trail." loading="lazy" data-lb="assets/img/shots/05_encounter.avif"><figcaption>An Encounter</figcaption></figure>
+    <div class="shotgrid wide" style="margin-top: 30px;">
+      <figure class="frame"><img src="assets/img/shots/tv_trail.avif" alt="The party walks Fernwood's Trail on Apple TV, with the next stop, a battle, flagged ahead." loading="lazy" data-lb="assets/img/shots/tv_trail.avif"><figcaption><span>The Trail</span><span>Fernwood, stop 2 of 6</span></figcaption></figure>
+      <figure class="frame"><img src="assets/img/shots/tv_victory.avif" alt="Victory: Rowan, Agnes, Wolfgang and Ember's cards turned face up, their Infusions spent and their new levels shown." loading="lazy" data-lb="assets/img/shots/tv_victory.avif"><figcaption><span>Victory</span><span>Infusions spent</span></figcaption></figure>
+      <figure class="frame"><img src="assets/img/shots/tv_camp.avif" alt="Camp: the party round a fire, with Rest, Train and a camp story, The Lost Hatchling." loading="lazy" data-lb="assets/img/shots/tv_camp.avif"><figcaption><span>Camp</span><span>a story by the fire</span></figcaption></figure>
     </div>
     <div class="chipset" style="margin-top: 26px;">
       <span class="chip"><b>Camp stories</b><small>short scenes with the party's banter</small></span>
       <span class="chip"><b>Retreat</b><small>always allowed</small></span>
-      <span class="chip"><b>Boons & relics</b><small>from won fights</small></span>
+      <span class="chip"><b>Relics</b><small>from chests, Elites and the cart</small></span>
       <span class="chip"><b>Wild Tiers</b><small>harder roads, up to 20</small></span>
     </div>
   </div>
@@ -192,32 +191,23 @@
 <section class="pad">
   <div class="wrap">
     <header class="sh reveal">
-      <p class="eyebrow">Trail encounters</p>
-      <h2>Five mini-games and a card duel</h2>
+      <p class="eyebrow">Between the battles</p>
+      <h2>Pick the lock, then play the tavern</h2>
       <div class="rule">◆</div>
-      <p class="lead">Each takes about a minute, and most draw on what you already know from
-      battle: the element chart, the grid, your own cards. Any hero you own can step up, and one
-      whose job suits the game plays it with a bonus.</p>
+      <p class="lead">Halfway through every act there's a chest with a lock on it. Any hero you own
+      can try it, and a Thief or a Ninja has the steadiest hands. Pick it and you choose from three
+      relics; fumble it and you choose from two. Back home, the Snug Root tavern plays Wild Duel with
+      your own cards.</p>
     </header>
     <div class="shotgrid reveal" style="margin-top: 26px;">
       <figure class="frame">
-        <img src="assets/img/shots/brew_ipad_play.avif" alt="Rune Brew: a patch of land with rune buttons and brew targets." loading="lazy" data-lb="assets/img/shots/brew_ipad_play.avif">
-        <figcaption><span>Rune Brew</span><span>chemistry, not trivia</span></figcaption>
-      </figure>
-      <figure class="frame">
-        <img src="assets/img/shots/grove_ipad_play.avif" alt="Grove Puzzle: a small movement puzzle with a waystone goal." loading="lazy" data-lb="assets/img/shots/grove_ipad_play.avif">
-        <figcaption><span>Grove Puzzle</span><span>movement, par-scored</span></figcaption>
+        <img src="assets/img/shots/tv_chest.avif" alt="A winner's chest on the Trail: Gold, and three relics to choose from, the Bond Ribbon first." loading="lazy" data-lb="assets/img/shots/tv_chest.avif" style="object-position: 0% 50%;">
+        <figcaption><span>The Lockpick chest</span><span>three relics for a clean pick</span></figcaption>
       </figure>
       <figure class="frame">
         <div class="clip phone" style="border-radius: 0; border: 0; box-shadow: none; aspect-ratio: 4 / 3;" data-lb="assets/vid/play/duel.mp4"><video muted loop playsinline preload="none" poster="assets/img/play/duel.avif" data-onscreen aria-label="A Wild Duel: cards played onto a three-by-three board flip to the player's colour."><source src="assets/vid/play/duel.mp4" type="video/mp4"></video></div>
-        <figcaption><span>Wild Duel</span><span>your real cards</span></figcaption>
+        <figcaption><span>Wild Duel</span><span>at the Snug Root</span></figcaption>
       </figure>
-    </div>
-    <div class="chipset reveal" style="margin-top: 20px;">
-      <span class="chip"><b>Lockpick</b><small>three pins, three picks</small></span>
-      <span class="chip"><b>Song of the Grove</b><small>rhythm to the land's own loop</small></span>
-      <span class="chip"><b>Sharpshooter</b><small>Blight wisps, your hero's own ranged attack</small></span>
-      <span class="chip"><b>Wild Duel</b><small>the tavern's card game, on the trail</small></span>
     </div>
   </div>
 </section>
@@ -232,21 +222,23 @@
       <div class="rule">◆</div>
     </header>
     <article class="feature reveal" style="margin-top: 26px;">
-      <figure class="clip phone" data-lb="assets/vid/play/crawl.mp4">
+      <figure class="clip" data-lb="assets/vid/play/crawl.mp4">
         <video muted loop playsinline preload="none" poster="assets/img/play/crawl.avif" data-onscreen
-               aria-label="Rootdelve on iPhone: a hero runs through a Fernwood maze with a touch stick, Jump, Attack, Roll and Potion buttons, and a minimap.">
+               aria-label="The Rootdelve on Apple TV: Agnes Valor crosses a Stormspire floor of copper and blue light, reaches the stairs and drops down to Gloomroot Hollow.">
           <source src="assets/vid/play/crawl.mp4" type="video/mp4"></video>
-        <span class="dev">iPhone</span>
+        <span class="dev">Apple TV</span>
       </figure>
       <div>
-        <p>A change of pace from the turn-based board: pick one hero and take them down into the
-        Blight's roots in real time. Their job, weapon and element decide how they fight.</p>
+        <p>Down here the turns stop. Pick one hero and take them through the Blight's roots in
+        real time, one floor after another, until they can't go on. Each floor belongs to a
+        different land, so Fernwood's moss gives way to Stormspire's copper and then to Gloomroot's
+        violet dark. Your hero's job, weapon and element decide how they fight.</p>
         <ul class="ticks">
-          <li>Run, jump, attack, dodge-roll and drink potions, on touch, keyboard, controller or the Siri Remote</li>
-          <li>Floors built from each land's own blocks, with chasms, terraces and tall walls; every layout is checked solvable before it is drawn</li>
+          <li>Play with touch, a keyboard, a game controller or the Siri Remote</li>
+          <li>Chasms to jump, and walls that fade when your hero walks behind them</li>
           <li>Chests and drops in four rarities, equipped as you find them</li>
-          <li>A guardian seals the stairs every third floor; a minimap keeps what you've seen</li>
-          <li>Weighty hits, haptics and the land's own music, floor by floor</li>
+          <li>A guardian seals the stairs every third floor</li>
+          <li>Most runs end somewhere around floor 13. See if yours doesn't.</li>
         </ul>
       </div>
     </article>
@@ -262,18 +254,19 @@
       <div class="rule">◆</div>
     </header>
     <article class="feature reveal" style="margin-top: 26px;">
-      <figure class="clip" data-lb="assets/vid/play/pack.mp4">
+      <figure class="clip phone" data-lb="assets/vid/play/pack.mp4">
         <video muted loop playsinline preload="none" poster="assets/img/play/pack.avif" data-onscreen
-               aria-label="A Starseed pack opening: the cards fan out, flip one by one, and a Legendary hero card lifts into a burst of light.">
+               aria-label="A Starseed pack opening on iPhone: the cards fan out and turn one by one, Cackle Brimstone in an Epic's rune ring, then Agnes Valor, Legendary, in a gold sunburst.">
           <source src="assets/vid/play/pack.mp4" type="video/mp4"></video>
-        <span class="dev">Apple TV</span>
+        <span class="dev">iPhone</span>
       </figure>
       <div>
-        <p>Every hero, weapon, relic, tactic, summon, charm and crest is a card: <b>285</b> in
-        all, each painted for the game. Swipe across the wax and the pack tears; the cards fan
-        out face down and flip one by one, up to a Legendary that lifts into its own light.</p>
-        <p>Eleven packs, each Element Pack in its own painted wrapper, with the contents, the odds
-        and the pity counters shown before you open it.</p>
+        <p>There are <b>285</b> cards: heroes, weapons, relics, Tactic cards, summons, charms
+        and crests. Swipe across the wax and the pack tears open. The cards fan out face down and
+        turn one at a time. An Epic turns inside a ring of runes; a Legendary lifts into a gold
+        sunburst, and Seedkeeper Pim gasps out loud.</p>
+        <p>There are eleven packs to choose from, eight of them Element Packs in their own painted
+        wrappers. Each one shows what's inside, the odds and its pity counter before you open it.</p>
         <a class="more" href="/heroes#tiers">The four holo tiers →</a>
       </div>
     </article>
@@ -286,12 +279,11 @@
       </figure>
       <div>
         <h3>The Binder and the Fusion Forge</h3>
-        <p>The Binder keeps the whole set, with a count for every kind of card. Duplicates aren't
-        dead stock: spares feed the <b>Fusion Forge</b> as shards, and favourites climb to
-        <span class="star5">★5 Prismatic</span> over months. The collection grows whether you win
-        or lose.</p>
-        <p>The rule behind all of it: <i>does this make a card more desirable to own or improve,
-        without letting real money buy a specific card?</i></p>
+        <p>Archivist Quillby files every card you own in the Binder, with a count for each kind.
+        Spare copies go to Brindle at the <b>Fusion Forge</b> as shards, and that's how a favourite
+        climbs to <span class="star5">★5 Prismatic</span>, over months. Win or lose, the collection
+        grows.</p>
+        <p>Money never buys a specific card, and every card in the game can be earned by playing.</p>
       </div>
     </article>
   </div>
@@ -303,22 +295,22 @@
   <div class="wrap">
     <header class="sh reveal">
       <p class="eyebrow">Between runs</p>
-      <h2>Grovehaven is a place, not a menu</h2>
+      <h2>Home is a village in a tree</h2>
       <div class="rule">◆</div>
     </header>
     <article class="feature reveal" style="margin-top: 26px;">
       <figure class="clip" data-lb="assets/vid/play/hub.mp4">
         <video muted loop playsinline preload="none" poster="assets/img/play/hub.avif" data-onscreen
-               aria-label="Four heroes drop from the sky onto Grovehaven's main street, land in a puff of dust and settle into their idles.">
+               aria-label="Grovehaven's main street on Apple TV: Rowan, Agnes, Wolfgang and Ember land and get to their feet, with their name plates and the menu below.">
           <source src="assets/vid/play/hub.mp4" type="video/mp4"></video>
         <span class="dev">Apple TV</span>
       </figure>
       <div>
-        <p>Your party drops onto Grovehaven's main street in a puff of dust, with a name plate
-        under each hero. Drag one to turn them; tap one to swap them out or change their kit.
-        Below them, the Expedition Gate and everything else the village has to offer.</p>
+        <p>Your four stand on Grovehaven's main street with a name plate under each. Drag a hero
+        to turn them round; tap one to swap them out or change their kit. The menu below goes
+        everywhere else: the Expedition Gate, the Rootdelve, the trials, the errands and the shops.</p>
         <ul class="ticks">
-          <li><b>Hero Trials</b>: 110 puzzles, one per hero plus ten Legend trials, each proven winnable and scored out of three stars, with a Daily Trial and its leaderboard</li>
+          <li><b>Hero Trials</b>: 110 puzzles, one for each hero plus ten Legend trials, scored out of three stars, and a Daily Trial with its own leaderboard</li>
           <li><b>Errands</b>: send the bench out in teams of one to three; they come back with Acorns, shards, card XP and sometimes a tale</li>
           <li><b>Pack Altar, Binder and Fusion Forge</b>, a step away</li>
         </ul>
@@ -326,20 +318,21 @@
     </article>
     <div class="duo reveal" style="margin-top: 48px; align-items: start;">
       <figure class="frame">
-        <img src="assets/img/shots/ipad_hub.avif" alt="Grovehaven on iPad: the party under the village sign, then the Expedition Gate, Hero Trials, Errands, Rootdelve, and the Pack Altar, Binder, Fusion Forge and Shop." loading="lazy" data-lb="assets/img/shots/ipad_hub.avif" style="aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 30%;">
-        <figcaption><span>Grovehaven on iPad</span><span>tap to see it all</span></figcaption>
+        <img src="assets/img/shots/tv_shop.avif" alt="Pemberton's Peddlery on Apple TV: Pemberton's welcome, the week of daily gifts, and the Deal of the Day." loading="lazy" data-lb="assets/img/shots/tv_shop.avif">
+        <figcaption><span>Pemberton's Peddlery</span><span>today's gift and deal</span></figcaption>
       </figure>
       <div class="rules" style="grid-template-columns: 1fr;">
         <div class="card" id="tavern"><h3>The Snug Root tavern</h3><p>Eight regulars wait at the
         tables for a <b>Wild Duel</b>: a 3×3 card game with your own cards, where a higher edge flips
         the card beside it. Each regular unlocks after the one before is beaten, and some play house rules.</p>
         <a class="more" href="#tavern" data-lb="assets/vid/play/duel.mp4">▶ Watch a duel</a></div>
-        <div class="card" id="shop"><h3>Pemberton's Peddlery</h3><p>A free gift every day, a Deal
-        of the Day, eight Element Packs on the shelves, and the odds on a tab beside every pack.
-        Auto-Battle, for the fights you've already mastered, is an optional in-app purchase.</p>
+        <div class="card" id="shop"><h3>Pemberton's Peddlery</h3><p>Pemberton has a gift for you
+        every day and a Deal of the Day he'll happily talk up. Eight Element Packs sit on his shelves,
+        each with its odds on a tab. Auto-Battle, for the fights you've already mastered, is an
+        optional in-app purchase.</p>
         <a class="more" href="#shop" data-lb="assets/img/shots/tv_shop.avif">See the stall →</a></div>
-        <div class="card"><h3>The Arena</h3><p>Rated Quick Matches by team power, and live or
-        turn-by-turn matches with friends.</p><a class="more" href="/arena">Inside the Arena →</a></div>
+        <div class="card"><h3>The Arena</h3><p>Quick Matches against teams of similar power,
+        rated over six-week seasons. With friends, play live or a turn at a time.</p><a class="more" href="/arena">Inside the Arena →</a></div>
       </div>
     </div>
   </div>

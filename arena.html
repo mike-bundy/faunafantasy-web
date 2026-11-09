@@ -41,7 +41,7 @@
     <a href="/arena" class="on" aria-current="page">The Arena</a>
     <a href="/media">Media</a>
   </nav>
-  <a class="wish" href="assets/vid/reel_1280.mp4" data-lb="assets/vid/reel_1280.mp4">▶ Watch gameplay</a>
+  <a class="wish" href="assets/vid/trailer_1280.mp4" data-lb="assets/vid/trailer_1280.mp4" data-poster="assets/img/trailer_poster.jpg">▶ Watch the trailer</a>
 </header>
 
 <main id="main">
@@ -51,9 +51,10 @@
     <source src="assets/vid/play/arena.mp4" type="video/mp4"></video></div>
   <div class="inner">
     <p class="eyebrow">The Arena</p>
-    <h1 class="display">Two sides. Four heroes each.<br>No mercy, no servers.</h1>
-    <p class="tag">Grovehaven's tourney ground, where you field <b>your real collection</b>
-    against another player's on a mirrored board, under the game's own battle rules.</p>
+    <h1 class="display">Your four.<br>Their four. One board.</h1>
+    <p class="tag">Grovehaven's tourney ground. Bring the heroes <b>you've collected and
+    levelled</b>, meet another player's four on a mirrored board, and fight by the same rules as
+    every other battle.</p>
     <div class="ctas">
       <a class="btn primary" href="#modes">How matches work</a>
       <a class="btn ghost" href="assets/vid/play/arena.mp4" data-lb="assets/vid/play/arena.mp4">▶&nbsp; Watch a match</a>
@@ -71,13 +72,14 @@
       <div>
         <p class="eyebrow">The tourney ground</p>
         <h3>Your team, on show</h3>
-        <p>Your Arena team stands as four card paintings with their level, stars, element, job,
-        weapon and power. Your rating sits on a medallion with its title and season. Find a match
-        and the versus crest lights in the arch; win, and the rating change lands on the medallion.</p>
+        <p>Your Arena team stands in the arch as four card paintings, each with its level, stars
+        and power, and your rating hangs on a medallion beside them. When the match starts, both
+        teams are dealt face down in their owners' card backs and turned over in a quick zigzag.
+        You know exactly who you're up against before anyone moves.</p>
         <ul class="ticks">
           <li>Quick Match, Challenge a Friend and Practice from one screen</li>
-          <li>Both teams side by side before the first move: no surprises</li>
-          <li>Matches in progress kept on their own plates</li>
+          <li>Win, and the rating change lands right on your medallion</li>
+          <li>Turn-by-turn matches wait on their own plates until you're back</li>
         </ul>
       </div>
     </article>
@@ -101,8 +103,8 @@
       </div>
       <div class="card reveal">
         <h3>Challenge a Friend</h3>
-        <p>Invite through Game Center — iMessage, contacts, nearby — and the Arena offers
-        SharePlay inside a FaceTime call. Pick <b>Live</b>, or <b>Take turns</b>.</p>
+        <p>Invite a friend through Game Center by message, from your contacts or nearby, or
+        start a match with SharePlay during a FaceTime call. Then pick <b>Live</b> or <b>Take turns</b>.</p>
       </div>
       <div class="card reveal">
         <h3>Take turns</h3>
@@ -112,8 +114,8 @@
       </div>
       <div class="card reveal">
         <h3>Practice</h3>
-        <p>A practice rival on the same rules, any time, offline: learn a board, try a new team,
-        or play the Arena on a plane.</p>
+        <p>An AI rival with a team like yours, on the same rules, any time, even offline. It's
+        never rated, so it's the place to try out a new four, or to play the Arena on a plane.</p>
       </div>
     </div>
   </div>
@@ -122,40 +124,25 @@
 <section class="pad" style="padding-top: 10px;">
   <div class="wrap">
     <div class="reveal">
-      <p class="eyebrow">Under the hood</p>
-      <h2>Deterministic lockstep, or: how a match fits in a text message</h2>
+      <p class="eyebrow">Fair play</p>
+      <h2>Nobody peeks, nobody stalls</h2>
       <div class="rule">◆</div>
     </div>
     <div class="duo reveal">
       <div>
-        <p>The battle engine is a pure, deterministic function: the same setup plus the same
-        actions plays out identically on every device. So the Arena doesn't send state, unit
-        lists or damage — it sends <b>actions</b>. About ten bytes per move, about five
-        kilobytes for a whole match. Both sides run the full battle locally and compare a hash
-        of the state after every turn.</p>
-        <p>Match setup uses <b>commit-reveal</b>: both sides hash their teams and the board seed
-        <i>before</i> either sees the other's, so nobody can snipe your party. The protocol
-        version, a content hash and an engine fingerprint must match or the handshake politely
-        refuses — different builds simply can't join each other's matches.</p>
-        <p>Team validation happens before the fight: your four heroes, their levels, weapons,
-        charms and crests are checked against the content rules on both machines. Ownership
-        can't be proven without a server, so the Arena runs on trust: bring a team you
-        earned.</p>
+        <p>Both players lock in their teams before either sees the other's, so nobody can pick
+        a counter to your party. Every turn is checked on both devices as it's played, and if
+        they ever disagree, the match is called <i>no contest</i>.</p>
+        <p>You'll both need the same version of the game. There's no server in the middle, so
+        the Arena takes your team on trust: bring heroes you earned.</p>
       </div>
       <div>
         <div class="chipset">
-          <span class="chip"><b>~10 bytes</b><small>per move</small></span>
-          <span class="chip"><b>~5 kB</b><small>per match</small></span>
-          <span class="chip"><b>Commit → reveal</b><small>no peeking at setup</small></span>
-          <span class="chip"><b>State hashes</b><small>after every turn</small></span>
-          <span class="chip"><b>No server</b><small>required</small></span>
           <span class="chip"><b>Mirrored boards</b><small>land by land</small></span>
-          <span class="chip"><b>Versus rules</b><small>a Bond gauge each, a knockout rule of its own, alternating tie-breaks</small></span>
+          <span class="chip"><b>A Bond gauge each</b><small>and a knockout rule of its own</small></span>
+          <span class="chip"><b>Tie-breaks</b><small>that alternate who goes first</small></span>
+          <span class="chip"><b>Any mix of devices</b><small>iPhone, iPad, Apple&nbsp;TV, Apple&nbsp;Vision&nbsp;Pro</small></span>
         </div>
-        <blockquote class="quote">A desync should be impossible. If the hashes ever disagree,
-        the match is declared <i>no contest</i> and each side writes both states to a log on its
-        own device.
-        <span class="who">Arena design notes</span></blockquote>
       </div>
     </div>
   </div>
@@ -165,17 +152,16 @@
   <div class="band-bg kb"><img src="assets/img/battle/gloomroot_hollow_vista.avif" alt="" aria-hidden="true" loading="lazy"></div>
   <div class="wrap reveal">
     <p class="eyebrow">Rating & seasons</p>
-    <h2>Rated by Glicko-2. Dressed by the grove.</h2>
+    <h2>From Sprout to Accord Champion</h2>
     <div class="rule">◆</div>
     <div class="duo">
       <div>
-        <p>Quick Matches are rated: an account-wide Arena rating starts at 1,500 and moves by
-        Glicko-2, with the opponent's rating agreed between both machines during the handshake.
-        Six-week seasons carry titles — <b>Sprout · Grove Warden · Thornguard · Wildheart ·
-        Accord Champion</b> — and the leaderboard is your Game Center friends' board.</p>
-        <p>Wins pay a little: Acorns and shards for your first win of the day, a trickle after
-        that, up to five rewarded wins a day across your account. Friend matches, live or
-        take-turns, are never rated. The Arena is for showing off, not for grinding.</p>
+        <p>Quick Matches are rated. Everyone starts at 1,500, and each six-week season hands
+        out titles on the way up: <b>Sprout</b>, <b>Grove Warden</b>, <b>Thornguard</b>,
+        <b>Wildheart</b> and, at the very top, <b>Accord Champion</b>. The leaderboard is your Game
+        Center friends, so the people you're beating are people you know.</p>
+        <p>Your first win of the day pays Acorns and shards, and the next four pay a little.
+        Matches with friends are never rated. The Arena is for showing off, not for grinding.</p>
       </div>
       <div>
         <figure class="frame">
@@ -190,11 +176,10 @@
 <section class="pad center">
   <div class="wrap reveal">
     <div class="rule">◆</div>
-    <p style="max-width: 640px; margin: 0 auto;">The Arena was built to one test: could two
-    people, on any mix of iPhone, iPad, Apple&nbsp;TV and Apple&nbsp;Vision&nbsp;Pro, play one honest match with nothing between them but
-    Game Center's pipes? It plays. Now go be insufferable about your rating.</p>
+    <p style="max-width: 640px; margin: 0 auto;">One of you on an iPad, the other on the sofa
+    with the Siri Remote. Win the match, then go be insufferable about your rating.</p>
     <div class="ctas" style="margin-top: 24px;">
-      <a class="btn primary" href="assets/vid/reel_1280.mp4" data-lb="assets/vid/reel_1280.mp4">▶&nbsp; Watch gameplay</a>
+      <a class="btn primary" href="assets/vid/play/arena.mp4" data-lb="assets/vid/play/arena.mp4">▶&nbsp; Watch a match</a>
       <a class="btn ghost" href="/">Back to Grovehaven</a>
     </div>
   </div>

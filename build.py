@@ -2,8 +2,8 @@
 """Site build: stage and optimise website media from the game's asset pool.
 
 Run from anywhere: `python3 build.py`. Reads the game checkout named by
-$FF_GAME_REPO (default ~/code/faunafantasy: its Assets/, work/, Content/ and
-docs/review/) and writes generated media into this repo's assets/, which is
+$FF_GAME_REPO (default ~/code/faunafantasy: its Assets/, work/ and Content/)
+and writes generated media into this repo's assets/, which is
 committed and published as-is. No paid generations; vendor-pack art is not used.
 
 Incremental: an output newer than its source is kept, so re-runs are quick.
@@ -15,8 +15,13 @@ Stills are AVIF (sips, macOS), each with a JPEG twin beside it (same name, .jpg)
 that site.js swaps in on browsers without AVIF (Safari before 16, older Macs).
 The two key-art JPEGs double as og:image.
 Gameplay clips come from the App Store capture pipeline (work/store/captures,
-tools/cinema/store.py in the game): H.264, muted, 30 fps, faststart, each with
-an AVIF poster.
+tools/cinema/store.py in the game), this site's own captures made with the same
+machinery (work/store/captures_web) and the trailer's Rootdelve footage
+(work/marketing/hype_v2/footage/delve): H.264, muted, 30 fps, faststart, each
+with an AVIF poster. Every clip's window is measured smooth first (no repeated
+frames holding motion for over 100 ms; Apple TV simulator recordings often do).
+The trailer (work/marketing/hype_v2) keeps its sound and gets captions from its
+edit list.
 """
 import json
 import os
@@ -129,7 +134,7 @@ def share_card(art, logo, dst, w=1200, h=630):
 
 
 def h264(src, dst, width=None, crf=26, preset="slow", start=None, seconds=None,
-         fps=None, vf=None, sound=False):
+         fps=None, vf=None, sound=False, x264=None):
     """H.264 web clip (yuv420p, faststart). Muted unless sound=True, which keeps the
     first audio track as AAC (the cinematics' dialogue and score)."""
     if fresh(dst, src):
@@ -150,12 +155,53 @@ def h264(src, dst, width=None, crf=26, preset="slow", start=None, seconds=None,
     filters.append("format=yuv420p")
     audio = ["-map", "0:v:0", "-map", "0:a:0", "-c:a", "aac", "-b:a", "128k"] if sound else ["-an"]
     cmd += ["-vf", ",".join(filters), "-c:v", "libx264", "-crf", str(crf),
-            "-preset", preset, "-profile:v", "high", *audio, "-sn", "-movflags", "+faststart", dst]
+            "-preset", preset, "-profile:v", "high", *(["-x264-params", x264] if x264 else []),
+            *audio, "-sn", "-movflags", "+faststart", dst]
     sh(cmd)
 
 
-def frame(src, at, dst, width=1280, q=58):
-    """One frame of a movie as an AVIF poster plus its JPEG twin (via a temporary PNG)."""
+def trailer(src, dst, width=1280, kbps=1600, audio="160k"):
+    """The trailer: a finished film with its score and narrator, so sound is kept (AAC) and the
+    size is held by a two-pass bitrate target (about 13 MB a minute at the defaults) rather than
+    a CRF, which would let a minute of fast cuts and particles run past 20 MB."""
+    if fresh(dst, src):
+        return
+    log = dst.with_suffix(".2pass")
+    vf = f"scale={width}:-2:flags=lanczos,format=yuv420p"
+    common = ["-vf", vf, "-c:v", "libx264", "-b:v", f"{kbps}k", "-maxrate", f"{kbps * 2}k",
+              "-bufsize", f"{kbps * 2}k", "-preset", "slow", "-profile:v", "high", "-passlogfile", log]
+    sh(["ffmpeg", "-y", "-v", "error", "-i", src, *common, "-pass", "1", "-an", "-f", "mp4", os.devnull])
+    sh(["ffmpeg", "-y", "-v", "error", "-i", src, *common, "-pass", "2",
+        "-map", "0:v:0", "-map", "0:a:0", "-c:a", "aac", "-b:a", audio, "-sn", "-movflags", "+faststart", dst])
+    for f in dst.parent.glob(log.name + "*"):
+        f.unlink()
+
+
+def trailer_vtt(edl, dst):
+    """Captions for the trailer from its edit list's voice lines: each line's text (the part
+    before the editor's note in brackets), from its cue time to `end_by` or the end of its audio."""
+    if fresh(dst, edl):
+        return
+    def ts(t):
+        return f"{int(t // 3600):02d}:{int(t % 3600 // 60):02d}:{t % 60:06.3f}"
+    lines = []
+    for v in sorted(json.loads(Path(edl).read_text())["vo"], key=lambda v: v["at"]):
+        text = v["text"].split(" (")[0].strip()
+        wav = ROOT / v["file"]
+        if not wav.exists() and v.get("fallback"):
+            wav = ROOT / v["fallback"]["file"]
+        secs = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
+                                     "-of", "csv=p=0", str(wav)], capture_output=True, text=True).stdout or 2.5)
+        lines.append([v["at"], min(v.get("end_by", 1e9), v["at"] + secs + 0.25), text])
+    for a, b in zip(lines, lines[1:]):
+        a[1] = min(a[1], b[0] - 0.05)          # one caption at a time
+    cues = [f"{i}\n{ts(a)} --> {ts(b)}\n{t}\n" for i, (a, b, t) in enumerate(lines, 1)]
+    dst.write_text("WEBVTT\n\n" + "\n".join(cues))
+
+
+def frame(src, at, dst, width=1280, q=58, vf=None):
+    """One frame of a movie as an AVIF poster plus its JPEG twin (via a temporary PNG).
+    vf runs before the scale (the iPhone pack capture is stored on its side: transpose=2)."""
     jdst = dst.with_suffix(".jpg")
     need_a = not fresh(dst, src)
     need_j = not fresh(jdst, src)
@@ -163,7 +209,7 @@ def frame(src, at, dst, width=1280, q=58):
         return
     tmp = dst.with_suffix(".tmp.png")
     sh(["ffmpeg", "-y", "-v", "error", "-ss", f"{at:.3f}", "-i", src, "-frames:v", "1",
-        "-vf", f"scale={width}:-2:flags=lanczos", tmp])
+        "-vf", (vf + "," if vf else "") + f"scale={width}:-2:flags=lanczos", tmp])
     if need_a:
         sh(["sips", "-s", "format", "avif", "-s", "formatOptions", str(q), tmp, "--out", dst])
     if need_j:
@@ -172,19 +218,20 @@ def frame(src, at, dst, width=1280, q=58):
 
 
 def montage(segments, dst, width, fade=0.5, crf=26, zoom=0.72):
-    """Cross-faded reel from (file, start, seconds) segments, all scaled to width x 16:9.
+    """Cross-faded reel from (file, start, seconds[, vf]) segments, all scaled to width x 16:9.
     zoom < 1 keeps the centre of each frame, so the corner HUD falls outside the
-    background reel (the section clips keep the full frame)."""
+    background reel (the section clips keep the full frame). A segment's vf runs first."""
     srcs = [s[0] for s in segments]
     if fresh(dst, *srcs):
         return
     h = width * 9 // 16
     cmd = ["ffmpeg", "-y", "-v", "error"]
-    for f, start, secs in segments:
+    for f, start, secs, *_ in segments:
         cmd += ["-ss", f"{start:.3f}", "-t", f"{secs:.3f}", "-i", f]
     parts, offset = [], 0.0
-    for i in range(len(segments)):
-        parts.append(f"[{i}:v]crop=iw*{zoom}:ih*{zoom},scale={width}:{h}:force_original_aspect_ratio=increase:flags=lanczos,"
+    for i, seg in enumerate(segments):
+        pre = seg[3] + "," if len(seg) > 3 and seg[3] else ""
+        parts.append(f"[{i}:v]{pre}crop=iw*{zoom}:ih*{zoom},scale={width}:{h}:force_original_aspect_ratio=increase:flags=lanczos,"
                      f"crop={width}:{h},fps=30,format=yuv420p,setsar=1,settb=AVTB[s{i}]")
     last = "s0"
     for i in range(1, len(segments)):
@@ -207,7 +254,10 @@ def main():
 
     A = ROOT / "Assets"
     W = ROOT / "work"
-    CAP = W / "store/captures"
+    CAP = W / "store/captures"          # the App Store captures (late October; the Binder 2 November)
+    WEB = W / "store/captures_web"      # this site's own captures (9 November: Grovehaven, Rootdelve, Trail, Shop)
+    DELVE = W / "marketing/hype_v2/footage/delve"   # Rootdelve on Apple TV at 60 fps (9 November)
+    SIDEWAYS = "transpose=2"            # the iPhone pack capture is stored on its side, with no rotation flag
 
     # ---- brand ---------------------------------------------------------------
     copy(A / "Brand/logo.png", IMG / "logo.png")
@@ -240,74 +290,73 @@ def main():
     for f in (A / "Backgrounds/runmap").glob("*.jpg"):
         avif(f, IMG / "battle" / (f.stem + ".avif"), 1600, 58)
 
-    # ---- older dev captures still current (the Trail, camp, mini-games) ---------
-    for rel in ("docs/review/trail_v2/00_overview.jpg", "docs/review/trail_v2/02_walking.jpg",
-                "docs/review/trail_v2/03_camp.jpg", "docs/review/trail_v2/05_encounter.jpg",
-                "docs/review/minigames_v2/brew_ipad_play.jpg",
-                "docs/review/minigames_v2/grove_ipad_play.jpg"):
-        src = ROOT / rel
-        if src.exists():
-            avif(src, IMG / "shots" / (Path(rel).stem + ".avif"), 1400, 60)
-        else:
-            print("  (missing shot)", rel)
-
-    # ---- current-build stills from the App Store captures (uncaptioned) ---------
-    print("store stills")
+    # ---- current-build stills (uncaptioned): the store captures where the screen hasn't
+    # changed since, and this site's own captures where it has (WEB.shots, 9 November:
+    # Grovehaven's new street and menu, the dressed Rootdelve, the straight Trail and Infusions)
+    print("stills")
     stills = {
-        "tv_battle_canyon": "tv/auto_canyon_s11.png",
-        "tv_pack_legend": "tv/pack_s17.png",
-        "tv_hub": "tv/hub_s00.png",
-        "tv_gate": "tv/gate_s00.png",
-        "tv_battle_plan": "tv/battle_coral_s08.png",
-        "tv_coral": "tv/auto_coral_s03.png",
-        "tv_binder": "tv/binder_s01.png",
-        "tv_crawl": "tv/crawl_s03.png",
-        "tv_arena_reveal": "tv/arena_reveal_s00.png",
-        "tv_arena_battle": "tv/arena_battle_s03.png",
-        "tv_shop": "tv/shop_s01.png",
-        "ipad_hub": "ipad/hub_s00.png",
-        "ipad_shop": "ipad/shop_s01.png",
-        "ipad_crawl": "ipad/crawl_s04.png",
+        "tv_battle_canyon": CAP / "tv/auto_canyon_s11.png",
+        "tv_pack_legend": CAP / "tv/pack_s17.png",
+        "tv_hub": WEB / "tv/hub_s03.png",
+        "tv_gate": CAP / "tv/gate_s00.png",
+        "tv_battle_plan": WEB / "tv/battle_coral_s00.png",
+        "tv_coral": CAP / "tv/auto_coral_s03.png",
+        "tv_binder": CAP / "tv/binder_s01.png",
+        "tv_crawl": WEB / "tv/crawl_s04.png",
+        "tv_arena_reveal": CAP / "tv/arena_reveal_s00.png",
+        "tv_arena_battle": CAP / "tv/arena_battle_s03.png",
+        "tv_shop": WEB / "tv/shop_s00.png",
+        "tv_trail": WEB / "tv/trail_s07.png",
+        "tv_victory": WEB / "tv/trail_s03.png",
+        "tv_chest": WEB / "tv/trail_s06.png",
+        "tv_camp": WEB / "tv/trail_s13.png",
+        "ipad_binder": CAP / "ipad/binder_s01.png",
+        "ipad_pack": CAP / "ipad/pack_s17.png",
+        "ipad_shop": CAP / "ipad/shop_s01.png",
     }
-    for name, rel in stills.items():
-        src = CAP / rel
+    for name, src in stills.items():
+        rel = src.relative_to(W)
         if src.exists():
             avif(src, IMG / "shots" / (name + ".avif"), 1100 if name.startswith("ipad") else 1600, 60)
         else:
             print("  (missing still)", rel)
 
     # ---- gameplay clips: cut, scaled, muted, with posters ---------------------------
-    # (name, capture, start s, seconds, width, poster at +s)
+    # (name, capture, start s, seconds, width, poster at +s[, vf])
+    # WEB.smooth: every window is measured smooth (no motion gap over 100 ms at 30 fps; the
+    # numbers are on _review/smooth.html). The Apple TV simulator repeats frames under load, so
+    # the TV pack opening and battle planning come from the iPhone captures instead.
     print("gameplay clips")
     clips = [
-        ("battle", "tv/auto_canyon.mov", 16.0, 10.0, 1280, 1.8),
-        ("plan", "tv/battle_coral.mov", 10.5, 9.0, 1280, 3.0),
-        ("pack", "tv/pack.mov", 2.6, 18.6, 1280, 15.6),   # poster: the Legendary face up, not the flip flash
-        ("hub", "tv/hub.mov", 0.7, 9.0, 1280, 6.0),
-        ("crawl", "iphone/crawl.mov", 1.5, 12.0, 1280, 2.0),
-        ("arena", "tv/arena_battle.mov", 0.4, 13.6, 1280, 5.5),
-        ("duel", "iphone/duel.mov", 0.0, 10.5, 1280, 4.6),
-        ("coral", "tv/auto_coral.mov", 28.0, 10.0, 1280, 3.5),
-        ("gloom", "iphone/battle_gloom.mov", 8.0, 10.0, 1280, 6.5),
-        ("binder", "tv/binder.mov", 0.2, 6.2, 1280, 1.5),
+        ("battle", CAP / "tv/auto_canyon.mov", 16.0, 10.0, 1280, 1.8),
+        ("plan", CAP / "iphone/battle_coral.mov", 2.5, 9.0, 1280, 1.5),
+        ("pack", CAP / "iphone/pack.mov", 3.0, 17.0, 1280, 15.2, SIDEWAYS),   # poster: Agnes Valor face up
+        ("hub", WEB / "tv/hub.mov", 5.45, 6.9, 1280, 3.0),   # from 5.45 s: the staged journal's "Sets complete" toast has gone, the heroes are landing
+        ("crawl", DELVE / "delve_agnes.mov", 13.4, 13.6, 1280, 6.6),   # Stormspire, then down to Gloomroot
+        ("arena", CAP / "tv/arena_battle.mov", 0.4, 13.6, 1280, 5.5),
+        ("duel", CAP / "iphone/duel.mov", 0.0, 10.5, 1280, 4.6),
+        ("coral", CAP / "tv/auto_coral.mov", 28.0, 10.0, 1280, 3.5),
+        ("gloom", CAP / "iphone/battle_gloom.mov", 8.0, 10.0, 1280, 6.5),
+        ("binder", CAP / "tv/binder.mov", 0.2, 6.2, 1280, 1.5),
     ]
-    for name, rel, start, secs, width, poster in clips:
-        src = CAP / rel
+    for name, src, start, secs, width, poster, *vf in clips:
         if not src.exists():
-            print("  (missing capture)", rel)
+            print("  (missing capture)", src.relative_to(W))
             continue
+        vf = vf[0] if vf else None
         h264(src, VID / "play" / (name + ".mp4"), width=width, crf=27, start=start,
-             seconds=secs, fps=30)
-        frame(src, start + poster, IMG / "play" / (name + ".avif"), width)
+             seconds=secs, fps=30, vf=vf)
+        frame(src, start + poster, IMG / "play" / (name + ".avif"), width, vf=vf)
 
-    # the home page's background reel: the store previews' beats, uncaptioned
+    # the home page's background reel: the store previews' beats, uncaptioned, every
+    # segment from a smooth window
     print("reel")
     reel = [
         (CAP / "tv/auto_canyon.mov", 17.4, 4.0),
-        (CAP / "tv/pack.mov", 15.6, 4.4),
-        (CAP / "tv/hub.mov", 1.0, 3.8),
-        (CAP / "tv/battle_coral.mov", 12.4, 3.6),
-        (CAP / "tv/crawl.mov", 2.5, 3.8),
+        (CAP / "iphone/pack.mov", 15.6, 4.4, SIDEWAYS),
+        (WEB / "tv/hub.mov", 5.45, 3.8),
+        (CAP / "iphone/battle_coral.mov", 3.0, 3.6),
+        (DELVE / "delve_agnes.mov", 19.0, 3.8),
         (CAP / "iphone/battle_gloom.mov", 9.6, 3.6),
         (CAP / "tv/arena_battle.mov", 3.0, 3.6),
     ]
@@ -317,12 +366,27 @@ def main():
     h264(VID / "reel_1280.mp4", VID / "reel_960.mp4", width=960, crf=28)
     frame(VID / "reel_1280.mp4", 0.6, IMG / "reel_poster.avif", 1280)
 
+    # ---- the trailer (MKT.hype2): the Media page's feature and the home page's Watch button --
+    # A finished minute with its score and narrator: sound kept, captions from its edit list,
+    # the poster from the logo end card before the platform ribbon comes in (0:55)
+    print("trailer")
+    hype = W / "marketing/hype_v2/fauna_hype_v2.mp4"
+    if hype.exists():
+        trailer(hype, VID / "trailer_1280.mp4")
+        frame(hype, 55.0, IMG / "trailer_poster.avif", 1280)
+        edl = ROOT / "tools/marketing/hype_v2_edl.json"
+        if edl.exists():
+            trailer_vtt(edl, VID / "trailer.vtt")
+    else:
+        print("  (missing trailer)", hype.relative_to(ROOT))
+
     # ---- cinematics (in-app renders) ------------------------------------------------
     print("cinematics")
     for clip in ("attract_loop", "intro_fernwood", "boss_gloomroot_hollow", "finale"):
         src = A / "Cinematics" / (clip + ".mp4")
         if src.exists():
-            h264(src, VID / (clip + "_h264.mp4"), crf=25, sound=True)   # "these play with sound"
+            # "these play with sound"; the v5 renders are 1920 wide, the web copies 1280
+            h264(src, VID / (clip + "_h264.mp4"), width=1280, crf=25, sound=True)
             vtt = src.with_suffix(".vtt")
             if vtt.exists():
                 copy(vtt, VID / (clip + ".vtt"))   # captions for the <track>
@@ -357,7 +421,10 @@ def main():
         stem = h["id"].removeprefix("hero.")
         mp4 = A / "Cards/alive" / (stem + ".mp4")
         if mp4.exists():
-            h264(mp4, VID / "alive" / (stem + ".mp4"), width=520, crf=30, preset="fast")
+            # WEB.smooth: crf 30 / preset fast froze these gentle loops for up to 41 frames, then
+            # jumped; preset slow with a smaller dead zone keeps the slow motion moving
+            h264(mp4, VID / "alive" / (stem + ".mp4"), width=520, crf=28, preset="slow",
+                 x264="deadzone-inter=4:deadzone-intra=4")
             alive.append(stem)
     print(f"  {len(alive)} alive loops")
 
@@ -374,8 +441,10 @@ def main():
     }
     for src, dst in fontmap.items():
         copy(A / "Fonts" / src, FONTS / dst)
-    for f in A.glob("Fonts/*-OFL.txt"):
-        copy(f, FONTS / f.name)
+    # only the licences of the three fonts the site ships (the game's Assets/Fonts also holds
+    # its localization fonts, which this site doesn't use)
+    for lic in ("LilitaOne-OFL.txt", "Fraunces-OFL.txt", "AtkinsonHyperlegibleNext-OFL.txt"):
+        copy(A / "Fonts" / lic, FONTS / lic)
 
     # ---- data: heroes.js --------------------------------------------------------------------
     rows = []

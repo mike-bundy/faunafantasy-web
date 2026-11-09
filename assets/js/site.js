@@ -141,8 +141,9 @@
       el.src = src;
       el.controls = true;
       el.autoplay = true;
-      el.loop = true;
+      el.loop = !/\/vid\/trailer_/.test(src);          // the trailer plays once, with its sound
       el.muted = /\/vid\/(play\/|reel_)/.test(src);   // gameplay clips have no sound
+      if (t.getAttribute("data-poster")) el.poster = t.getAttribute("data-poster");
       el.playsInline = true;
     } else {
       el = document.createElement("img");
